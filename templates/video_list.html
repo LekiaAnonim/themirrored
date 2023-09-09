@@ -1,0 +1,245 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/js/slick-1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" href="/static/js/slick-1.8.1/slick/slick.css">
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/slick-1.8.1/slick/slick.js"></script>
+    <script src="/static/js/slick-1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <div class="first-screen" style="background: url('/static/images/blonde-woman-posing-outdoors-while-holding-book.jpg'); background-size: cover; background-position: 0;">
+        <div class="post-carousel-search">
+            <div class="post-carousel-container">
+                <div class="post-carousel">
+                    <div>
+                        <a href="#">title 1 | author1 | date1</a>
+                    </div>
+                    <div><a href="#">title 2 | author2 | date2</a></div>
+                    <div><a href="#">title 3 | author3 | date3</a></div>
+                </div>
+                <div class="all-posts">
+                    <a href="#"><button>All Posts</button></a>
+                </div>
+            </div>
+            <div class="search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40" x="0px" y="0px"><g data-name="Layer 2"><path d="M29.707,28.293l-6.552-6.552a12.027,12.027,0,1,0-1.414,1.414l6.552,6.552a1,1,0,0,0,1.414-1.414ZM4,14A10,10,0,1,1,14,24,10.011,10.011,0,0,1,4,14Z"/></g></svg>
+                <div class="search-area hide">
+                    <div class="cancel-search-area">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><path fill-rule="evenodd" clip-rule="evenodd" d="M73.9,5.75c0.467-0.467,1.067-0.7,1.8-0.7c0.7,0,1.283,0.233,1.75,0.7l16.8,16.8  c0.467,0.5,0.7,1.084,0.7,1.75c0,0.733-0.233,1.334-0.7,1.801L70.35,50l23.9,23.95c0.5,0.467,0.75,1.066,0.75,1.8  c0,0.667-0.25,1.25-0.75,1.75l-16.8,16.75c-0.534,0.467-1.117,0.7-1.75,0.7s-1.233-0.233-1.8-0.7L50,70.351L26.1,94.25  c-0.567,0.467-1.167,0.7-1.8,0.7c-0.667,0-1.283-0.233-1.85-0.7L5.75,77.5C5.25,77,5,76.417,5,75.75c0-0.733,0.25-1.333,0.75-1.8  L29.65,50L5.75,26.101C5.25,25.667,5,25.066,5,24.3c0-0.666,0.25-1.25,0.75-1.75l16.8-16.8c0.467-0.467,1.05-0.7,1.75-0.7  c0.733,0,1.333,0.233,1.8,0.7L50,29.65L73.9,5.75z"/></svg>
+                    </div>
+                    <div class="search-form">
+                        <form action="" method="get">
+                            <input class="search-input" type="search" name="search" id="search" placeholder="Search here..."> <input class="submit-search" type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-nav">
+            <div class="logo">Mirrored</div>
+            <div class="navigation-menu">
+                <nav>
+                    <ul>
+                        <div>
+                            <li class="main-menu"><a href="#">Home</a></li>
+                        </div>
+
+                        <div class="menu-with-dropdown">
+                            <li class="main-menu"><a href="#">Blog</a></li>
+                            <div class="dropdown">
+                                <div class="all-post">
+                                    <li><a href="#">All post</a></li>
+                                </div>
+
+                                <div class="post-category">
+                                    <li>
+                                        <a href="#">Category 1</a>
+                                    </li>
+                                    <li><a href="#">Category 2</a></li>
+                                    <li><a href="#">Category 3</a></li>
+                                    <li><a href="#">Category 4</a></li>
+                                    <li><a href="#">Category 5</a></li>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <li class="main-menu"><a href="#">How</a></li>
+                        </div>
+                        <div>
+                            <li class="main-menu"><a href="#">About</a></li>
+                        </div>
+                        <div>
+                            <li class="main-menu"><a href="#">Contact</a></li>
+                        </div>
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="social-media">
+                <div class="social">
+                    <a href="#">
+                        <?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">    <path d="M13,0C5.82,0,0,5.82,0,13c0,6.518,4.801,11.899,11.057,12.839v-9.394H7.84v-3.417h3.217v-2.274 c0-3.765,1.834-5.417,4.963-5.417c1.498,0,2.291,0.111,2.666,0.162v2.983h-2.134c-1.328,0-1.792,1.259-1.792,2.679v1.868h3.893 l-0.528,3.417H14.76v9.422C21.105,25.006,26,19.581,26,13C26,5.82,20.18,0,13,0z"/></svg></a>
+                </div>
+                <div class="social">
+                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="M 31.820312 12 C 13.438312 12 12 13.439312 12 31.820312 L 12 32.179688 C 12 50.560688 13.438313 52 31.820312 52 L 32.179688 52 C 50.561688 52 52 50.560688 52 32.179688 L 52 32 C 52 13.452 50.548 12 32 12 L 31.820312 12 z M 43.994141 18 C 45.099141 17.997 45.997 18.889141 46 19.994141 C 46.003 21.099141 45.110859 21.997 44.005859 22 C 42.900859 22.003 42.003 21.110859 42 20.005859 C 41.997 18.900859 42.889141 18.003 43.994141 18 z M 31.976562 22 C 37.498562 21.987 41.987 26.454563 42 31.976562 C 42.013 37.498562 37.545437 41.987 32.023438 42 C 26.501437 42.013 22.013 37.545437 22 32.023438 C 21.987 26.501437 26.454563 22.013 31.976562 22 z M 31.986328 26 C 28.672328 26.008 25.992 28.701625 26 32.015625 C 26.008 35.328625 28.700672 38.008 32.013672 38 C 35.327672 37.992 38.008 35.299328 38 31.986328 C 37.992 28.672328 35.299328 25.992 31.986328 26 z"/></svg></a>
+                </div>
+                <div class="social">
+                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M 6 3 C 4.3550302 3 3 4.3550302 3 6 L 3 18 C 3 19.64497 4.3550302 21 6 21 L 18 21 C 19.64497 21 21 19.64497 21 18 L 21 6 C 21 4.3550302 19.64497 3 18 3 L 6 3 z M 12 7 L 14 7 C 14 8.005 15.471 9 16 9 L 16 11 C 15.395 11 14.668 10.734156 14 10.285156 L 14 14 C 14 15.654 12.654 17 11 17 C 9.346 17 8 15.654 8 14 C 8 12.346 9.346 11 11 11 L 11 13 C 10.448 13 10 13.449 10 14 C 10 14.551 10.448 15 11 15 C 11.552 15 12 14.551 12 14 L 12 7 z"/></svg></a>
+                </div>
+                <div class="social">
+                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 1668.56 1221.19" viewBox="0 0 1668.56 1221.19" id="twitter-x"><path d="M283.94,167.31l386.39,516.64L281.5,1104h87.51l340.42-367.76L984.48,1104h297.8L874.15,558.3l361.92-390.99
+                    h-87.51l-313.51,338.7l-253.31-338.7H283.94z M412.63,231.77h136.81l604.13,807.76h-136.81L412.63,231.77z" transform="translate(52.39 -25.059)"></path></svg></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="how-section">
+        <div class="how-date">
+            <h2>2023</h2>
+        </div>
+        <div class="how-container">
+            <div class="how-month">
+                <h3>September</h3>
+            </div>
+            <div class="how-card-container">
+                <div class="video-card">
+                    <div class="video-embed">
+                        <iframe width="280" height="200" src="https://www.youtube.com/embed/67ZA-1wIQ-w?si=yqwxpEBzJHJ22TTh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">
+                        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores odio nostrum, minima doloremque in facilis.</h2>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-embed">
+                        <iframe width="280" height="200" src="https://www.youtube.com/embed/67ZA-1wIQ-w?si=yqwxpEBzJHJ22TTh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">
+                        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores odio nostrum, minima doloremque in facilis.</h2>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-embed">
+                        <iframe width="280" height="200" src="https://www.youtube.com/embed/67ZA-1wIQ-w?si=yqwxpEBzJHJ22TTh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">
+                        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores odio nostrum, minima doloremque in facilis.</h2>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-embed">
+                        <iframe width="280" height="200" src="https://www.youtube.com/embed/67ZA-1wIQ-w?si=yqwxpEBzJHJ22TTh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">
+                        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores odio nostrum, minima doloremque in facilis.</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section6" style="background: url(/static/images/background-885434_1280.png); background-size: cover; background-repeat: no-repeat;">
+        <footer>
+            <div class="mission-footer">
+                <div class="mission-header">
+                    <h2>Mission</h2>
+                </div>
+                <span class="quote-symbol">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 2000 2500" style="enable-background:new 0 0 2000 2000;" xml:space="preserve">
+                    <g>
+                        <g>
+                            <path d="M833.39,646.4l13.57,9.05c-70.37,43.23-110.08,107.56-119.12,193.01c134.18,39.71,201.29,119.87,201.29,240.5    c0,74.39-24.63,137.11-73.89,188.11c-49.26,51.03-109.57,76.53-180.95,76.53c-72.38,0-131.95-25.63-178.69-76.9    c-46.74-51.27-70.11-116.85-70.11-196.79c0-100.53,38.81-193.01,116.48-277.45S716.78,666,833.39,646.4z M1478.76,646.4    l13.57,9.05c-70.37,43.23-110.08,107.56-119.12,193.01c134.18,39.71,201.29,119.87,201.29,240.5    c0,74.39-24.63,137.11-73.89,188.11c-49.26,51.03-109.57,76.53-180.95,76.53c-72.38,0-131.95-25.63-178.69-76.9    c-46.74-51.27-70.11-116.85-70.11-196.79c0-100.53,38.81-193.01,116.48-277.45C1265.02,718.02,1362.15,666,1478.76,646.4z"/>
+                        </g>
+                    </g>
+                </svg>
+            </span>
+                <div class="mission-statement">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam repellendus soluta illo id molestiae voluptate odio, laudantium nam fugiat laborum maiores unde cupiditate rem officia atque architecto facilis aliquid laboriosam!</p>
+                </div>
+            </div>
+            <div class="prayer-request-form">
+                <h2>Prayer Requests And Enquiries</h2>
+                <form action="" method="post">
+                    <div class="field-wrapper">
+                        <input type="text" name="first_name" id="first_name" placeholder="First name"> <input type="email" name="email" id="email" placeholder="Email">
+                    </div>
+                    <div class="field-wrapper">
+                        <textarea name="prayer_request" id="prayer_request" cols="34" rows="5">Type here...</textarea>
+                    </div>
+                    <input class="submit" type="submit" value="Submit">
+                </form>
+            </div>
+            <div class="main-footer">
+                <div class="mirrored-logo">Mirrored</div>
+                <div class="quicklinks">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li>
+                            <a href="#">All Posts</a>
+                        </li>
+                        <li>
+                            <a href="#">Videos</a>
+                        </li>
+                        <li>
+                            <a href="#">How</a>
+                        </li>
+                        <li>
+                            <a href="#">About</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contact-footer">
+                    <h3>Connect with us</h3>
+                    <ul>
+                        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40" x="0px" y="0px"><path d="m29.57001,7.5c-.66897.60322-10.95223,9.89021-11.96007,10.78999-.43996.42998-1.01991.64001-1.59993.64001-.59003,0-1.17999-.21002-1.64001-.64996L2.64001,7.10999c-.41003.66003-.64001,1.45001-.64001,2.28003v13.21997c0,2.39001,1.89001,4.33002,4.21997,4.33002h19.56006c2.32996,0,4.21997-1.94,4.21997-4.33002v-13.21997c0-.67004-.15002-1.32001-.42999-1.89001Z"/><path d="m15.75,16.83002c.14001.13995.35999.13995.5,0,.93903-.84517,11.50015-10.37813,12.07001-10.89001-.70001-.56-1.59003-.88001-2.53998-.88001H6.21997c-.78998,0-1.53998.22003-2.16998.62.6032.57933,10.7567,10.25075,11.70001,11.15002Z"/></svg>
+                            <a href="mailto:enquiries@themirrored.com">enquiries@themirrored.com</a>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40" x="0px" y="0px"><path d="m29.57001,7.5c-.66897.60322-10.95223,9.89021-11.96007,10.78999-.43996.42998-1.01991.64001-1.59993.64001-.59003,0-1.17999-.21002-1.64001-.64996L2.64001,7.10999c-.41003.66003-.64001,1.45001-.64001,2.28003v13.21997c0,2.39001,1.89001,4.33002,4.21997,4.33002h19.56006c2.32996,0,4.21997-1.94,4.21997-4.33002v-13.21997c0-.67004-.15002-1.32001-.42999-1.89001Z"/><path d="m15.75,16.83002c.14001.13995.35999.13995.5,0,.93903-.84517,11.50015-10.37813,12.07001-10.89001-.70001-.56-1.59003-.88001-2.53998-.88001H6.21997c-.78998,0-1.53998.22003-2.16998.62.6032.57933,10.7567,10.25075,11.70001,11.15002Z"/></svg>
+                            <a href="mailto:team@themirrored.com">team@themirrored.com</a>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40" x="0px" y="0px"><path d="m29.57001,7.5c-.66897.60322-10.95223,9.89021-11.96007,10.78999-.43996.42998-1.01991.64001-1.59993.64001-.59003,0-1.17999-.21002-1.64001-.64996L2.64001,7.10999c-.41003.66003-.64001,1.45001-.64001,2.28003v13.21997c0,2.39001,1.89001,4.33002,4.21997,4.33002h19.56006c2.32996,0,4.21997-1.94,4.21997-4.33002v-13.21997c0-.67004-.15002-1.32001-.42999-1.89001Z"/><path d="m15.75,16.83002c.14001.13995.35999.13995.5,0,.93903-.84517,11.50015-10.37813,12.07001-10.89001-.70001-.56-1.59003-.88001-2.53998-.88001H6.21997c-.78998,0-1.53998.22003-2.16998.62.6032.57933,10.7567,10.25075,11.70001,11.15002Z"/></svg>
+                            <a href="mailto:tessy.somoye@themirrored.com">tessy.somoye@themirrored.com</a>
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:serif="http://www.serif.com/" viewBox="0 0 48 60" version="1.1" xml:space="preserve" style="" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round"
+                                stroke-miterlimit="2"><g transform="matrix(1,0,0,1,-144,-240)"><g><path d="M154.707,243.293L162.707,251.293C163.098,251.683 163.098,252.317 162.707,252.707C162.707,252.707 158.507,256.907 157.667,257.747C157.13,258.285 157.269,258.87 157.284,258.925C157.826,260.504 159.387,263.973 163.707,268.293C168.032,272.618 171.503,274.177 173.076,274.717C173.437,274.841 173.838,274.748 174.108,274.478L179.293,269.293C179.683,268.902 180.317,268.902 180.707,269.293C180.707,269.293 188.707,277.293 188.707,277.293C189.098,277.683 189.098,278.317 188.707,278.707C188.707,278.707 185.991,281.423 184.212,283.194C184.211,283.195 184.211,283.195 184.21,283.196C182.985,284.421 181.212,284.924 179.525,284.524C179.522,284.523 179.519,284.522 179.515,284.521C175.596,283.547 167.261,280.675 159.293,272.707C151.326,264.74 148.453,256.405 147.473,252.488C147.472,252.484 147.471,252.48 147.47,252.476C147.07,250.788 147.573,249.012 148.8,247.786L153.293,243.293C153.683,242.902 154.317,242.902 154.707,243.293Z"/></g></g></svg>
+                            <a href="tel:+1(919)396-7440">+1(919)396-7440</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </section>
+    <section class="section7">
+        <div class="copyright">
+            <p>&copy; <span id="present_year"></span> mirrored</p>
+            <script>
+                document.getElementById("present_year").innerHTML = new Date().getFullYear();
+            </script>
+        </div>
+    </section>
+    <script src="/static/js/main/carousel.js"></script>
+    <script src="/static/js/main/main.js"></script>
+</body>
+
+</html>
+
+</html>
+
+</html>
