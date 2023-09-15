@@ -1,0 +1,54 @@
+<!DOCTYPE html>{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %} {% load wagtailimages_tags %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    {% block content %}
+    <section class="how-section">
+        <div class="how-date">
+            <h2>{{page.name}}</h2>
+        </div>
+        <div class="how-container">
+            <div class="how-card-container">
+                {% if blogs %} {% for blog in blogs %}
+                <div class="post-card-vertical">
+                    <div class="post-image" style="background-image: url({{blog.post_image.url}}); background-size: cover; background-repeat: no-repeat;">
+                        <a href="{% pageurl blog.post_category %}">
+                            <div class="post-category">
+                                <p>{{blog.post_category}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post-content">
+                        <div class="author">
+                            <div class="author-image"><img src="/static/images/blonde-woman-posing-outdoors-while-holding-book.jpg" alt=""></div>
+                            <div class="author-name">
+                                <a href="{% url 'blog:author_detail' blog.post_author.slug %}">
+                                    <p>{{blog.post_author}}</p>
+                                </a>
+                            </div>
+                            <div class="post-date">
+                                <p>{{blog.date_created}}</p>
+                            </div>
+                        </div>
+                        <div class="post-title">
+                            <a href="{% pageurl blog %}">
+                                <h2>{{blog.post_title}}</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %} {% else %}
+                <div>
+                    <p>No post available</p>
+                </div>{% endif %}
+            </div>
+        </div>
+    </section> {% endblock content %}
+</body>
+
+</html>

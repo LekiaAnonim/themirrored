@@ -1,0 +1,59 @@
+<!DOCTYPE html>{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %} {% load wagtailimages_tags %} {% load humanize %} {# You can use the 'humanize' template filter for date formatting #}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    {% block content %}
+    <section class="how-section">
+        {% regroup page.get_children by date_created.year as year_list %} {% for year in year_list %}
+        <div class="how-date">
+            <h2>{{ year.grouper|date:"Y" }} {# Display the year #}</h2>
+        </div>
+        {% regroup year.list by date_created.month as month_list %} {% for month in month_list %}
+        <div class="how-container">
+            <div class="how-month">
+                <h3>{{ month.grouper|date:"F" }} {# Display the month as full name #}</h3>
+            </div>
+            <div class="how-card-container">
+                {% for obj in month.list %}
+                <div class="post-card-vertical">
+                    {% image obj.post_image fill-300x230 as post_image %}
+                    <div class="post-image" style="background-image: url({{post_image.url}}); background-size: cover; background-repeat: no-repeat;">
+                        <a href="{% pageurl obj.word_category %}">
+                            <div class="post-category">
+                                <p>{{obj.word_category}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post-content">
+                        <div class="author">
+                            <div class="author-image"><img src="{{obj.word_author.user.url}}" alt=""></div>
+                            <div class="author-name">
+                                <a href="#">
+                                    <p>{{obj.word_author.user.first_name}} {{obj.word_author.user.last_name}}</p>
+                                </a>
+                            </div>
+                            <div class="post-date">
+                                <p>{{obj.date_created}}</p>
+                            </div>
+                        </div>
+                        <div class="post-title">
+                            <a href="{% pageurl obj %}">
+                                <h2>{{obj.post_title}}</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %} {% endfor %}
+    </section>
+    {% endblock content %}
+</body>
+
+</html>
