@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.routable_page',
     'django_extensions',
     'django_social_share',
-    'colorful',
+    # 'colorful',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +87,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'wagtail.contrib.settings.context_processors.settings',
             ],
         },
     },

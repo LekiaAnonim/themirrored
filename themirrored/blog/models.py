@@ -16,7 +16,7 @@ from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from django.conf import settings
 from wagtail.contrib.forms.panels import FormSubmissionsPanel
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
-from wagtail.admin.panels import FieldPanel, InlinePanel, FieldRowPanel, MultiFieldPanel
+from wagtail.admin.panels import FieldPanel, InlinePanel, FieldRowPanel, MultiFieldPanel, PageChooserPanel
 import re
 from wagtail.search import index
 # Create your models here.
@@ -290,14 +290,15 @@ class WordTagIndexPage(Page):
         context['wordpages'] = wordpages
         return context
 
-url = "https://youtu.be/wQSbQaSlG6s?si=f76aKaNUrEWnuYt-"
-match = re.search(r'^(https?://[^/]+/[^/]+/[^/]+)/', url)
-if match:
-    result = match.group(1)
-    print(result)
-else:
-    print("No match found.")
+# url = "https://youtu.be/wQSbQaSlG6s?si=f76aKaNUrEWnuYt-"
+# match = re.search(r'^(https?://[^/]+/[^/]+/[^/]+)/', url)
+# if match:
+#     result = match.group(1)
+#     print(result)
+# else:
+#     print("No match found.")
 class VideoPage(Page):
+    template = 'blog/video_list.html'
     video_title = models.CharField(max_length=500, null=True)
     video_url = models.URLField(null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
@@ -318,14 +319,42 @@ class VideoPage(Page):
 
 @register_setting
 class SiteSocial(BaseSiteSetting):
-    facebook_url = models.URLField(max_length=500, null=True, blank=True)
-    twitter_url = models.URLField(max_length=500, null=True, blank=True)
-    instagram_url = models.URLField(max_length=500, null=True, blank=True)
-    threads_url = models.URLField(max_length=500, null=True, blank=True)
-    linkedin_url = models.URLField(max_length=500, null=True, blank=True)
-    youtube_url = models.URLField(max_length=500, null=True, blank=True)
+    facebook = models.URLField(max_length=500, null=True, blank=True)
+    twitter = models.URLField(max_length=500, null=True, blank=True)
+    instagram = models.URLField(max_length=500, null=True, blank=True)
+    threads = models.URLField(max_length=500, null=True, blank=True)
+    linkedin = models.URLField(max_length=500, null=True, blank=True)
+    youtube = models.URLField(max_length=500, null=True, blank=True)
+    tiktok = models.URLField(max_length=500, null=True, blank=True)
 
-    slug = models.SlugField(null=True,  max_length=500)
+@register_setting
+class ImportantPages(BaseSiteSetting):
+    # Fetch these pages when looking up ImportantPages for or a site
+    select_related = ["blog_index_page", "about_page", "how_index_page", "word_index_page", "contact_page", "video_index_page"]
+
+    blog_index_page = models.ForeignKey(
+        'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
+    about_page = models.ForeignKey(
+        'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
+    how_index_page = models.ForeignKey(
+        'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
+    word_index_page = models.ForeignKey(
+        'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
+
+    contact_page = models.ForeignKey(
+        'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
+
+    video_index_page = models.ForeignKey(
+        'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
+
+    panels = [
+        PageChooserPanel('blog_index_page'),
+        PageChooserPanel('about_page'),
+        PageChooserPanel('how_index_page'),
+        PageChooserPanel('word_index_page'),
+        PageChooserPanel('video_index_page'),
+        PageChooserPanel('contact_page'),
+    ]
 
 
 @register_snippet
