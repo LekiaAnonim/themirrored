@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.routable_page',
     'django_extensions',
     'django_social_share',
+    "phonenumber_field",
     # 'colorful',
 ]
 

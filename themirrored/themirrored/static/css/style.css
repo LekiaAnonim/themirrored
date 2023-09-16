@@ -1135,3 +1135,14 @@ footer {
     margin-bottom: 15px;
     margin-top: 50px;
 }
+
+.thank-you-main{
+    width: fit-content;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

@@ -11,6 +11,7 @@ from taggit.models import TaggedItemBase
 from django.contrib.auth.models import AbstractUser
 from wagtail.users.models import UserProfile
 from django.urls import reverse
+from django.shortcuts import render
 from django.utils.text import slugify
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from django.conf import settings
@@ -19,6 +20,7 @@ from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.admin.panels import FieldPanel, InlinePanel, FieldRowPanel, MultiFieldPanel, PageChooserPanel
 import re
 from wagtail.search import index
+from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
 class Category(Page):
@@ -328,6 +330,15 @@ class SiteSocial(BaseSiteSetting):
     tiktok = models.URLField(max_length=500, null=True, blank=True)
 
 @register_setting
+class SiteContact(BaseSiteSetting):
+    email1 = models.EmailField(help_text='Your Email address', null=True, blank=True)
+    email2 = models.EmailField(help_text='Your Email address', null=True, blank=True)
+    email3 = models.EmailField(help_text='Your Email address', null=True, blank=True)
+    phone1 = PhoneNumberField(null=True, blank=True)
+    phone2 = PhoneNumberField(null=True, blank=True)
+    phone3 = PhoneNumberField(null=True, blank=True)
+
+@register_setting
 class ImportantPages(BaseSiteSetting):
     # Fetch these pages when looking up ImportantPages for or a site
     select_related = ["blog_index_page", "about_page", "how_index_page", "word_index_page", "contact_page", "video_index_page"]
@@ -348,12 +359,12 @@ class ImportantPages(BaseSiteSetting):
         'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
 
     panels = [
-        PageChooserPanel('blog_index_page'),
-        PageChooserPanel('about_page'),
-        PageChooserPanel('how_index_page'),
-        PageChooserPanel('word_index_page'),
-        PageChooserPanel('video_index_page'),
-        PageChooserPanel('contact_page'),
+        PageChooserPanel('blog_index_page', ['blog.BlogIndexPage']),
+        PageChooserPanel('about_page', ['blog.AboutPage']),
+        PageChooserPanel('how_index_page', ['blog.HowIndexPage']),
+        PageChooserPanel('word_index_page', ['blog.HowIndexPage']),
+        PageChooserPanel('video_index_page', ['blog.VideoPage']),
+        PageChooserPanel('contact_page', ['blog.ContactPage']),
     ]
 
 
@@ -387,4 +398,41 @@ class RequestFormPage(AbstractEmailForm):
             ]),
             FieldPanel('subject'),
         ], "Email"),
+    ]
+
+    def serve(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            form = self.get_form(request.POST, page=self, user=request.user)
+
+            if form.is_valid():
+                self.process_form_submission(form)
+                
+                # Update the original landing page context with other data
+                landing_page_context = self.get_context(request)
+                landing_page_context['first_name'] = form.cleaned_data['first_name']
+
+                return render(
+                    request,
+                    self.get_landing_page_template(request),
+                    landing_page_context
+                )
+        else:
+            form = self.get_form(page=self, user=request.user)
+
+        context = self.get_context(request)
+        context['form'] = form
+        return render(
+            request,
+            self.get_template(request),
+            context
+        )
+
+@register_setting
+class RequestFormSettings(BaseSiteSetting):
+    request_form_page = models.ForeignKey(
+        'wagtailcore.Page', null=True, on_delete=models.SET_NULL)
+
+    panels = [
+        # note the page type declared within the pagechooserpanel
+        PageChooserPanel('request_form_page', ['blog.RequestFormPage']),
     ]
