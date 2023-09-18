@@ -321,15 +321,6 @@ class VideoPage(Page):
 
 @register_setting
 class SiteSocial(BaseSiteSetting):
-<<<<<<< HEAD
-    facebook_url = models.URLField(max_length=500, null=True, blank=True)
-    twitter_url = models.URLField(max_length=500, null=True, blank=True)
-    instagram_url = models.URLField(max_length=500, null=True, blank=True)
-    threads_url = models.URLField(max_length=500, null=True, blank=True)
-    linkedin_url = models.URLField(max_length=500, null=True, blank=True)
-    youtube_url = models.URLField(max_length=500, null=True, blank=True)
-    slug = models.SlugField(null=True,  max_length=500)
-=======
     facebook = models.URLField(max_length=500, null=True, blank=True)
     twitter = models.URLField(max_length=500, null=True, blank=True)
     instagram = models.URLField(max_length=500, null=True, blank=True)
@@ -375,7 +366,6 @@ class ImportantPages(BaseSiteSetting):
         PageChooserPanel('video_index_page', ['blog.VideoPage']),
         PageChooserPanel('contact_page', ['blog.ContactPage']),
     ]
->>>>>>> 0c1bdd7ad0b34767cebf002897988928873682b6
 
 
 @register_snippet
