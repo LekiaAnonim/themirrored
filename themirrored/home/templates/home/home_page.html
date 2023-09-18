@@ -53,8 +53,7 @@
                 </div>
             </div>
             <div class="section-content-container">
-                {% if recent_blogs %} {% for blog in recent_blogs %}
-                {% if blog %}
+                {% if recent_blogs %} {% for blog in recent_blogs %} {% if blog %}
                 <div class="post-card">
                     {% image blog.post_image fill-300x230 as post_image %}
                     <div class="post-image" style="background-image: url({{post_image.url}}); background-size: cover; background-repeat: no-repeat;">
@@ -83,18 +82,17 @@
                             {% endif %} {% endwith %}
                         </div>
                         <div class="author">
-                            <div class="author-image"><img src="{{blog.post_author.avatar.url}}" alt=""></div>
+                            <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div>
                             <div class="author-name">
                                 <a href="#">
-                                    <p>{{blog.post_author.user.first_name}} {{blog.post_author.user.last_name}}</p>
+                                    <p>{{page.owner.first_name}} {{page.owner.last_name}}</p>
                                 </a>
                             </div>
                             <div class="post-date">{{blog.date_created|date:"d M Y"}}</div>
                         </div>
                     </div>
                 </div>
-                {% endif %}
-                {% endfor %} {% else %}
+                {% endif %} {% endfor %} {% else %}
                 <p>No recent post</p>
                 {% endif %}
             </div>
@@ -233,10 +231,10 @@
                                 {% endif %} {% endwith %}
                             </div>
                             <div class="author">
-                                <div class="author-image"><img src="{{blog.post_author.user.avatar.url}}" alt=""></div>
+                                <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div>
                                 <div class="author-name">
                                     <a href="#">
-                                        <p>{{blog.post_author.user.first_name}} {{blog.post_author.user.last_name}}</p>
+                                        <p>{{page.owner.first_name}} {{page.owner.last_name}}</p>
                                     </a>
                                 </div>
                                 <div class="post-date">

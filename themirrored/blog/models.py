@@ -117,6 +117,7 @@ class BlogPageTag(TaggedItemBase):
         on_delete=models.CASCADE
     )
 class BlogPage(PostInfo, Page):
+    template = 'blog/blog_page.html'
     post_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='post_author')
     post_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='post_category')
     article_of_the_week = models.BooleanField(default=False)

@@ -16,23 +16,24 @@
             <div class="how-card-container">
                 {% if blogs %} {% for blog in blogs %}
                 <div class="post-card-vertical">
-                    <div class="post-image" style="background-image: url({{blog.post_image.url}}); background-size: cover; background-repeat: no-repeat;">
+                    {% image blog.post_image fill-300x230 as post_image %}
+                    <div class="post-image" style="background-image: url({{post_image.url}}); background-size: cover; background-repeat: no-repeat;">
                         <a href="{% pageurl blog.post_category %}">
                             <div class="post-category">
-                                <p>{{blog.post_category}}</p>
+                                <p>{{blog.post_category.name}}</p>
                             </div>
                         </a>
                     </div>
                     <div class="post-content">
                         <div class="author">
-                            <div class="author-image"><img src="/static/images/blonde-woman-posing-outdoors-while-holding-book.jpg" alt=""></div>
+                            <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt="{{page.owner.get_full_name}}"></div>
                             <div class="author-name">
-                                <a href="{% url 'blog:author_detail' blog.post_author.slug %}">
-                                    <p>{{blog.post_author}}</p>
+                                <a href="#">
+                                    <p>{{page.owner.get_full_name}}</p>
                                 </a>
                             </div>
                             <div class="post-date">
-                                <p>{{blog.date_created}}</p>
+                                <p>{{blog.date_created|date:"d M Y"}}</p>
                             </div>
                         </div>
                         <div class="post-title">

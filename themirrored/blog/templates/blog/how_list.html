@@ -19,7 +19,7 @@
                 <h3>{{ month.grouper|date:"F" }} {# Display the month as full name #}</h3>
             </div>
             <div class="how-card-container">
-                {% for obj in month.list %}
+                {% for obj in month.list %} {% with obj=obj.specific %}
                 <div class="post-card-vertical">
                     {% image obj.post_image fill-300x230 as post_image %}
                     <div class="post-image" style="background-image: url({{post_image.url}}); background-size: cover; background-repeat: no-repeat;">
@@ -31,10 +31,10 @@
                     </div>
                     <div class="post-content">
                         <div class="author">
-                            <div class="author-image"><img src="{{obj.how_author.user.url}}" alt=""></div>
+                            <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div>
                             <div class="author-name">
                                 <a href="#">
-                                    <p>{{obj.how_author.user.first_name}} {{obj.how_author.user.last_name}}</p>
+                                    <p>{{page.owner.first_name}} {{page.owner.last_name}}</p>
                                 </a>
                             </div>
                             <div class="post-date">
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+                {% endwith %} {% endfor %}
             </div>
         </div>
         {% endfor %} {% endfor %}

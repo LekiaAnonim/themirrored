@@ -7,17 +7,17 @@
 </head>
 
 <body>
-{% block content %}
+    {% block content %}
     <section class="post-detail-container-section">
         <div class="post-detail-container">
             <div class="post-detail-card">
                 <div class="Post-title">
                     <h1>{{page.post_title}}</h1>
                     <div class="post-meta">
-                        <div class="author-image"><img src="{{page.how_author.user.avatar.url}}" alt=""></div>
+                        <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div>
                         <div class="author-name-read-count">
                             <div class="author-name">
-                                <h5>{{page.how_author.user.first_name}} {{page.how_author.user.last_name}}</h5>
+                                <h5>{{page.owner.first_name}} {{page.owner.last_name}}</h5>
                             </div>
                             <div class="read-time-date">
                                 <p class="read-time">4 min read</p>
@@ -72,14 +72,14 @@
                 <div class="about-author">
                     <h3>Author</h3>
                     <div class="author-fullname">
-                        <a href="#">{{page.how_author.user.first_name}} {{page.how_author.user.last_name}}</a>
+                        <a href="#">{{page.owner.first_name}} {{page.owner.last_name}}</a>
                     </div>
                     <div class="author-large-image">
-                        <img src="{{page.how_author.user.avatar.url}}" alt="">
+                        <img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt="">
                     </div>
                     <div class="about-author-description">
                         <p>
-                            {{page.how_author.bio|richtext}}
+                            {{page.owner.bio|richtext}}
                         </p>
                     </div>
                     <div class="view-all">
@@ -152,7 +152,7 @@
         </div>
 
     </section>
-{% endblock %}
+    {% endblock %}
 
 </body>
 
