@@ -1,4 +1,9 @@
 {% extends "wagtailusers/users/edit.html" %} {% block extra_fields %}
-<li>{% include "wagtailadmin/shared/field.html" with field=form.country %}</li>
-<li>{% include "wagtailadmin/shared/field.html" with field=form.status %}</li>
+<li>{% include "wagtailadmin/shared/field.html" with field=form.bio %}</li>
+<li>{% include "wagtailadmin/shared/field.html" with field=form.facebook_url %}</li>
+<li>{% include "wagtailadmin/shared/field.html" with field=form.twitter_url %}</li>
+<li>{% include "wagtailadmin/shared/field.html" with field=form.instagram_url %}</li>
+<li>{% include "wagtailadmin/shared/field.html" with field=form.threads_url %}</li>
+<li>{% include "wagtailadmin/shared/field.html" with field=form.linkedin_url %}</li>
+<li>{% include "wagtailadmin/shared/field.html" with field=form.youtube_url %}</li>
 {% endblock extra_fields %}

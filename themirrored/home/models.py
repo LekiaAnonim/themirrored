@@ -35,7 +35,7 @@ class HomePage(Page):
     
     def get_context(self, request, *args, **kwargs):
         context = super(HomePage, self).get_context(request, *args, **kwargs)
-        blogs = BlogPage.objects.all().order_by('date_created')[4:8]
+        blogs = BlogPage.objects.all()
         recent_blogs = BlogPage.objects.all().order_by('date_created')[:4]
         article_of_the_week = BlogPage.objects.filter(article_of_the_week=True).order_by('date_created').first()
         videos = VideoPage.objects.all().order_by('date_created')[:6]

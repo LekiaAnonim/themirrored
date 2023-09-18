@@ -67,11 +67,11 @@ MIDDLEWARE = [
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
-# AUTH_USER_MODEL = 'blog.Author'
+# AUTH_USER_MODEL = 'blog.Writer'
 
-# WAGTAIL_USER_EDIT_FORM = 'blog.admin.CustomUserEditForm'
-# WAGTAIL_USER_CREATION_FORM = 'blog.admin.CustomUserCreationForm'
-# WAGTAIL_USER_CUSTOM_FIELDS = ['avatar', 'bio', 'facebook_url', 'twitter_url', 'instagram_url', 'threads_url', 'linkedin_url', 'youtube_url']
+# WAGTAIL_USER_EDIT_FORM = 'blog.forms.CustomUserEditForm'
+# WAGTAIL_USER_CREATION_FORM = 'blog.forms.CustomUserCreationForm'
+# WAGTAIL_USER_CUSTOM_FIELDS = ['bio', 'facebook_url', 'twitter_url', 'instagram_url', 'threads_url', 'linkedin_url', 'youtube_url']
 
 ROOT_URLCONF = "themirrored.urls"
 

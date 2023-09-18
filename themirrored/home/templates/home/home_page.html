@@ -54,10 +54,11 @@
             </div>
             <div class="section-content-container">
                 {% if recent_blogs %} {% for blog in recent_blogs %}
+                {% if blog %}
                 <div class="post-card">
                     {% image blog.post_image fill-300x230 as post_image %}
                     <div class="post-image" style="background-image: url({{post_image.url}}); background-size: cover; background-repeat: no-repeat;">
-                        <a href="{% pageurl blog.post_category %}">
+                        <a href="{% if blog.post_category %}{% pageurl blog.post_category %} {% else %}#{% endif %}">
                             <div class="post-category">
                                 <p>{{blog.post_category.name}}</p>
                             </div>
@@ -76,7 +77,6 @@
                             <!-- Add this: -->
                             {% with tags=blog.tags.all %} {% if tags %}
                             <div class="tags">
-                                <h3>Tags</h3>
                                 {% for tag in tags %}
                                 <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button class="tag" type="button">{{ tag }}</button></a> {% endfor %}
                             </div>
@@ -93,6 +93,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 {% endfor %} {% else %}
                 <p>No recent post</p>
                 {% endif %}
@@ -205,7 +206,7 @@
                 <div class="all-post-container-card">
                     {% if blogs %} {% for blog in blogs %}
                     <div class="post-card-vertical">
-                        {% image obj.post_image fill-300x230 as post_image %}
+                        {% image blog.post_image fill-300x230 as post_image %}
                         <div class="post-image" style="background-image: url({{post_image.url}}); background-size: cover; background-repeat: no-repeat;">
                             <a href="{% pageurl blog.post_category %}">
                                 <div class="post-category">
@@ -226,7 +227,6 @@
                                 <!-- Add this: -->
                                 {% with tags=blog.tags.all %} {% if tags %}
                                 <div class="tags">
-                                    <h3>Tags</h3>
                                     {% for tag in tags %}
                                     <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button class="tag" type="button">{{ tag }}</button></a> {% endfor %}
                                 </div>

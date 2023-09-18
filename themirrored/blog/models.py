@@ -23,6 +23,14 @@ from wagtail.search import index
 from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
+# class Writer(AbstractUser):
+#     bio = models.TextField(null=True, blank=True)
+#     facebook_url = models.URLField(max_length=500, null=True, blank=True)
+#     twitter_url = models.URLField(max_length=500, null=True, blank=True)
+#     instagram_url = models.URLField(max_length=500, null=True, blank=True)
+#     threads_url = models.URLField(max_length=500, null=True, blank=True)
+#     linkedin_url = models.URLField(max_length=500, null=True, blank=True)
+#     youtube_url = models.URLField(max_length=500, null=True, blank=True)
 class Category(Page):
     template = 'blog/category_blogs.html'
     name = models.CharField(max_length=500, null=True, blank=True)
@@ -299,8 +307,22 @@ class WordTagIndexPage(Page):
 #     print(result)
 # else:
 #     print("No match found.")
-class VideoPage(Page):
+class VideoIndexPage(Page):
     template = 'blog/video_list.html'
+    intro = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro')
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(VideoIndexPage, self).get_context(request, *args, **kwargs)
+        videos = VideoPage.objects.all()
+        context["videos"] = videos
+        return context
+
+class VideoPage(Page):
+    template = 'blog/video_page.html'
     video_title = models.CharField(max_length=500, null=True)
     video_url = models.URLField(null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
@@ -339,9 +361,14 @@ class SiteContact(BaseSiteSetting):
     phone3 = PhoneNumberField(null=True, blank=True)
 
 @register_setting
+class SiteLogo(BaseSiteSetting):
+    logo = models.ImageField(null=True, blank=True)
+    favicon = models.ImageField(null=True, blank=True)
+
+@register_setting
 class ImportantPages(BaseSiteSetting):
     # Fetch these pages when looking up ImportantPages for or a site
-    select_related = ["blog_index_page", "about_page", "how_index_page", "word_index_page", "contact_page", "video_index_page"]
+    select_related = ["blog_index_page", "about_page", "how_index_page", "word_index_page", "video_index_page"]
 
     blog_index_page = models.ForeignKey(
         'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
@@ -352,19 +379,19 @@ class ImportantPages(BaseSiteSetting):
     word_index_page = models.ForeignKey(
         'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
 
-    contact_page = models.ForeignKey(
-        'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
+    # contact_page = models.ForeignKey(
+    #     'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
 
     video_index_page = models.ForeignKey(
         'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
 
     panels = [
         PageChooserPanel('blog_index_page', ['blog.BlogIndexPage']),
-        PageChooserPanel('about_page', ['blog.AboutPage']),
+        PageChooserPanel('about_page', ['home.AboutPage']),
         PageChooserPanel('how_index_page', ['blog.HowIndexPage']),
         PageChooserPanel('word_index_page', ['blog.HowIndexPage']),
-        PageChooserPanel('video_index_page', ['blog.VideoPage']),
-        PageChooserPanel('contact_page', ['blog.ContactPage']),
+        PageChooserPanel('video_index_page', ['blog.VideoIndexPage']),
+        # PageChooserPanel('contact_page', ['blog.ContactPage']),
     ]
 
 
