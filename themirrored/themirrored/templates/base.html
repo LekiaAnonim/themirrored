@@ -1,5 +1,4 @@
-{% load static wagtailcore_tags %} {% load static %}{% load wagtailimages_tags %}
-
+{% load static wagtailcore_tags %} {% load static %}{% load wagtailimages_tags %} {% load static menus_tags %} {% get_menu "main" as menu %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,12 +60,11 @@
             <div class="navigation-menu ">
                 <nav>
                     <ul>
-                        <div>
-                            <li class="main-menu "><a href="# ">Home</a></li>
-                        </div>
 
-                        <div class="menu-with-dropdown ">
-                            <li class="main-menu "><a href="# ">Blog</a></li>
+                        {% for item in menu.menu_items.all %}
+                        <div class="{% if item.title == 'Blog' %} menu-with-dropdown {% else %} main-menu {% endif %}">
+                            <li class="main-menu "><a href="{{item.link}}" title="{{item.title}}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>{{item.title}}</a></li>
+                            {% if item.title == 'Blog' %}
                             <div class="dropdown ">
                                 <div class="all-post ">
                                     <li><a href="{% url 'blog:blog_list' %}">All post</a></li>
@@ -82,17 +80,14 @@
                                     {% endif %}
                                 </div>
                             </div>
+                            {% else %}
+                            <p></p>
+                            {% endif %}
                         </div>
-                        <div>
-                            <li class="main-menu "><a href="# ">How</a></li>
-                        </div>
-                        <div>
-                            <li class="main-menu "><a href="# ">About</a></li>
-                        </div>
+                        {% endfor %}
                         <div>
                             <li class="main-menu "><a href="# ">Contact</a></li>
                         </div>
-
                     </ul>
                 </nav>
             </div>
