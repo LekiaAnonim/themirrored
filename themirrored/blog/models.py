@@ -324,7 +324,6 @@ class SiteSocial(BaseSiteSetting):
     threads_url = models.URLField(max_length=500, null=True, blank=True)
     linkedin_url = models.URLField(max_length=500, null=True, blank=True)
     youtube_url = models.URLField(max_length=500, null=True, blank=True)
-
     slug = models.SlugField(null=True,  max_length=500)
 
 
