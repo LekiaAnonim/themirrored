@@ -155,17 +155,20 @@ class BlogPage(PostInfo, Page):
             BlogPage.objects.all().update(**{'article_of_the_week': False})
         super(BlogPage, self).save(*args, **kwargs)
     
-# class BlogPageGalleryImage(Orderable):
-#     page = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='gallery_images')
-#     image = models.ForeignKey(
-#         'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
-#     )
-#     caption = models.CharField(blank=True, max_length=250)
-
-#     panels = [
-#         FieldPanel('image'),
-#         FieldPanel('caption'),
-#     ]
+    # write a get_context method
+    def get_context(self, request, *args, **kwargs):
+        context = super(BlogPage, self).get_context(request, *args, **kwargs)
+        related_content = []
+        if self.tags:
+            for tag in self.tags.all():
+                related_content += BlogPage.objects.live().filter(tags__name=tag)
+                related_content += HowPage.objects.live().filter(tags__name=tag)
+                related_content += WeeklyWordPage.objects.live().filter(tags__name=tag)
+        else:
+            return related_content
+        
+        context["related_content"] = related_content
+        return context
 
 class BlogTagIndexPage(Page):
     def get_context(self, request):

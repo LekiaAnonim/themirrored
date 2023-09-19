@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags %} {% load static %}{% load wagtailimages_tags %} {% load static menus_tags %} {% get_menu "main" as menu %}
+{% load static wagtailcore_tags %}{% load wagtailuserbar %} {% load static %}{% load wagtailimages_tags %} {% load static menus_tags %} {% get_menu "main" as menu %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +21,7 @@
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
-    {% block header %}
+    <!-- {% wagtailuserbar %} -->{% block header %}
     <div class="first-screen" style="background: url('/static/images/blonde-woman-posing-outdoors-while-holding-book.jpg'); background-size: cover; background-position: 0; min-height: 100vh;">
         <div class=" post-carousel-search ">
             <div class="post-carousel-container ">

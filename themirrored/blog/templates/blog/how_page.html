@@ -12,7 +12,7 @@
         <div class="post-detail-container">
             <div class="post-detail-card">
                 <div class="Post-title">
-                    <h1>{{page.post_title}}</h1>
+                    <h1>{{page.post_title|title}}</h1>
                     <div class="post-meta">
                         <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div>
                         <div class="author-name-read-count">

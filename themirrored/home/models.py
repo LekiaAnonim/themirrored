@@ -35,14 +35,14 @@ class HomePage(Page):
     
     def get_context(self, request, *args, **kwargs):
         context = super(HomePage, self).get_context(request, *args, **kwargs)
-        blogs = BlogPage.objects.all()
-        recent_blogs = BlogPage.objects.all().order_by('date_created')[:4]
-        article_of_the_week = BlogPage.objects.filter(article_of_the_week=True).order_by('date_created').first()
-        videos = VideoPage.objects.all().order_by('date_created')[:6]
-        how_of_the_week = HowPage.objects.filter(how_of_the_week=True).order_by('date_created').first()
-        word_of_the_week = WeeklyWordPage.objects.filter(word_of_the_week=True).order_by('date_created').first()
+        blogs = BlogPage.objects.live().all()
+        recent_blogs = BlogPage.objects.live().all().order_by('date_created')[:4]
+        article_of_the_week = BlogPage.objects.live().filter(article_of_the_week=True).order_by('date_created').first()
+        videos = VideoPage.objects.live().all().order_by('date_created')[:6]
+        how_of_the_week = HowPage.objects.live().filter(how_of_the_week=True).order_by('date_created').first()
+        word_of_the_week = WeeklyWordPage.objects.live().filter(word_of_the_week=True).order_by('date_created').first()
 
-        categories = Category.objects.all()
+        categories = Category.objects.live().all()
         context["blogs"] = blogs
         context["recent_blogs"] = recent_blogs
         context["videos"] = videos

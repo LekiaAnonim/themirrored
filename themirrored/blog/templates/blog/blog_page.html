@@ -12,7 +12,7 @@
         <div class="post-detail-container">
             <div class="post-detail-card">
                 <div class="Post-title">
-                    <h1>{{page.post_title}}</h1>
+                    <h1>{{page.post_title|title}}</h1>
                     <div class="post-meta">
                         <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div>
                         <div class="author-name-read-count">
@@ -97,54 +97,28 @@
                             </div>
                         </div>
                         <div class="all-post-container-card">
-                            {% if similar_posts %}
+                            {% if related_content %}{% for post in related_content %}
                             <div class="post-card-vertical">
-                                <div class="post-image" style="background-image: url(/static/images/front-view-curly-woman-reading-outside.jpg); background-size: cover; background-repeat: no-repeat;">
-                                    <a href="#">
-                                        <div class="post-category">
-                                            <p>Category 1</p>
-                                        </div>
-                                    </a>
+                                {% image post.post_image fill-300x230 as post_image %}
+                                <div class="post-image" style="background-image: url({{post_image.url}}); background-size: cover; background-repeat: no-repeat;">
                                 </div>
                                 <div class="post-content">
                                     <div class="post-title">
-                                        <a href="#">
-                                            <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+                                        <a href="{% pageurl post %}">
+                                            <h2>{{post.post_title|title}}</h2>
                                         </a>
                                     </div>
                                     <div class="post-body">
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur esse deleniti corrupti. </p>
-                                    </div>
-                                    <div class="post-tags">
-                                        <div class="tag">
-                                            <p>tag1</p>
-                                        </div>
-                                        <div class="tag">
-                                            <p>tag2</p>
-                                        </div>
-                                        <div class="tag">
-                                            <p>tag3</p>
-                                        </div>
-                                    </div>
-                                    <div class="author">
-                                        <div class="author-image"><img src="/static/images/blonde-woman-posing-outdoors-while-holding-book.jpg" alt=""></div>
-                                        <div class="author-name">
-                                            <a href="#">
-                                                <p>Eve Wilkins</p>
-                                            </a>
-                                        </div>
-                                        <div class="post-date">
-                                            <p>18 Aug 2023</p>
-                                        </div>
+                                        <p>{{post.body|richtext}}</p>
                                     </div>
                                 </div>
                             </div>
-                            {% else %}
+                            {% endfor %} {% else %}
                             <p>No similar posts</p>
                             {% endif %}
                         </div>
                         <div class="view-all">
-                            <a href="#"><button>View All</button></a>
+                            <a href="{{page.get_parent.url}}"><button>View All</button></a>
                         </div>
                     </div>
                 </div>
