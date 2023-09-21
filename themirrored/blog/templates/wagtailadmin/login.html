@@ -3,7 +3,7 @@
 
 {% block branding_logo %}
     {% if settings.blog.SiteLogo.logo %}
-    <img src="{{settings.blog.SiteLogo.logo.url}}" alt="Mirrored Logo" width="80" />
+    {% comment %} <img src="{{settings.blog.SiteLogo.logo.url}}" alt="Mirrored Logo" width="80" /> {% endcomment %}
     {% endif %}
     
 {% endblock %}

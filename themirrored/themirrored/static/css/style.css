@@ -33,6 +33,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
+    min-height: 100vh;
 }
 
 .logo {
@@ -205,9 +206,9 @@ nav ul .main-menu {
     border-bottom: solid #ffffff00;
 }
 
-nav ul .main-menu:hover {
+/* nav ul .main-menu:hover {
     border-bottom: solid var(--deep-orange);
-}
+} */
 
 nav a {
     color: var(--light-orange);
@@ -868,7 +869,7 @@ footer {
 }
 
 .post-detail-container {
-    background-color: var(--medium-orange);
+    background-color: rgb(252, 245, 241);
     width: 100%;
     padding: 30px;
 }
@@ -890,7 +891,7 @@ footer {
 }
 
 .post-detail-card .image img {
-    max-width: 100%;
+    width: 100% !important;
 }
 
 .post-detail-card .post-meta {

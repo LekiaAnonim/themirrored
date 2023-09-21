@@ -17,14 +17,15 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="/static/js/slick-1.8.1/slick/slick.js"></script>
     <script src="/static/js/slick-1.8.1/slick/slick.min.js"></script>
-    <link rel="stylesheet" href="/static/css/style.css">{% endblock styles %} {% block extra_css %} {# Override this in templates to add extra stylesheets #} {% endblock %}
+    <link rel="stylesheet" href="/static/css/style.css">{% endblock styles %} {% block extra_css %} <link rel="stylesheet" href="/static/css/extra.css"> {% endblock %}
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
-    <!-- {% wagtailuserbar %} -->{% block header %}
-    <div class="first-screen" style="background: url('/static/images/blonde-woman-posing-outdoors-while-holding-book.jpg'); background-size: cover; background-position: 0; min-height: 100vh;">
-        <div class=" post-carousel-search ">
-            <div class="post-carousel-container ">
+    <!-- {% wagtailuserbar %} -->
+    <div class="first-screen" style="{% block landingbackground %}background: url('/static/images/blonde-woman-posing-outdoors-while-holding-book.jpg'); background-size: cover; background-position: 0;{% endblock %}">
+        {% block searchcarousel %}
+        <div class="post-carousel-search">
+            <div class="post-carousel-container">
                 <div class="post-carousel ">
                     {% if blogs %} {% for blog in blogs %}
                     <div>
@@ -40,11 +41,11 @@
             </div>
             <div class="search ">
                 <svg class="search-icon " xmlns="http://www.w3.org/2000/svg " viewBox="0 0 32 40 " x="0px " y="0px "><g data-name="Layer 2 "><path d="M29.707,28.293l-6.552-6.552a12.027,12.027,0,1,0-1.414,1.414l6.552,6.552a1,1,0,0,0,1.414-1.414ZM4,14A10,10,0,1,1,14,24,10.011,10.011,0,0,1,4,14Z "/></g></svg>
-                <div class="search-area hide ">
+                <div class="search-area hide">
                     <div class="cancel-search-area ">
                         <svg xmlns="http://www.w3.org/2000/svg " xmlns:xlink="http://www.w3.org/1999/xlink " version="1.1 " x="0px " y="0px " viewBox="0 0 100 125 " enable-background="new 0 0 100 100 " xml:space="preserve "><path fill-rule="evenodd
-        " clip-rule="evenodd " d="M73.9,5.75c0.467-0.467,1.067-0.7,1.8-0.7c0.7,0,1.283,0.233,1.75,0.7l16.8,16.8 c0.467,0.5,0.7,1.084,0.7,1.75c0,0.733-0.233,1.334-0.7,1.801L70.35,50l23.9,23.95c0.5,0.467,0.75,1.066,0.75,1.8 c0,0.667-0.25,1.25-0.75,1.75l-16.8,16.75c-0.534,0.467-1.117,0.7-1.75,0.7s-1.233-0.233-1.8-0.7L50,70.351L26.1,94.25
-        c-0.567,0.467-1.167,0.7-1.8,0.7c-0.667,0-1.283-0.233-1.85-0.7L5.75,77.5C5.25,77,5,76.417,5,75.75c0-0.733,0.25-1.333,0.75-1.8 L29.65,50L5.75,26.101C5.25,25.667,5,25.066,5,24.3c0-0.666,0.25-1.25,0.75-1.75l16.8-16.8c0.467-0.467,1.05-0.7,1.75-0.7 c0.733,0,1.333,0.233,1.8,0.7L50,29.65L73.9,5.75z "/></svg>
+                        "clip-rule="evenodd " d="M73.9,5.75c0.467-0.467,1.067-0.7,1.8-0.7c0.7,0,1.283,0.233,1.75,0.7l16.8,16.8 c0.467,0.5,0.7,1.084,0.7,1.75c0,0.733-0.233,1.334-0.7,1.801L70.35,50l23.9,23.95c0.5,0.467,0.75,1.066,0.75,1.8 c0,0.667-0.25,1.25-0.75,1.75l-16.8,16.75c-0.534,0.467-1.117,0.7-1.75,0.7s-1.233-0.233-1.8-0.7L50,70.351L26.1,94.25
+                        c-0.567,0.467-1.167,0.7-1.8,0.7c-0.667,0-1.283-0.233-1.85-0.7L5.75,77.5C5.25,77,5,76.417,5,75.75c0-0.733,0.25-1.333,0.75-1.8 L29.65,50L5.75,26.101C5.25,25.667,5,25.066,5,24.3c0-0.666,0.25-1.25,0.75-1.75l16.8-16.8c0.467-0.467,1.05-0.7,1.75-0.7 c0.733,0,1.333,0.233,1.8,0.7L50,29.65L73.9,5.75z "/></svg>
                     </div>
                     <div class="search-form ">
                         <form action=" " method="get ">
@@ -54,7 +55,8 @@
                 </div>
             </div>
         </div>
-
+        {% endblock %}
+        {% block header %}
         <div class="header-nav">
             <div class="logo ">Mirrored</div>
             <div class="navigation-menu ">
@@ -65,8 +67,8 @@
                         <div class="{% if item.title == 'Blog' %} menu-with-dropdown {% else %} main-menu {% endif %}">
                             <li class="main-menu "><a href="{{item.link}}" title="{{item.title}}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>{{item.title}}</a></li>
                             {% if item.title == 'Blog' %}
-                            <div class="dropdown ">
-                                <div class="all-post ">
+                            <div class="dropdown">
+                                <div class="all-post">
                                     <li><a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}">All post</a></li>
                                 </div>
 
@@ -86,7 +88,7 @@
                         </div>
                         {% endfor %}
                         <div>
-                            <li class="main-menu "><a href="# ">Contact</a></li>
+                            <li class="main-menu"><a href="#">Contact</a></li>
                         </div>
                     </ul>
                 </nav>
@@ -125,6 +127,8 @@
                 </div>
             </div>
         </div>
+        {% endblock header %}
+        {% block pagecaption %}
         <div class="first-section-content">
             <div class="first-text ">
                 <p>{{page.caption_main_text}}</p>
@@ -134,13 +138,16 @@
                 </h2>
             </div>
         </div>
+        {% endblock %}
+        {% block cta %}
         <div class="call-to-action-btn ">
             <a href="{{ settings.blog.ImportantPages.page_url.about_page }}"><button><p>About us</p></button></a>
             <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}"><button><p>Blog</p></button></a>
             <a href="{{ settings.blog.ImportantPages.page_url.how_index_page }}"><button><p>How</p></button></a>
         </div>
+        {% endblock %}
     </div>
-    {% endblock header %} {% block content %}{% endblock %} {% block footer %}
+     {% block content %}{% endblock %} {% block footer %}
     <section class="section6 " style="background: url(/static/images/background-885434_1280.png); background-size: cover; background-repeat: no-repeat; min-height: 100vh; ">
         <footer>
             <div class="mission-footer ">

@@ -56,10 +56,13 @@ class AboutPage(Page):
     template = 'home/about.html'
     max_count = 1
     image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
+    about_scripture_reference = models.CharField(max_length=500, null=True, blank=True)
+    about_scripture_quote = models.CharField(max_length=500, null=True, blank=True)
     body = RichTextField(null=True)
 
     content_panels = Page.content_panels + [
-
+        FieldPanel('about_scripture_reference'),
+        FieldPanel('about_scripture_quote'),
         FieldPanel('image'),
         FieldPanel('body'),
     ]

@@ -21,6 +21,7 @@ from wagtail.admin.panels import FieldPanel, InlinePanel, FieldRowPanel, MultiFi
 import re
 from wagtail.search import index
 from phonenumber_field.modelfields import PhoneNumberField
+from blog.utils.blog_utils import count_words, read_time
 # Create your models here.
 
 # class Writer(AbstractUser):
@@ -97,6 +98,7 @@ class PostInfo(models.Model):
     post_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
     body = RichTextField(null=True)
     
+    
 
     class Meta:
         abstract = True
@@ -122,6 +124,7 @@ class BlogPage(PostInfo, Page):
     post_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='post_category')
     article_of_the_week = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
+    read_time = models.CharField(max_length=50, default=0)
 
     search_fields = Page.search_fields + [
         index.SearchField('post_title'),
@@ -151,6 +154,7 @@ class BlogPage(PostInfo, Page):
         return self.post_title
 
     def save(self, *args, **kwargs):
+        self.read_time = read_time(self.body)
         if self.article_of_the_week:
             BlogPage.objects.all().update(**{'article_of_the_week': False})
         super(BlogPage, self).save(*args, **kwargs)
@@ -199,6 +203,7 @@ class HowPage(PostInfo, Page):
     how_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='how_category')
     how_of_the_week = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=HowPageTag, blank=True)
+    read_time = models.CharField(max_length=50, default=0)
 
     search_fields = Page.search_fields + [
         index.SearchField('post_title'),
@@ -227,6 +232,7 @@ class HowPage(PostInfo, Page):
         return self.post_title
     
     def save(self, *args, **kwargs):
+        self.read_time = read_time(self.body)
         if self.how_of_the_week:
             HowPage.objects.all().update(**{'how_of_the_week': False})
         super(HowPage, self).save(*args, **kwargs)
@@ -261,6 +267,7 @@ class WeeklyWordPage(PostInfo, Page):
     word_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='word_category')
     word_of_the_week = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=WordPageTag, blank=True)
+    read_time = models.CharField(max_length=50, default=0)
 
     search_fields = Page.search_fields + [
         index.SearchField('post_title'),
@@ -289,6 +296,7 @@ class WeeklyWordPage(PostInfo, Page):
         return self.post_title
     
     def save(self, *args, **kwargs):
+        self.read_time = read_time(self.body)
         if self.word_of_the_week:
             WeeklyWordPage.objects.all().update(**{'word_of_the_week': False})
         super(WeeklyWordPage, self).save(*args, **kwargs)
