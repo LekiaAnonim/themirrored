@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block branding_logo %}
-    {% if settings.blog.SiteLogo.logo %}
+    {% comment %} {% if settings.blog.SiteLogo.logo %} {% endcomment %}
     {% comment %} <img src="{{settings.blog.SiteLogo.logo.url}}" alt="Mirrored Logo" width="80" /> {% endcomment %}
-    {% endif %}
+    {% comment %} {% endif %} {% endcomment %}
     
 {% endblock %}
 

@@ -5,7 +5,7 @@ from home.models import HomePage
 def base_data(request):
     data = {}
     blogs = BlogPage.objects.live().all()
-    home_page = HomePage.objects.live().all()
+    home_page = HomePage.objects.live().all()[0]
     categories = Category.objects.live().all()
     data["blogs"] = blogs
     data["categories"] = categories

@@ -17,7 +17,9 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="/static/js/slick-1.8.1/slick/slick.js"></script>
     <script src="/static/js/slick-1.8.1/slick/slick.min.js"></script>
-    <link rel="stylesheet" href="/static/css/style.css">{% endblock styles %} {% block extra_css %} <link rel="stylesheet" href="/static/css/extra.css"> {% endblock %}
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/media.css">
+    {% endblock styles %} {% block extra_css %} <link rel="stylesheet" href="/static/css/extra.css"> {% endblock %}
 </head>
 
 <body class="{% block body_class %}{% endblock %}">
@@ -26,16 +28,16 @@
         {% block searchcarousel %}
         <div class="post-carousel-search">
             <div class="post-carousel-container">
-                <div class="post-carousel ">
+                <div class="post-carousel">
                     {% if blogs %} {% for blog in blogs %}
-                    <div>
-                        <a href="{% pageurl blog %} ">{{blog.post_title}} | {{request.user.get_full_name}} | {{blog.date_created}}</a>
+                    <div class="post-carousel-text">
+                        <a href="{% pageurl blog %} ">{{blog.post_title}} | {{page.owner.get_full_name}} | {{blog.date_created}}</a>
                     </div>
                     {% endfor %} {% else %}
-                    <div><a href="# ">title 2 | author2 | date2</a></div>
+                    <div class="post-carousel-text"><a href="#">title 2 | author2 | date2</a></div>
                     {% endif %}
                 </div>
-                <div class="all-posts ">
+                <div class="all-posts">
                     <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}"><button>All Posts</button></a>
                 </div>
             </div>
@@ -58,11 +60,16 @@
         {% endblock %}
         {% block header %}
         <div class="header-nav">
-            <div class="logo ">Mirrored</div>
-            <div class="navigation-menu ">
+            <div class="logo">
+                {% comment %} {% if settings.blog.SiteLogo.logo %}
+                <img src="{{settings.blog.SiteLogo.logo.url}}" alt="Mirrored Logo" width="80" />
+                {% else %} {% endcomment %}
+                Mirrored
+                {% comment %} {% endif %} {% endcomment %}
+            </div>
+            <div class="navigation-menu">
                 <nav>
                     <ul>
-
                         {% for item in menu.menu_items.all %}
                         <div class="{% if item.title == 'Blog' %} menu-with-dropdown {% else %} main-menu {% endif %}">
                             <li class="main-menu "><a href="{{item.link}}" title="{{item.title}}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>{{item.title}}</a></li>
@@ -75,7 +82,7 @@
                                 <div class="post-category ">
                                     {% if categories %} {% for category in categories %}
                                     <li>
-                                        <a href="{% pageurl category %} ">{{category.name}}</a>
+                                        <a href="{% pageurl category %}">{{category.name}}</a>
                                     </li>
                                     {% endfor %} {% else %}
                                     <li></li>
@@ -93,7 +100,21 @@
                     </ul>
                 </nav>
             </div>
-            <div class="social-media ">
+            <div class="hamburger" onclick="displaySideMenu()">
+                <span class="ham ham-1"></span>
+                <span class="ham ham-1"></span>
+                <span class="ham ham-1"></span>
+            </div>
+            <div class="ham-side-nav-bar translate-left-right">
+                <ul>
+                    {% for item in menu.menu_items.all %}
+                    <li class="ham-side-main-menu">
+                        <a href="{{item.link}}" title="{{item.title}}" {% if item.open_in_new_tab %} target="_blank" {% endif %} class="normal-menu"><p>{{item.title}}</p></a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="social-media">
                 <div class="social">
                     {% if settings.blog.SiteSocial.facebook %}
                     <a href="{{ settings.blog.SiteSocial.facebook }}">
@@ -130,17 +151,17 @@
         {% endblock header %}
         {% block pagecaption %}
         <div class="first-section-content">
-            <div class="first-text ">
+            <div class="first-text">
                 <p>{{page.caption_main_text}}</p>
             </div>
-            <div class="first-text ">
+            <div class="first-text">
                 <h2>{{page.caption_sub_text}}
                 </h2>
             </div>
         </div>
         {% endblock %}
         {% block cta %}
-        <div class="call-to-action-btn ">
+        <div class="call-to-action-btn">
             <a href="{{ settings.blog.ImportantPages.page_url.about_page }}"><button><p>About us</p></button></a>
             <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}"><button><p>Blog</p></button></a>
             <a href="{{ settings.blog.ImportantPages.page_url.how_index_page }}"><button><p>How</p></button></a>
@@ -166,7 +187,7 @@
                     </svg>
                 </span>
                 <div class="mission-statement">
-                    <p>{{page.mission|richtext}}</p>
+                    <p>{{home_page.mission|richtext}}</p>
                 </div>
             </div>
             <div class="prayer-request-form">
@@ -255,10 +276,10 @@
         </div>
     </section>
     {% endblock footer %} {% block scripts %}
-    <script src="/static/js/main/carousel.js "></script>
-    <script src="/static/js/main/main.js "></script>
+    <script src="/static/js/main/carousel.js"></script>
+    <script type="text/javascript " src="{% static 'js/main/main.js' %} "></script>
     {% endblock scripts %} {# Global javascript #}
-    <script type="text/javascript " src="{% static 'js/themirrored.js' %} "></script>
+    {% comment %} <script type="text/javascript " src="{% static 'js/themirrored.js' %} "></script> {% endcomment %}
 
     {% block extra_js %} {# Override this in templates to add extra javascript #} {% endblock %}
 </body>

@@ -3,7 +3,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 # Create your views here.
 
-from blog.models import BlogPage, Author, HowPage, WeeklyWordPage, VideoPage
+from blog.models import BlogPage, Author, HowPage, WeeklyWordPage, Video
 
 
 class BlogListView(TemplateView):
@@ -35,7 +35,7 @@ class VideoListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["videos"] = VideoPage.objects.all()
+        context["videos"] = Video.objects.all()
         return context
     
 

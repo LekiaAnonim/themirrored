@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="how-content">
-                    <p class="ellipsis-ex text-truncate" onclick="toggleEllipsis(this)">{{how_of_the_week.body|richtext}}</p>
+                    {{how_of_the_week.body|richtext}}
                     <span class="more" onclick="toggleEllipsisMore(this)">more</span>
                 </div>
                 {% image how_of_the_week.post_image fill-300x230 as post_image %}
@@ -67,7 +67,7 @@
                     <div class="post-content">
                         <div class="post-title">
                             <a href="{% pageurl blog %}">
-                                <h2>{{blog.post_title}}</h2>
+                                <h2>{{blog.post_title|title}}</h2>
                             </a>
                         </div>
                         <div class="post-body">
@@ -89,7 +89,7 @@
                                     <p>{{page.owner.first_name}} {{page.owner.last_name}}</p>
                                 </a>
                             </div>
-                            <div class="post-date">{{blog.date_created|date:"d M Y"}}</div>
+                            <div class="post-date"><p>{{blog.date_created|date:"d M Y"}}</p></div>
                         </div>
                     </div>
                 </div>
@@ -178,7 +178,7 @@
                     {% if videos %} {% for video in videos %}
                     <div class="video-card">
                         <div class="video-embed">
-                            <iframe width="280" height="200" src="https://www.youtube.com/embed/{{video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/{{video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                         <div class="video-title">
                             <h2>{{video.video_title}}</h2>

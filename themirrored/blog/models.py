@@ -22,6 +22,7 @@ import re
 from wagtail.search import index
 from phonenumber_field.modelfields import PhoneNumberField
 from blog.utils.blog_utils import count_words, read_time
+from wagtail.snippets.models import register_snippet
 # Create your models here.
 
 # class Writer(AbstractUser):
@@ -329,18 +330,18 @@ class VideoIndexPage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super(VideoIndexPage, self).get_context(request, *args, **kwargs)
-        videos = VideoPage.objects.all()
+        videos = Video.objects.all()
         context["videos"] = videos
         return context
 
-class VideoPage(Page):
-    template = 'blog/video_page.html'
+@register_snippet
+class Video(models.Model):
     video_title = models.CharField(max_length=500, null=True)
     video_url = models.URLField(null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     date_updated = models.DateTimeField(auto_now=True, null=True)
 
-    content_panels = Page.content_panels + [
+    panels = [
         FieldPanel('video_title'),
         FieldPanel('video_url'),
     ]
@@ -348,9 +349,9 @@ class VideoPage(Page):
         return self.video_title
     
     def save(self, *args, **kwargs):
-        match = re.search(r'^(https?://[^/]+/[^/]+/[^/]+)/', self.video_url)
+        match = re.search(r'youtu.be/([^/]+)', self.video_url)
         self.video_url = match.group(1)
-        super(VideoPage, self).save(*args, **kwargs)
+        super(Video, self).save(*args, **kwargs)
 
 
 @register_setting
