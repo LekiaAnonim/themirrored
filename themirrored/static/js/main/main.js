@@ -37,3 +37,7 @@ function toggleEllipsisMore(el) {
     el.classList.toggle('hide');
 
 }
+
+function displaySideMenu() {
+  document.querySelector('.ham-side-nav-bar').classList.toggle('translate-left-right');
+}

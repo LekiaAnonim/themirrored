@@ -1,0 +1,53 @@
+<!DOCTYPE html>{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %} {% load wagtailimages_tags %} {% load humanize %} {# You can use the 'humanize' template filter for date formatting #}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    {% image page.post_image fill-300x230 as post_image %}
+    <div class="first-screen" style="{% block landingbackground %}{% if post_image %} background: url('{{post_image.url}}') {% else %}background: url('/static/images/simon-berger-twukN12EN7c-unsplash.jpg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
+    {% block pagecaption %}
+        <div class="first-section-content">
+            <div class="first-text">
+                <p style="color: #fff;">{{page.title|title}}</p>
+            </div>
+        </div>
+    {% endblock %}
+    {% block cta %}
+    {% endblock %}
+    </div>
+    {% block content %}
+    <section class="about-section">
+        <div class="about-heading">
+            <h2>ABOUT</h2>
+        </div>
+        <div class="about-container">
+
+            <div class="about-text">
+
+                <div class="about-scripture">
+                    <h3>{{page.about_scripture_reference}}</h3>
+                    <p>{{page.about_scripture_quote}}</p>
+                </div>
+                <div class="about-message">
+                    <p>{{page.body|richtext}}
+                    </p>
+                </div>
+            </div>
+            <div class="about-image">
+                {% image page.image fill-300x230 as post_image %}
+                <img src="{{post_image.url}}" alt="">
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+</body>
+
+</html>
+
+</html>
+
+</html>

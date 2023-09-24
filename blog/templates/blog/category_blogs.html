@@ -1,0 +1,67 @@
+<!DOCTYPE html>{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %} {% load wagtailimages_tags %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    {% image page.post_image fill-300x230 as post_image %}
+    <div class="first-screen" style="{% block landingbackground %}{% if post_image %} background: url('{{post_image.url}}') {% else %}background: url('/static/images/simon-berger-twukN12EN7c-unsplash.jpg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
+    {% block pagecaption %}
+        <div class="first-section-content">
+            <div class="first-text ">
+                <p>{{page.title|title}}</p>
+            </div>
+        </div>
+    {% endblock %}
+    {% block cta %}
+    {% endblock %}
+    </div>
+    {% block content %}
+    <section class="how-section">
+        <div class="how-date">
+            <h2>{{page.name}}</h2>
+        </div>
+        <div class="how-container">
+            <div class="how-card-container">
+                {% if blogs %} {% for blog in blogs %}
+                <div class="post-card-vertical">
+                    {% image blog.post_image fill-300x230 as post_image %}
+                    <div class="post-image" style="background-image: url({{post_image.url}}); background-size: cover; background-repeat: no-repeat;">
+                        <a href="{% pageurl blog.post_category %}">
+                            <div class="post-category">
+                                <p>{{blog.post_category.name}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post-content">
+                        <div class="author">
+                            <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt="{{page.owner.get_full_name}}"></div>
+                            <div class="author-name">
+                                <a href="#">
+                                    <p>{{page.owner.get_full_name}}</p>
+                                </a>
+                            </div>
+                            <div class="post-date">
+                                <p>{{blog.date_created|date:"d M Y"}}</p>
+                            </div>
+                        </div>
+                        <div class="post-title">
+                            <a href="{% pageurl blog %}">
+                                <h2>{{blog.post_title}}</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %} {% else %}
+                <div>
+                    <p>No post available</p>
+                </div>{% endif %}
+            </div>
+        </div>
+    </section> {% endblock content %}
+</body>
+
+</html>

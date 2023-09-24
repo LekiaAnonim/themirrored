@@ -1,0 +1,44 @@
+<!DOCTYPE html>{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %} {% load wagtailimages_tags %} {% load humanize %} {# You can use the 'humanize' template filter for date formatting #}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    {% image page.post_image fill-300x230 as post_image %}
+    <div class="first-screen" style="{% block landingbackground %}{% if post_image %} background: url('{{post_image.url}}') {% else %}background: url('/static/images/simon-berger-twukN12EN7c-unsplash.jpg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
+    {% block pagecaption %}
+        <div class="first-section-content">
+            <div class="first-text ">
+                <p>{{page.title|title}}</p>
+            </div>
+        </div>
+    {% endblock %}
+    {% block cta %}
+    {% endblock %}
+    </div>
+    {% block content %}
+    <section class="how-section">
+        <div class="how-container">
+            <div class="how-card-container">
+                {% if videos %} {% for video in videos %}
+                <div class="video-card">
+                    <div class="video-embed">
+                        <iframe width="280" height="200" src="https://www.youtube.com/embed/{{video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">
+                        <h2>{{video.video_title}}</h2>
+                    </div>
+                </div>
+                {% endfor %} {% else %}
+                <p>No video available</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    {% endblock content %}
+</body>
+
+</html>
