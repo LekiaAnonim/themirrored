@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from django.core.management.utils import get_random_secret_key
-
+import cloudinary.uploader
+import cloudinary.api
+import cloudinary
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -72,11 +74,11 @@ MIDDLEWARE = [
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
-# AUTH_USER_MODEL = 'blog.Writer'
+AUTH_USER_MODEL = 'blog.Writer'
 
-# WAGTAIL_USER_EDIT_FORM = 'blog.forms.CustomUserEditForm'
-# WAGTAIL_USER_CREATION_FORM = 'blog.forms.CustomUserCreationForm'
-# WAGTAIL_USER_CUSTOM_FIELDS = ['bio', 'facebook_url', 'twitter_url', 'instagram_url', 'threads_url', 'linkedin_url', 'youtube_url']
+WAGTAIL_USER_EDIT_FORM = 'blog.forms.CustomUserEditForm'
+WAGTAIL_USER_CREATION_FORM = 'blog.forms.CustomUserCreationForm'
+WAGTAIL_USER_CUSTOM_FIELDS = ['bio', 'facebook_url', 'twitter_url', 'instagram_url', 'threads_url', 'linkedin_url', 'youtube_url']
 
 ROOT_URLCONF = "themirrored.urls"
 

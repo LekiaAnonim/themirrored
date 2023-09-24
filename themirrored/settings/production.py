@@ -1,6 +1,8 @@
 from .base import *
 import dj_database_url
 import environ
+import cloudinary.uploader
+import cloudinary.api
 import cloudinary
 
 

@@ -23,16 +23,17 @@ from wagtail.search import index
 from phonenumber_field.modelfields import PhoneNumberField
 from blog.utils.blog_utils import count_words, read_time
 from wagtail.snippets.models import register_snippet
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
-# class Writer(AbstractUser):
-#     bio = models.TextField(null=True, blank=True)
-#     facebook_url = models.URLField(max_length=500, null=True, blank=True)
-#     twitter_url = models.URLField(max_length=500, null=True, blank=True)
-#     instagram_url = models.URLField(max_length=500, null=True, blank=True)
-#     threads_url = models.URLField(max_length=500, null=True, blank=True)
-#     linkedin_url = models.URLField(max_length=500, null=True, blank=True)
-#     youtube_url = models.URLField(max_length=500, null=True, blank=True)
+class Writer(AbstractUser):
+    bio = models.TextField(null=True, blank=True)
+    facebook_url = models.URLField(max_length=500, null=True, blank=True)
+    twitter_url = models.URLField(max_length=500, null=True, blank=True)
+    instagram_url = models.URLField(max_length=500, null=True, blank=True)
+    threads_url = models.URLField(max_length=500, null=True, blank=True)
+    linkedin_url = models.URLField(max_length=500, null=True, blank=True)
+    youtube_url = models.URLField(max_length=500, null=True, blank=True)
 class Category(Page):
     template = 'blog/category_blogs.html'
     name = models.CharField(max_length=500, null=True, blank=True)
@@ -96,7 +97,7 @@ class PostInfo(models.Model):
         max_length=500, null=True, help_text='Enter the title of your post')
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    post_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
+    post_image = CloudinaryField('image', null=True)
     body = RichTextField(null=True)
     
     

@@ -4,6 +4,7 @@ from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
 from blog.models import BlogPage, Category, WeeklyWordPage, HowPage, Video
+from cloudinary.models import CloudinaryField
 
 
 class HomePage(Page):

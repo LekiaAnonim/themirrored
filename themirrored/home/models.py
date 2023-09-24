@@ -4,6 +4,7 @@ from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import FieldPanel
 from blog.models import BlogPage, Category, WeeklyWordPage, HowPage, Video
+from cloudinary.models import CloudinaryField
 
 
 class HomePage(Page):
@@ -12,12 +13,12 @@ class HomePage(Page):
     max_count = 1
     body = RichTextField(blank=True)
     site_name = models.CharField(null=True, blank=True, max_length=100)
-    site_logo = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
+    site_logo = CloudinaryField('image', null=True)
     mission = RichTextField(null=True)
     vision  = RichTextField(null=True)
     caption_main_text = models.CharField(null=True, blank=True, max_length=500)
     caption_sub_text = models.CharField(null=True, blank=True, max_length=500)
-    caption_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
+    caption_image = CloudinaryField('image', null=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('body'),
@@ -55,7 +56,7 @@ class HomePage(Page):
 class AboutPage(Page):
     template = 'home/about.html'
     max_count = 1
-    image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
+    image = CloudinaryField('image', null=True)
     about_scripture_reference = models.CharField(max_length=500, null=True, blank=True)
     about_scripture_quote = models.CharField(max_length=500, null=True, blank=True)
     body = RichTextField(null=True)
