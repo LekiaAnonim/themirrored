@@ -28,9 +28,7 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL')
 
 
-DATABASES = {
-    "default": dj_database_url.config(default=env('DATABASE_URL'), conn_max_age=1800),
-}
+
 
 try:
     from .local import *

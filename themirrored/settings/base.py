@@ -16,6 +16,7 @@ from django.core.management.utils import get_random_secret_key
 import cloudinary.uploader
 import cloudinary.api
 import cloudinary
+import dj_database_url
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -74,11 +75,16 @@ MIDDLEWARE = [
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
-AUTH_USER_MODEL = 'blog.Writer'
+# AUTH_USER_MODEL = 'blog.Writer'
 
-WAGTAIL_USER_EDIT_FORM = 'blog.forms.CustomUserEditForm'
-WAGTAIL_USER_CREATION_FORM = 'blog.forms.CustomUserCreationForm'
-WAGTAIL_USER_CUSTOM_FIELDS = ['bio', 'facebook_url', 'twitter_url', 'instagram_url', 'threads_url', 'linkedin_url', 'youtube_url']
+# WAGTAIL_USER_EDIT_FORM = 'blog.forms.CustomUserEditForm'
+# WAGTAIL_USER_CREATION_FORM = 'blog.forms.CustomUserCreationForm'
+# WAGTAIL_USER_CUSTOM_FIELDS = ['bio', 'facebook_url', 'twitter_url', 'instagram_url', 'threads_url', 'linkedin_url', 'youtube_url']
+
+DATABASES = {
+    "default": dj_database_url.config(default='postgresql://postgres:ASsEPX7RNV5JPN3RkOzu@containers-us-west-137.railway.app:6528/railway', conn_max_age=1800),
+}
+
 
 ROOT_URLCONF = "themirrored.urls"
 
