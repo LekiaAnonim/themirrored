@@ -20,6 +20,10 @@ cloudinary.config(
   api_secret = env('CLOUDINARY_SECRET')
 )
 
+DATABASES = {
+    "default": dj_database_url.config(default='postgresql://postgres:ASsEPX7RNV5JPN3RkOzu@containers-us-west-137.railway.app:6528/railway', conn_max_age=1800),
+}
+
 EMAIL_HOST = 'smtp.elasticemail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 2525
