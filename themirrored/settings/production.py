@@ -10,7 +10,7 @@ env = environ.Env(
     DEBUB=(bool, False)
 )
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["themirrored-production.up.railway.app", "themirrored.com"]
 
