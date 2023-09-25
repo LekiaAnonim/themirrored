@@ -31,7 +31,7 @@ function toggleEllipsis() {
   howContentText.nextElementSibling.classList.toggle('hide');
 
 }
-howContentText.addEventListener('click', toggleEllipsis)
+howContentText.addEventListener('click', toggleEllipsis);
 function toggleEllipsisMore(el) {
     el.previousElementSibling.classList.toggle('text-truncate');
     el.classList.toggle('hide');
