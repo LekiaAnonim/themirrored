@@ -12,14 +12,20 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import environ
 from django.core.management.utils import get_random_secret_key
 import cloudinary.uploader
 import cloudinary.api
 import cloudinary
 import dj_database_url
 
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.dirname(PROJECT_DIR)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # Quick-start development settings - unsuitable for production
@@ -114,7 +120,7 @@ WSGI_APPLICATION = "themirrored.wsgi.application"
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://themirrored-production.up.railway.app', 'https://nihmec.com']
+    'https://themirrored-production.up.railway.app', 'https://themirrored.com']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_SECURE = True
