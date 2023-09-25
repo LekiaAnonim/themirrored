@@ -13,31 +13,31 @@ function fixHeader() {
   }if(window.scrollY < 30) {
     headerNav.classList.remove('header-fix-top');
   }
-}
+};
 searchIcon.addEventListener('click', () => {
     searchArea.classList.remove('hide');
 });
 cancelsearch.addEventListener('click', () => {
     searchArea.classList.add('hide');
-})
+});
 
 let howContentText = document.querySelector('.how-content p');
 window.onload = ()=>{
   howContentText.classList.add('text-truncate');
-}
+};
   
 function toggleEllipsis() {
   howContentText.classList.toggle('text-truncate');
   howContentText.nextElementSibling.classList.toggle('hide');
 
-}
+};
 howContentText.addEventListener('click', toggleEllipsis);
 function toggleEllipsisMore(el) {
     el.previousElementSibling.classList.toggle('text-truncate');
     el.classList.toggle('hide');
 
-}
+};
 
 function displaySideMenu() {
   document.querySelector('.ham-side-nav-bar').classList.toggle('translate-left-right');
-}
+};
