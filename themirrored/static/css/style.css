@@ -216,7 +216,7 @@ nav ul .main-menu {
 } */
 
 nav a {
-    color: #fff;
+    color: var(--light-orange);
 }
 
 nav ul .main-menu:hover a {
@@ -626,11 +626,13 @@ section {
 .word-content-container {
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 .word-content-container .word-image {
-    width: 50%;
+    width: 100%;
     min-width: 300px;
+    margin-bottom: 20px;
 }
 
 .word-content-container .word-image img {
@@ -638,7 +640,7 @@ section {
 }
 
 .word-content-container .word-content {
-    width: 50%;
+    width: 100%;
     min-width: 300px;
 }
 
