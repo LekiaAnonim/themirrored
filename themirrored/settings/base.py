@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "taggit",
     "django.contrib.admin",
     "django.contrib.auth",
+    "django.contrib.sitemaps",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -66,6 +67,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'django_social_share',
     "phonenumber_field",
+    'wagtailmetadata',
     # 'colorful',
 ]
 
@@ -192,7 +194,7 @@ STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
-
+WAGTAILIMAGES_MAX_UPLOAD_SIZE = 100*1024*1024 
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "themirrored"

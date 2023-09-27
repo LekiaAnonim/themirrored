@@ -23,6 +23,8 @@ from wagtail.search import index
 from phonenumber_field.modelfields import PhoneNumberField
 from blog.utils.blog_utils import count_words, read_time
 from wagtail.snippets.models import register_snippet
+from cloudinary.models import CloudinaryField
+from wagtailmetadata.models import MetadataPageMixin
 # Create your models here.
 
 # class Writer(AbstractUser):
@@ -33,7 +35,7 @@ from wagtail.snippets.models import register_snippet
 #     threads_url = models.URLField(max_length=500, null=True, blank=True)
 #     linkedin_url = models.URLField(max_length=500, null=True, blank=True)
 #     youtube_url = models.URLField(max_length=500, null=True, blank=True)
-class Category(Page):
+class Category(MetadataPageMixin, Page):
     template = 'blog/category_blogs.html'
     name = models.CharField(max_length=500, null=True, blank=True)
 
@@ -96,7 +98,7 @@ class PostInfo(models.Model):
         max_length=500, null=True, help_text='Enter the title of your post')
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    post_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL, related_name='+')
+    post_image = CloudinaryField("image", null=True)
     body = RichTextField(null=True)
     
     
@@ -105,7 +107,7 @@ class PostInfo(models.Model):
         abstract = True
         ordering = ['-date_created']
 
-class BlogIndexPage(Page):
+class BlogIndexPage(MetadataPageMixin, Page):
     template = 'blog/blog_list.html'
     intro = RichTextField(blank=True)
 
@@ -119,7 +121,7 @@ class BlogPageTag(TaggedItemBase):
         related_name='tagged_items',
         on_delete=models.CASCADE
     )
-class BlogPage(PostInfo, Page):
+class BlogPage(MetadataPageMixin, PostInfo, Page):
     template = 'blog/blog_page.html'
     post_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='post_author')
     post_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='post_category')
@@ -175,7 +177,7 @@ class BlogPage(PostInfo, Page):
         context["related_content"] = related_content
         return context
 
-class BlogTagIndexPage(Page):
+class BlogTagIndexPage(MetadataPageMixin, Page):
     def get_context(self, request):
         # Filter by tag
         tag = request.GET.get('tag')
@@ -192,14 +194,14 @@ class HowPageTag(TaggedItemBase):
         related_name='tagged_items',
         on_delete=models.CASCADE
     )
-class HowIndexPage(Page):
+class HowIndexPage(MetadataPageMixin, Page):
     template = 'blog/how_list.html'
     intro = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('intro')
     ]  
-class HowPage(PostInfo, Page):
+class HowPage(MetadataPageMixin, PostInfo, Page):
     how_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='how_author')
     how_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='how_category')
     how_of_the_week = models.BooleanField(default=False)
@@ -238,7 +240,7 @@ class HowPage(PostInfo, Page):
             HowPage.objects.all().update(**{'how_of_the_week': False})
         super(HowPage, self).save(*args, **kwargs)
 
-class HowTagIndexPage(Page):
+class HowTagIndexPage(MetadataPageMixin, Page):
     def get_context(self, request):
         # Filter by tag
         tag = request.GET.get('tag')
@@ -256,14 +258,14 @@ class WordPageTag(TaggedItemBase):
         related_name='tagged_items',
         on_delete=models.CASCADE
     )
-class WeeklyWordIndexPage(Page):
+class WeeklyWordIndexPage(MetadataPageMixin, Page):
     template = 'blog/word_list.html'
     intro = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('intro')
     ] 
-class WeeklyWordPage(PostInfo, Page):
+class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
     word_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='word_author')
     word_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='word_category')
     word_of_the_week = models.BooleanField(default=False)
@@ -302,7 +304,7 @@ class WeeklyWordPage(PostInfo, Page):
             WeeklyWordPage.objects.all().update(**{'word_of_the_week': False})
         super(WeeklyWordPage, self).save(*args, **kwargs)
 
-class WordTagIndexPage(Page):
+class WordTagIndexPage(MetadataPageMixin, Page):
     def get_context(self, request):
         # Filter by tag
         tag = request.GET.get('tag')
@@ -320,7 +322,7 @@ class WordTagIndexPage(Page):
 #     print(result)
 # else:
 #     print("No match found.")
-class VideoIndexPage(Page):
+class VideoIndexPage(MetadataPageMixin, Page):
     template = 'blog/video_list.html'
     intro = RichTextField(blank=True)
 
@@ -375,8 +377,8 @@ class SiteContact(BaseSiteSetting):
 
 @register_setting
 class SiteLogo(BaseSiteSetting):
-    logo = models.ImageField(null=True, blank=True)
-    favicon = models.ImageField(null=True, blank=True)
+    logo = CloudinaryField("image", null=True)
+    favicon = CloudinaryField("image", null=True)
 
 @register_setting
 class ImportantPages(BaseSiteSetting):

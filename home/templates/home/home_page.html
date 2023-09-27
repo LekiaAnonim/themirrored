@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    {% load wagtailmetadata_tags %}
+    {% meta_tags %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block extra_css %} <link rel="stylesheet" href="/static/css/style.css"> {% endblock %}
@@ -30,12 +32,12 @@
                     </div>
                 </div>
                 <div class="how-content">
-                    {{how_of_the_week.body|richtext}}
+                    <div class="post-full-text text-truncate" onclick="toggleEllipsis(this)">{{how_of_the_week.body|richtext}}</div>
                     <span class="more" onclick="toggleEllipsisMore(this)">more</span>
                 </div>
-                {% image how_of_the_week.post_image fill-300x230 as post_image %}
+                {% comment %} {% image how_of_the_week.post_image fill-300x230 as post_image %} {% endcomment %}
                 <div class="how-image">
-                    <img src="{{post_image.url}}" alt="">
+                    <img src="{{how_of_the_week.post_image.url}}" alt="">
                 </div>
                 {% else %}
                 <p>No how of the week available</p>
@@ -56,8 +58,8 @@
             <div class="section-content-container">
                 {% if recent_blogs %} {% for blog in recent_blogs %} {% if blog %}
                 <div class="post-card">
-                    {% image blog.post_image fill-300x230 as post_image %}
-                    <div class="post-image" style="background-image: url({{post_image.url}}); background-size: cover; background-repeat: no-repeat;">
+                    {% comment %} {% image blog.post_image fill-300x230 as post_image %} {% endcomment %}
+                    <div class="post-image" style="background-image: url({{blog.post_image.url}}); background-size: cover; background-repeat: no-repeat;">
                         <a href="{% if blog.post_category %}{% pageurl blog.post_category %} {% else %}#{% endif %}">
                             <div class="post-category">
                                 <p>{{blog.post_category.name}}</p>
@@ -121,12 +123,12 @@
                     </div>
                 </div>
                 <div class="how-content">
-                    <p class="ellipsis-ex text-truncate" onclick="toggleEllipsis(this)">{{article_of_the_week.body|richtext}}</p>
+                    <div class="post-full-text text-truncate" onclick="toggleEllipsis(this)">{{article_of_the_week.body|richtext}}</div>
                     <span class="more" onclick="toggleEllipsisMore(this)">more</span>
                 </div>
                 <div class="how-image">
-                    {% image article_of_the_week.post_image fill-300x230 as post_image %}
-                    <img src="{{post_image.url}}" alt="">
+                    {% comment %} {% image article_of_the_week.post_image fill-300x230 as post_image %} {% endcomment %}
+                    <img src="{{article_of_the_week.post_image.url}}" alt="">
                 </div>
                 {% else %}
                 <p>No Article of the week available</p> {% endif %}
@@ -146,8 +148,8 @@
             <div class="word-content-container">
                 {% if word_of_the_week %}
                 <div class="word-image">
-                    {% image word_of_the_week.post_image fill-300x230 as post_image %}
-                    <img src="{{post_image.url}}" alt="">
+                    {% comment %} {% image word_of_the_week.post_image fill-300x230 as post_image %} {% endcomment %}
+                    <img src="{{word_of_the_week.post_image.url}}" alt="">
                 </div>
                 <div class="word-content">
                     <div class="word-title">
@@ -178,7 +180,7 @@
                     {% if videos %} {% for video in videos %}
                     <div class="video-card">
                         <div class="video-embed">
-                            <iframe src="https://www.youtube.com/embed/{{video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <iframe width="280" height="155" src="https://www.youtube.com/embed/{{video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                         <div class="video-title">
                             <h2>{{video.video_title}}</h2>
@@ -205,8 +207,8 @@
                 <div class="all-post-container-card">
                     {% if blogs %} {% for blog in blogs %}
                     <div class="post-card-vertical">
-                        {% image blog.post_image fill-300x230 as post_image %}
-                        <div class="post-image" style="background-image: url({{post_image.url}}); background-size: cover; background-repeat: no-repeat;">
+                        {% comment %} {% image blog.post_image fill-300x230 as post_image %} {% endcomment %}
+                        <div class="post-image" style="background-image: url({{blog.post_image.url}}); background-size: cover; background-repeat: no-repeat;">
                             <a href="{% pageurl blog.post_category %}">
                                 <div class="post-category">
                                     <p>{{blog.post_category.name}}</p>

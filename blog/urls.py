@@ -1,5 +1,5 @@
 from django.urls import path
-from blog.views import BlogListView, AuthorDetailView, HowListView, WordListView, VideoListView
+from blog.views import BlogListView, AuthorDetailView, HowListView, WordListView, VideoListView, SearchResultsList
 app_name = "blog"
 
 urlpatterns = [
@@ -7,5 +7,11 @@ urlpatterns = [
     path('hows/list/', HowListView.as_view(), name='how_list'),
     path('word-of-the-week/list/', WordListView.as_view(), name='word_list'),
     path('videos/list/', VideoListView.as_view(), name='video_list'),
+
+    path(
+        route='search_results',
+        view=SearchResultsList.as_view(),
+        name='search_results'
+    ),
     # path("<slug:slug>/", AuthorDetailView.as_view(), name="author_detail"),
 ]

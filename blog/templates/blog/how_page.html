@@ -4,11 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load wagtailmetadata_tags %}
+    {% meta_tags %}
+    {% block og_tag %}
+    <meta property="og:title" content="How: {{page.post_title}}" />
+    <meta property="og:description" content="{{page.body|truncatewords:40}}." />
+    <meta property="og:image" content="{{page.post_image.url}}" />
+    {% endblock og_tag %}
 </head>
 
 <body>
-    {% image page.post_image fill-300x230 as post_image %}
-    <div class="first-screen" style="{% block landingbackground %}{% if post_image %} background: url('{{post_image.url}}') {% else %}background: url('/static/images/simon-berger-twukN12EN7c-unsplash.jpg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
+    {% comment %} {% image page.post_image fill-300x230 as post_image %} {% endcomment %}
+    <div class="first-screen" style="{% block landingbackground %}{% if page.post_image %} background: url('{{page.post_image.url}}') {% else %}background: url('/static/images/simon-berger-twukN12EN7c-unsplash.jpg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
     {% block pagecaption %}
         <div class="first-section-content">
             <div class="first-text ">
@@ -38,9 +45,9 @@
                         </div>
                     </div>
                 </div>
-                {% image page.post_image fill-300x230 as post_image %}
+                {% comment %} {% image page.post_image fill-300x230 as post_image %} {% endcomment %}
                 <div class="image">
-                    <img src="{{post_image.url}}" alt="">
+                    <img src="{{page.post_image.url}}" alt="">
                 </div>
                 <div class="post-interact">
                     <div class="interact like-post"><svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 51.2 64" x="0px" y="0px"><path d="M40.76,19.86a3,3,0,0,0-5.49-.14l-.27-1a3,3,0,0,0-5-.84L27.14,15a3.23,3.23,0,0,0-4.44,0,1.25,1.25,0,0,1-.09.12l-1.24-1.24a3.21,3.21,0,0,0-4.44,0,3.3,3.3,0,0,0-.79,1.38l-.1-.1a3.23,3.23,0,0,0-4.44,0,3.16,3.16,0,0,0,0,4.44l.11.1a3.12,3.12,0,0,0-1.37.79,3.11,3.11,0,0,0,0,4.43l.32.32A3.06,3.06,0,0,0,9.24,26a3.15,3.15,0,0,0,0,4.44l9.21,9.21a9.34,9.34,0,0,0,6.62,2.73,9.67,9.67,0,0,0,1.2-.08,9.33,9.33,0,0,0,4.61,1.22,10.15,10.15,0,0,0,6.58-2.48L40.57,38a7.83,7.83,0,0,0,2.27-5.05C43.1,28.56,42,24.12,40.76,19.86ZM23.84,16.18a1.57,1.57,0,0,1,2.16,0l3.24,3.25a3.37,3.37,0,0,0,0,.44v1.9l-5.47-5.47A1,1,0,0,1,23.84,16.18ZM19.59,38.55l-9.21-9.21a1.52,1.52,0,0,1,0-2.16,1.56,1.56,0,0,1,2.16,0s0,0,0,0l5,5a.82.82,0,0,0,1.14,0,.81.81,0,0,0,0-1.14l-7.19-7.19A1.51,1.51,0,0,1,11,22.74a1.48,1.48,0,0,1,.46-1.08,1.53,1.53,0,0,1,2.16,0l7.19,7.2a.82.82,0,0,0,1.14,0,.81.81,0,0,0,0-1.14l-9.22-9.22a1.5,1.5,0,0,1-.45-1.08,1.54,1.54,0,0,1,.45-1.09,1.57,1.57,0,0,1,2.16,0l2,2h0l7.18,7.19a.81.81,0,0,0,1.14-1.14l-7.19-7.19a1.52,1.52,0,0,1,0-2.16,1.55,1.55,0,0,1,2.17,0l9.21,9.21a.82.82,0,0,0,.88.17.81.81,0,0,0,.49-.74V19.86a1.35,1.35,0,0,1,.07-.44,1.4,1.4,0,0,1,1.32-1,1.43,1.43,0,0,1,1.29.8c.6,2.15,1.08,4,1.45,5.81a26.38,26.38,0,0,1,.53,6.62,6.12,6.12,0,0,1-1.81,4L30.6,38.77a8.33,8.33,0,0,1-4.29,2A7.73,7.73,0,0,1,19.59,38.55Zm21.65-5.74a6.21,6.21,0,0,1-1.81,4L36.37,39.9a8.26,8.26,0,0,1-7.53,1.77A10.47,10.47,0,0,0,31.69,40l3.1-3.11a7.73,7.73,0,0,0,2.28-5.06,27.39,27.39,0,0,0-.55-6.93L36.58,21A1.41,1.41,0,0,1,38,19.58a1.39,1.39,0,0,1,1.26.8C40.44,24.59,41.49,28.71,41.24,32.81ZM20.7,11.67a.8.8,0,1,0,1.15-1.12L20.16,8.79A.81.81,0,0,0,19,9.91Zm4-.46a.8.8,0,0,0,.8-.8v-2a.8.8,0,1,0-1.6,0v2A.8.8,0,0,0,24.67,11.21Zm3.38.7a.82.82,0,0,0,.56-.23L30.31,10a.8.8,0,0,0-1.12-1.14l-1.7,1.66a.79.79,0,0,0,0,1.13A.78.78,0,0,0,28.05,11.91Z"/></svg>
@@ -58,7 +65,20 @@
                     </div>
                     <div class="interact share-post">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" fill="none" x="0px" y="0px"><path fill-rule="evenodd" clip-rule="evenodd" d="M49.4243 22.0067C49.4243 18.8186 52.9716 16.9117 55.6308 18.6703L91.2551 42.2296C93.6465 43.8111 93.6465 47.3209 91.2551 48.9024L55.6308 72.4618C52.9716 74.2204 49.4243 72.3135 49.4243 69.1254L49.4243 56.8605C33.4408 59.3513 22.9401 67.3 14.4676 79.5322C13.313 81.1993 11.3668 81.5942 9.83191 81.126C8.27134 80.65 6.85601 79.1793 7.01176 77.0578C8.05833 62.8024 11.764 53.325 19.1633 46.8208C26.1687 40.6629 36.2083 37.4363 49.4243 34.9062V22.0067ZM89.0486 45.566L53.4243 22.0067V38.232L51.7859 38.5331C37.8084 41.102 28.2062 44.1976 21.8041 49.8251C15.5168 55.3518 12.0169 63.6069 11.0046 77.3017C11.0541 77.3156 11.0989 77.3119 11.1233 77.3045C11.1333 77.3014 11.139 77.2982 11.1433 77.2951C11.1467 77.2926 11.1599 77.2827 11.1794 77.2546C20.5903 63.6675 32.6294 54.8152 51.1852 52.5804L53.4243 52.3107L53.4243 69.1254L89.0486 45.566Z" fill="black"/></svg>
-                        <span>13</span>
+                        <div class="social-share hide">
+                            <div class="cancel-share" onclick="cancelShare()">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1 " x="0px " y="0px " viewBox="0 0 100 125 " enable-background="new 0 0 100 100 " xml:space="preserve "><path fill-rule="evenodd
+                                "clip-rule="evenodd " d="M73.9,5.75c0.467-0.467,1.067-0.7,1.8-0.7c0.7,0,1.283,0.233,1.75,0.7l16.8,16.8 c0.467,0.5,0.7,1.084,0.7,1.75c0,0.733-0.233,1.334-0.7,1.801L70.35,50l23.9,23.95c0.5,0.467,0.75,1.066,0.75,1.8 c0,0.667-0.25,1.25-0.75,1.75l-16.8,16.75c-0.534,0.467-1.117,0.7-1.75,0.7s-1.233-0.233-1.8-0.7L50,70.351L26.1,94.25
+                                c-0.567,0.467-1.167,0.7-1.8,0.7c-0.667,0-1.283-0.233-1.85-0.7L5.75,77.5C5.25,77,5,76.417,5,75.75c0-0.733,0.25-1.333,0.75-1.8 L29.65,50L5.75,26.101C5.25,25.667,5,25.066,5,24.3c0-0.666,0.25-1.25,0.75-1.75l16.8-16.8c0.467-0.467,1.05-0.7,1.75-0.7 c0.733,0,1.333,0.233,1.8,0.7L50,29.65L73.9,5.75z "/></svg>
+                            </div>
+                            {% post_to_facebook object_or_url "Post to Facebook!" %}
+                            {% post_to_twitter "Mirrored Blog post: {{page.post_title}}. Check it out!" object_or_url "Post to Twitter" %}
+                            {% post_to_linkedin object_or_url %}
+                            {% send_email object.title "Mirrored Blog post: {{page.post_title}}. Check it out!" object_or_url "Share via email" %}
+                            {% post_to_whatsapp object_or_url "Share via WhatsApp" %}
+                            {% copy_to_clipboard object_or_url "Copy to clipboard!" %}
+                            {% add_copy_script %}
+                        </div>
                     </div>
                 </div>
                 <div class="post-body">
