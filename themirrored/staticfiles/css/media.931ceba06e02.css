@@ -1,0 +1,26 @@
+@media (max-width: 550px) {
+    .post-carousel-container .all-posts{
+        display: none;
+    }
+
+    .author .author-name p {
+        font-size: x-small;
+    }
+    
+    .post-date p {
+        font-size: x-small;
+    }
+    .post-tags {
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+    }
+    .post-title h2 {
+        font-size: 16px;
+    }
+}
+@media (max-width: 474px) {
+    .post-tags {
+        display: none;
+    }
+}
