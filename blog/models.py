@@ -8,7 +8,7 @@ from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from django import forms
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, AbstractBaseUser
 from wagtail.users.models import UserProfile
 from django.urls import reverse
 from django.shortcuts import render
@@ -25,9 +25,17 @@ from blog.utils.blog_utils import count_words, read_time
 from wagtail.snippets.models import register_snippet
 from cloudinary.models import CloudinaryField
 from wagtailmetadata.models import MetadataPageMixin
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
-
-# class Writer(AbstractUser):
+AUTH_USER = settings.AUTH_USER_MODEL
+# class User(AbstractBaseUser):
+#     identifier = models.CharField(max_length=40, unique=True)
+#     user = models.OneToOneField(
+#         settings.AUTH_USER_MODEL,
+#         on_delete=models.CASCADE,
+#         related_name="mirrored_userprofile",
+#     )
+#     avatar = CloudinaryField('images', null=True)
 #     bio = models.TextField(null=True, blank=True)
 #     facebook_url = models.URLField(max_length=500, null=True, blank=True)
 #     twitter_url = models.URLField(max_length=500, null=True, blank=True)
@@ -35,6 +43,19 @@ from wagtailmetadata.models import MetadataPageMixin
 #     threads_url = models.URLField(max_length=500, null=True, blank=True)
 #     linkedin_url = models.URLField(max_length=500, null=True, blank=True)
 #     youtube_url = models.URLField(max_length=500, null=True, blank=True)
+
+    
+#     USERNAME_FIELD = "identifier"
+
+#     REQUIRED_FIELDS = ["avata", "bio"]
+
+#     @classmethod
+#     def get_for_user(cls, user):
+#         return cls.objects.get_or_create(user=user)[0]
+
+#     class Meta:
+#         verbose_name = _("user profile")
+#         verbose_name_plural = _("user profiles")
 class Category(MetadataPageMixin, Page):
     template = 'blog/category_blogs.html'
     name = models.CharField(max_length=500, null=True, blank=True)
@@ -52,22 +73,22 @@ class Category(MetadataPageMixin, Page):
         context["blogs"] = blogs
         return context
     
-@register_setting
-class Author(BaseSiteSetting):
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="post_user", null=True
-    )
-    bio = models.TextField(null=True, blank=True)
-    facebook_url = models.URLField(max_length=500, null=True, blank=True)
-    twitter_url = models.URLField(max_length=500, null=True, blank=True)
-    instagram_url = models.URLField(max_length=500, null=True, blank=True)
-    threads_url = models.URLField(max_length=500, null=True, blank=True)
-    linkedin_url = models.URLField(max_length=500, null=True, blank=True)
-    youtube_url = models.URLField(max_length=500, null=True, blank=True)
+# @register_setting
+# class Author(BaseSiteSetting):
+#     user = models.OneToOneField(
+#         settings.AUTH_USER_MODEL,
+#         on_delete=models.CASCADE,
+#         related_name="post_user", null=True
+#     )
+#     bio = models.TextField(null=True, blank=True)
+#     facebook_url = models.URLField(max_length=500, null=True, blank=True)
+#     twitter_url = models.URLField(max_length=500, null=True, blank=True)
+#     instagram_url = models.URLField(max_length=500, null=True, blank=True)
+#     threads_url = models.URLField(max_length=500, null=True, blank=True)
+#     linkedin_url = models.URLField(max_length=500, null=True, blank=True)
+#     youtube_url = models.URLField(max_length=500, null=True, blank=True)
 
-    slug = models.SlugField(null=True,  max_length=500)
+#     slug = models.SlugField(null=True,  max_length=500)
 
     # content_panels = Page.content_panels + [
     #     FieldPanel('first_name'),
@@ -82,14 +103,14 @@ class Author(BaseSiteSetting):
     #     FieldPanel('youtube_url'),
     # ]
 
-    def __str__(self):
-        return self.user.first_name
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.user.username, allow_unicode=True)
-        super(Author, self).save(*args, **kwargs)
+    # def __str__(self):
+    #     return self.user.first_name
+    # def save(self, *args, **kwargs):
+    #     self.slug = slugify(self.user.username, allow_unicode=True)
+    #     super(Author, self).save(*args, **kwargs)
 
-    def get_absolute_url(self):
-        return reverse('blog:author_detail', kwargs={ 'slug': self.user.username})
+    # def get_absolute_url(self):
+    #     return reverse('blog:author_detail', kwargs={ 'slug': self.user.username})
 
 
 
@@ -100,7 +121,7 @@ class PostInfo(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
     post_image = CloudinaryField("image", null=True)
     body = RichTextField(null=True)
-    
+    allow_comments = models.BooleanField('allow comments', default=True)
     
 
     class Meta:
@@ -123,7 +144,7 @@ class BlogPageTag(TaggedItemBase):
     )
 class BlogPage(MetadataPageMixin, PostInfo, Page):
     template = 'blog/blog_page.html'
-    post_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='post_author')
+    # post_author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='post_author')
     post_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='post_category')
     article_of_the_week = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
@@ -133,7 +154,7 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
         index.SearchField('post_title'),
         index.SearchField('body'),
         index.FilterField('post_category'),
-        index.FilterField('post_author'),
+        # index.FilterField('post_author'),
         index.FilterField('date_created'),
     ]
 
@@ -141,12 +162,13 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
         MultiFieldPanel([
             FieldPanel('post_title'),
             FieldPanel('post_category'),
-            FieldPanel('post_author'),
+            # FieldPanel('post_author'),
             # FieldPanel('date_created'),
             # FieldPanel('date_updated'),
             FieldPanel('tags'),
             FieldPanel('post_image'),
             FieldPanel('article_of_the_week'),
+            FieldPanel('allow_comments'),
         ], heading="Post information"),
         
         FieldPanel('body'),
@@ -155,6 +177,9 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
 
     def __str__(self):
         return self.post_title
+
+    def get_absolute_url(self):
+        return self.get_url()
 
     def save(self, *args, **kwargs):
         self.read_time = read_time(self.body)
@@ -202,7 +227,7 @@ class HowIndexPage(MetadataPageMixin, Page):
         FieldPanel('intro')
     ]  
 class HowPage(MetadataPageMixin, PostInfo, Page):
-    how_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='how_author')
+    # how_author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='how_author')
     how_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='how_category')
     how_of_the_week = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=HowPageTag, blank=True)
@@ -212,19 +237,20 @@ class HowPage(MetadataPageMixin, PostInfo, Page):
         index.SearchField('post_title'),
         index.SearchField('body'),
         index.FilterField('how_category'),
-        index.FilterField('how_author'),
+        # index.FilterField('how_author'),
         index.FilterField('date_created'),
     ]
     content_panels = Page.content_panels + [
         MultiFieldPanel([
             FieldPanel('post_title'),
             FieldPanel('how_category'),
-            FieldPanel('how_author'),
+            # FieldPanel('how_author'),
             # FieldPanel('date_created'),
             # FieldPanel('date_updated'),
             FieldPanel('tags'),
             FieldPanel('post_image'),
             FieldPanel('how_of_the_week'),
+            FieldPanel('allow_comments'),
         ], heading="Post information"),
         
         FieldPanel('body'),
@@ -233,6 +259,9 @@ class HowPage(MetadataPageMixin, PostInfo, Page):
 
     def __str__(self):
         return self.post_title
+
+    def get_absolute_url(self):
+        return self.get_url()
     
     def save(self, *args, **kwargs):
         self.read_time = read_time(self.body)
@@ -266,7 +295,7 @@ class WeeklyWordIndexPage(MetadataPageMixin, Page):
         FieldPanel('intro')
     ] 
 class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
-    word_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='word_author')
+    # word_author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='word_author')
     word_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='word_category')
     word_of_the_week = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=WordPageTag, blank=True)
@@ -276,19 +305,18 @@ class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
         index.SearchField('post_title'),
         index.SearchField('body'),
         index.FilterField('word_category'),
-        index.FilterField('word_author'),
+        # index.FilterField('word_author'),
         index.FilterField('date_created'),
     ]
     content_panels = Page.content_panels + [
         MultiFieldPanel([
             FieldPanel('post_title'),
             FieldPanel('word_category'),
-            FieldPanel('word_author'),
-            # FieldPanel('date_created'),
-            # FieldPanel('date_updated'),
+            # FieldPanel('word_author'),
             FieldPanel('tags'),
             FieldPanel('post_image'),
             FieldPanel('word_of_the_week'),
+            FieldPanel('allow_comments'),
         ], heading="Post information"),
         
         FieldPanel('body'),
@@ -297,6 +325,9 @@ class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
 
     def __str__(self):
         return self.post_title
+
+    def get_absolute_url(self):
+        return self.get_url()
     
     def save(self, *args, **kwargs):
         self.read_time = read_time(self.body)

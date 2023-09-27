@@ -35,6 +35,8 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 # Application definition
 
 INSTALLED_APPS = [
+    'django_comments_xtd',
+    'django_comments',
     "blog",
     "home",
     "menus",
@@ -60,6 +62,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'django.contrib.sites',
     # 'django.contrib.humanizewagtail',
     'django.contrib.humanize',
     'wagtail.contrib.sitemaps',
@@ -68,8 +71,27 @@ INSTALLED_APPS = [
     'django_social_share',
     "phonenumber_field",
     'wagtailmetadata',
+    'comment',
     # 'colorful',
 ]
+
+SITE_ID = 1
+
+COMMENTS_APP = 'django_comments_xtd'
+
+#  To help obfuscating comments before they are sent for confirmation.
+COMMENTS_XTD_SALT = (b"Timendi causa est nescire. "
+                     b"Aequam memento rebus in arduis servare mentem.")
+
+# Source mail address used for notifications.
+COMMENTS_XTD_FROM_EMAIL = "tessy.somoye@themirrored.com"
+
+# Contact mail address to show in messages.
+COMMENTS_XTD_CONTACT_EMAIL = "enquiries@themirrored.com"
+
+COMMENTS_XTD_CONFIRM_EMAIL = False
+COMMENTS_XTD_MAX_THREAD_LEVEL = 2  # default is 0
+COMMENTS_XTD_LIST_ORDER = ('-thread_id', 'order')  # default is ('thread_id', 'order')
 
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -83,7 +105,7 @@ MIDDLEWARE = [
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
-# AUTH_USER_MODEL = 'blog.Writer'
+# AUTH_USER_MODEL = 'blog.User'
 
 # WAGTAIL_USER_EDIT_FORM = 'blog.forms.CustomUserEditForm'
 # WAGTAIL_USER_CREATION_FORM = 'blog.forms.CustomUserCreationForm'

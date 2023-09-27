@@ -6,7 +6,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 # Create your views here.
 
-from blog.models import BlogPage, Author, HowPage, WeeklyWordPage, Video
+from blog.models import BlogPage, HowPage, WeeklyWordPage, Video
 
 
 class BlogListView(TemplateView):
@@ -42,9 +42,9 @@ class VideoListView(TemplateView):
         return context
     
 
-class AuthorDetailView(DetailView):
-    model = Author
-    template_name = 'blog/author_detail.html'
+# class AuthorDetailView(DetailView):
+#     model = User
+#     template_name = 'blog/author_detail.html'
 
 
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank, SearchHeadline

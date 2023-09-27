@@ -1,5 +1,5 @@
 from django.urls import path
-from blog.views import BlogListView, AuthorDetailView, HowListView, WordListView, VideoListView, SearchResultsList
+from blog.views import BlogListView, HowListView, WordListView, VideoListView, SearchResultsList
 app_name = "blog"
 
 urlpatterns = [

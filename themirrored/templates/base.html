@@ -38,7 +38,7 @@
                 <div class="post-carousel">
                     {% if blogs %} {% for blog in blogs %}
                     <div class="post-carousel-text">
-                        <a href="{% pageurl blog %} ">{{blog.post_title}} | {{page.owner.get_full_name}} | {{blog.date_created}}</a>
+                        <a href="{% pageurl blog %} ">{{blog.post_title}} | {{page.owner.get_full_name}} | {{blog.date_created|date:"d M Y"}}</a>
                     </div>
                     {% endfor %} {% else %}
                     <div class="post-carousel-text"><a href="#">title 2 | author2 | date2</a></div>
