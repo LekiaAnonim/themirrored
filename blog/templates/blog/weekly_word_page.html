@@ -1,6 +1,8 @@
 <!DOCTYPE html>{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %} {% load wagtailimages_tags %}
+{% load social_share %}
+{% load comments %}
+{% load comments_xtd %}
 <html lang="en">
-
 <head>
     {% load wagtailmetadata_tags %}
     {% meta_tags %}
@@ -61,10 +63,15 @@
                             .st3{fill:none;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
                             .st4{fill:none;stroke:#000000;stroke-width:6;stroke-linecap:round;stroke-miterlimit:10;}
                         </style><g><path d="M86.9,47.7c-1.1-19.1-16.4-34.4-35.5-35.6c-10.8-0.7-21,3-28.8,10.5C15.1,29.9,10.8,40.2,11,50.8c0.4,20,17,36.6,36.9,37.2   c6.9,0.2,13.7-1.5,19.7-4.9l16.8,4.8C84.6,88,84.8,88,85,88c0.5,0,1.1-0.2,1.4-0.6c0.5-0.5,0.7-1.3,0.5-2l-5.2-16.1   C85.6,62.8,87.4,55.3,86.9,47.7z M78.1,67.5c-0.5,0.8-0.6,1.7-0.3,2.6L82,83l-13.3-3.8c-1-0.3-2-0.2-2.9,0.4   c-5.4,3-11.5,4.6-17.7,4.4c-17.8-0.5-32.7-15.4-33-33.3c-0.2-9.5,3.6-18.7,10.5-25.3C31.9,19.3,40.2,16,49,16c0.7,0,1.5,0,2.2,0.1   c17.1,1.1,30.7,14.8,31.7,31.9C83.3,54.9,81.7,61.6,78.1,67.5z"/></g></svg>
-                        <span>2</span>
+                        <span>
+                            {% get_comment_count for page as comment_count %}
+                            {% if comment_count %}
+                            {{ comment_count }}
+                            {% endif %}
+                        </span>
                     </div>
                     <div class="interact share-post">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" fill="none" x="0px" y="0px"><path fill-rule="evenodd" clip-rule="evenodd" d="M49.4243 22.0067C49.4243 18.8186 52.9716 16.9117 55.6308 18.6703L91.2551 42.2296C93.6465 43.8111 93.6465 47.3209 91.2551 48.9024L55.6308 72.4618C52.9716 74.2204 49.4243 72.3135 49.4243 69.1254L49.4243 56.8605C33.4408 59.3513 22.9401 67.3 14.4676 79.5322C13.313 81.1993 11.3668 81.5942 9.83191 81.126C8.27134 80.65 6.85601 79.1793 7.01176 77.0578C8.05833 62.8024 11.764 53.325 19.1633 46.8208C26.1687 40.6629 36.2083 37.4363 49.4243 34.9062V22.0067ZM89.0486 45.566L53.4243 22.0067V38.232L51.7859 38.5331C37.8084 41.102 28.2062 44.1976 21.8041 49.8251C15.5168 55.3518 12.0169 63.6069 11.0046 77.3017C11.0541 77.3156 11.0989 77.3119 11.1233 77.3045C11.1333 77.3014 11.139 77.2982 11.1433 77.2951C11.1467 77.2926 11.1599 77.2827 11.1794 77.2546C20.5903 63.6675 32.6294 54.8152 51.1852 52.5804L53.4243 52.3107L53.4243 69.1254L89.0486 45.566Z" fill="black"/></svg>
+                        <svg onclick="displayShare()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 125" fill="none" x="0px" y="0px"><path fill-rule="evenodd" clip-rule="evenodd" d="M49.4243 22.0067C49.4243 18.8186 52.9716 16.9117 55.6308 18.6703L91.2551 42.2296C93.6465 43.8111 93.6465 47.3209 91.2551 48.9024L55.6308 72.4618C52.9716 74.2204 49.4243 72.3135 49.4243 69.1254L49.4243 56.8605C33.4408 59.3513 22.9401 67.3 14.4676 79.5322C13.313 81.1993 11.3668 81.5942 9.83191 81.126C8.27134 80.65 6.85601 79.1793 7.01176 77.0578C8.05833 62.8024 11.764 53.325 19.1633 46.8208C26.1687 40.6629 36.2083 37.4363 49.4243 34.9062V22.0067ZM89.0486 45.566L53.4243 22.0067V38.232L51.7859 38.5331C37.8084 41.102 28.2062 44.1976 21.8041 49.8251C15.5168 55.3518 12.0169 63.6069 11.0046 77.3017C11.0541 77.3156 11.0989 77.3119 11.1233 77.3045C11.1333 77.3014 11.139 77.2982 11.1433 77.2951C11.1467 77.2926 11.1599 77.2827 11.1794 77.2546C20.5903 63.6675 32.6294 54.8152 51.1852 52.5804L53.4243 52.3107L53.4243 69.1254L89.0486 45.566Z" fill="black"/></svg>
                         <div class="social-share hide">
                             <div class="cancel-share" onclick="cancelShare()">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1 " x="0px " y="0px " viewBox="0 0 100 125 " enable-background="new 0 0 100 100 " xml:space="preserve "><path fill-rule="evenodd
@@ -180,6 +187,30 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="post-comments">
+                {% if page.allow_comments %}
+                <h4 class="text-center mb-4">Your comment</h4>
+                <div class="card card-block mb-5">
+                <div class="card-body">
+                    <h6 class="card-title text-center pb-3">Post your comment</h6>
+                    {% render_comment_form for page %}
+                </div>
+                </div>
+                {% endif %}
+                {% get_comment_count for page as comment_count %}
+                <div class="py-4 text-center">
+                <a href="{{page.get_parent.url}}">Back to the post list</a>
+                &nbsp;&sdot;&nbsp;
+                {{ comment_count }} comment{{ comment_count|pluralize }}
+                ha{{ comment_count|pluralize:"s,ve"}} been posted.
+                </div>
+    
+                {% if comment_count %}
+                <ul class="media-list">
+                {% render_xtdcomment_tree for page %}
+                </ul>
+                {% endif %}
             </div>
         </div>
 
