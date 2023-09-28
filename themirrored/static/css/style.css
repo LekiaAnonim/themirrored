@@ -423,13 +423,25 @@ section {
     align-items: center;
     flex-wrap: wrap;
 }
+.rotate45 {
+    transform: rotate(45deg);
+    transform-origin: 35.5%;
+}
 
+.rotateneg45 {
+    transform: rotate(-45deg);
+    transform-origin: 35.5%;
+}
+
+.disappear {
+    display: none;
+}
 .post-card {
     /* min-width: 500px; */
     min-width: 280px;
     width: 100% !important;
     /* height: 230px; */
-    aspect-ratio: 3/2;
+    height: fit-content;
     /* border: solid; */
     display: flex;
     align-items: center;
