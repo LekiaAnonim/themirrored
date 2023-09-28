@@ -33,6 +33,15 @@ body {
     transition: all 0.5s;
 }
 
+#preloader{
+    background: #000 url('../images/preloader.gif') no-repeat center center;
+    background-size: 15%;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+}
+
 .first-screen {
     background-size: cover;
     background-repeat: no-repeat;
@@ -423,13 +432,25 @@ section {
     align-items: center;
     flex-wrap: wrap;
 }
+.rotate45 {
+    transform: rotate(45deg);
+    transform-origin: 35.5%;
+}
 
+.rotateneg45 {
+    transform: rotate(-45deg);
+    transform-origin: 35.5%;
+}
+
+.disappear {
+    display: none;
+}
 .post-card {
     /* min-width: 500px; */
     min-width: 280px;
     width: 100% !important;
     /* height: 230px; */
-    aspect-ratio: 3/2;
+    aspect-ratio: 3/1.4;
     /* border: solid; */
     display: flex;
     align-items: center;
@@ -737,13 +758,7 @@ iframe {
     color: #fff;
 }
 
-.post-card-vertical .post-image {
-    min-width: 250px;
-    height: 170px;
-    position: relative;
-    border-radius: 15px 15px 15px 15px;
-    max-width: 260px;
-}
+
 
 .post-card-vertical {
     width: 260px;
@@ -1068,6 +1083,8 @@ footer {
     margin-right: auto;
 }
 
+
+
 .about-heading {
     margin-bottom: 20px;
 }
@@ -1381,6 +1398,14 @@ footer {
 form{
     margin-bottom: 20px;
 }
+
+.post-card-vertical .post-image {
+    min-width: 250px;
+    height: 170px;
+    position: relative;
+    border-radius: 15px 15px 15px 15px;
+    max-width: 260px;
+}
 @media (max-width: 550px) {
     .post-carousel-container .all-posts{
         display: none;
@@ -1446,6 +1471,37 @@ form{
     }
 }
 
+@media (max-width: 971px) {
+    .about-container {
+        flex-wrap: wrap;
+    }
+    .about-image{
+        width: 100% !important;
+        max-width: 100%;
+        padding: 25px;
+    }
+
+    .about-image img{
+        width: 100% !important;
+        max-width: 100%;
+        min-width: 96%;
+    }
+
+    .about-scripture h3{
+        font-size: 18px;
+    }
+    .about-scripture p{
+        font-size: 15px;
+    }
+    .about-message {
+        padding: 5px;
+        margin-top: 20px;
+    }
+    .about-message p{
+        font-size: 15px;
+    }
+}
+
 @media (max-width: 640px) {
     .section-videos-post-container {
         flex-wrap: wrap;
@@ -1488,16 +1544,7 @@ form{
         top: -150px;
         right: 55px;
     }
-    .about-container {
-        flex-wrap: wrap;
-    }
-    .about-image{
-        width: 100%;
-    }
-
-    .about-image img{
-        width: 100% !important;
-    }
+    
     .call-to-action-btn button {
         padding: 5px 9px;
     }

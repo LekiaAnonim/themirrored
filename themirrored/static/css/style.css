@@ -464,7 +464,7 @@ section {
 
 .post-image {
     width: 45%;
-    height: 100% !important;
+    height: 100%;
     position: relative;
     border-radius: 15px 0 0 15px;
     /* max-width: 304px; */
