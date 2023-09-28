@@ -29,6 +29,20 @@ body {
     transition: all 0.5s;
 }
 
+.rotate45 {
+    transform: rotate(45deg);
+    transform-origin: 35.5%;
+}
+
+.rotateneg45 {
+    transform: rotate(-45deg);
+    transform-origin: 35.5%;
+}
+
+.disappear {
+    display: none;
+}
+
 .first-screen {
     background-size: cover;
     background-repeat: no-repeat;

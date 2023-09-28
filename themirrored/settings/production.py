@@ -12,7 +12,7 @@ env = environ.Env(
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ["themirrored-production.up.railway.app", "themirrored.com"]
+ALLOWED_HOSTS = ["themirrored-production.up.railway.app", "themirrored.com", "www.themirrored.com"]
 
 cloudinary.config( 
   cloud_name = "damdz7xux", 

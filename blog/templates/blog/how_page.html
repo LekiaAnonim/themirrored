@@ -122,11 +122,11 @@
                             {{page.owner.bio|richtext}}
                         </p>
                     </div>
-                    <div class="view-all">
+                    {% comment %} <div class="view-all">
                         <a href="#"><button>More About the Author</button></a>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
-                <div class="similar-posts">
+                {% comment %} <div class="similar-posts">
                     <div class="all-post-container">
                         <div class="section-header">
                             <div class="section-title">
@@ -187,7 +187,7 @@
                             <a href="#"><button>View All</button></a>
                         </div>
                     </div>
-                </div>
+                </div> {% endcomment %}
             </div>
 
             <div class="post-comments">
@@ -202,7 +202,7 @@
                 {% endif %}
                 {% get_comment_count for page as comment_count %}
                 <div class="py-4 text-center">
-                <a href="{{page.get_parent.url}}">Back to the post list</a>
+                {% comment %} <a href="{{page.get_parent.url}}">Back to the post list</a> {% endcomment %}
                 &nbsp;&sdot;&nbsp;
                 {{ comment_count }} comment{{ comment_count|pluralize }}
                 ha{{ comment_count|pluralize:"s,ve"}} been posted.

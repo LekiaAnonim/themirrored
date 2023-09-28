@@ -121,21 +121,21 @@
                             {{page.owner.bio|richtext}}
                         </p>
                     </div>
-                    <div class="view-all">
+                    {% comment %} <div class="view-all">
                         <a href="#"><button>More About the Author</button></a>
-                    </div>
+                    </div> {% endcomment %}
                 </div>
                 <div class="similar-posts">
                     <div class="all-post-container">
-                        <div class="section-header">
+                        {% comment %} <div class="section-header">
                             <div class="section-title">
                                 <div class="title">
                                     <h1>Similar Posts</h1>
                                 </div>
                                 <div class="horizontal-line"></div>
                             </div>
-                        </div>
-                        <div class="all-post-container-card">
+                        </div> {% endcomment %}
+                        {% comment %} <div class="all-post-container-card">
                             {% if similar_posts %}
                             <div class="post-card-vertical">
                                 <div class="post-image" style="background-image: url(/static/images/front-view-curly-woman-reading-outside.jpg); background-size: cover; background-repeat: no-repeat;">
@@ -184,7 +184,7 @@
                         </div>
                         <div class="view-all">
                             <a href="#"><button>View All</button></a>
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                 </div>
             </div>
@@ -200,7 +200,7 @@
                 {% endif %}
                 {% get_comment_count for page as comment_count %}
                 <div class="py-4 text-center">
-                <a href="{{page.get_parent.url}}">Back to the post list</a>
+                {% comment %} <a href="{{page.get_parent.url}}">Back to the post list</a> {% endcomment %}
                 &nbsp;&sdot;&nbsp;
                 {{ comment_count }} comment{{ comment_count|pluralize }}
                 ha{{ comment_count|pluralize:"s,ve"}} been posted.
