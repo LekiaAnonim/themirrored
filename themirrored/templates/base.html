@@ -14,6 +14,7 @@
     <meta property="og:title" content="TheMirrored: Behold! Become! Live" />
     <meta property="og:description" content="Your destination for practical living, spiritual growth and faith." />
     <meta property="og:image" content="/static/images/banner.jpg" />
+    <link rel="icon" type="image/x-icon" href="{{settings.blog.SiteLogo.favicon.url}}">
     {% endblock og_tag %}
     {# Force all links in the live preview panel to be opened in a new tab #} {% if request.in_preview_panel %}
     <base target="_blank"> {% endif %} {# Global stylesheets #} {% block styles %}
@@ -67,12 +68,12 @@
         {% endblock %}
         {% block header %}
         <div class="header-nav">
-            <div class="logo">
-                {% comment %} {% if settings.blog.SiteLogo.logo %}
+            <a href="/"></a><div class="logo">
+                {% if settings.blog.SiteLogo.logo %}
                 <img src="{{settings.blog.SiteLogo.logo.url}}" alt="Mirrored Logo" width="80" />
-                {% else %} {% endcomment %}
+                {% else %}
                 Mirrored
-                {% comment %} {% endif %} {% endcomment %}
+                {% endif %}
             </div>
             <div class="navigation-menu">
                 <nav>

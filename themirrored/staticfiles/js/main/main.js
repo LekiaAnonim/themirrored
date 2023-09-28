@@ -5,19 +5,10 @@ let shareArea = document.querySelector('.social-share');
 let more = document.querySelector('.more');
 let ellipsisEx = document.querySelector('.ellipsis-ex');
 let headerNav = document.querySelector('.header-nav');
-const menuBar1 = document.querySelector('.ham1');
-const menuBar2 = document.querySelector('.ham2');
-const menuBar3 = document.querySelector('.ham3');
+const menuBar1 = document.querySelector('.ham-1');
+const menuBar2 = document.querySelector('.ham-2');
+const menuBar3 = document.querySelector('.ham-3');
 window.onscroll = function() {fixHeader()};
-
-function toggleSidebar() {
-  sideBar.classList.toggle('disappear');
-  menuBar2.classList.toggle('disappear');
-  menuBar1.classList.toggle('rotate45');
-  menuBar3.classList.toggle('rotateneg45');
-  toggleMenu.classList.toggle('vertical-stack');
-  toggleMenu.classList.toggle('center-stack');
-}
 
 
 function fixHeader() {
