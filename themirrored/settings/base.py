@@ -72,8 +72,12 @@ INSTALLED_APPS = [
     "phonenumber_field",
     'wagtailmetadata',
     'comment',
+    'wagalytics',
+    'wagtailfontawesome',
     # 'colorful',
 ]
+
+
 
 SITE_ID = 1
 

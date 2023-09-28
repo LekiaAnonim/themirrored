@@ -3,6 +3,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5MLHF6FG6"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-N5MLHF6FG6');
+    </script>
     <meta charset="utf-8" />
     <title>
         {% block title %} {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %} {% endblock title %}
@@ -32,6 +41,7 @@
 
 <body class="{% block body_class %}{% endblock %}">
     <!-- {% wagtailuserbar %} -->
+    <div id="preloader"></div>
     <div class="first-screen" style="{% block landingbackground %}background: url('/static/images/banner.jpg'); background-size: cover; background-position: 0;{% endblock %}">
         {% block searchcarousel %}
         <div class="post-carousel-search">
@@ -286,6 +296,13 @@
     {% endblock footer %} {% block scripts %}
     <script src="/static/js/main/carousel.js"></script>
     <script type="text/javascript " src="{% static 'js/main/main.js' %} "></script>
+
+    <script>
+        let loader = document.getElementById("preloader");
+        window.addEventListener('load', function () {
+            loader.style.display = "none";
+        })
+    </script>
     {% endblock scripts %} {# Global javascript #}
     {% comment %} <script type="text/javascript " src="{% static 'js/themirrored.js' %} "></script> {% endcomment %}
 
