@@ -13,8 +13,8 @@
     <div class="first-screen" style="{% block landingbackground %}{% if post_image %} background: url('{{page.post_image.url}}') {% else %}background: url('/static/images/nasa-Q1p7bh3SHj8-unsplash.jpg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
     {% block pagecaption %}
         <div class="first-section-content">
-            <div class="first-text ">
-                <p>{{page.title|title}}</p>
+            <div class="first-text">
+                <h1 style="color: #fff;">{{page.title|title}}</h1>
             </div>
         </div>
     {% endblock %}
@@ -58,7 +58,15 @@
         <div>
             <p>No post available</p>
         </div>{% endif %}
-    </div>{% endblock content %}
+    </div>
+    
+    {% endblock content %}
+
+    {% block mission %}
+    {% endblock mission %}
+
+    {% block request %}
+    {% endblock request %}
 </body>
 
 </html>

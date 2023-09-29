@@ -42,7 +42,7 @@
 <body class="{% block body_class %}{% endblock %}">
     <!-- {% wagtailuserbar %} -->
     <div id="preloader"></div>
-    <div class="first-screen" style="{% block landingbackground %}background: url('/static/images/banner.jpg'); background-size: cover; background-position: 0;{% endblock %}">
+    <div class="first-screen" style="{% block landingbackground %}background: url('/static/images/blonde-woman-posing-outdoors-while-holding-book.a64923f1ba96.jpg'); background-size: cover; background-position: 0;{% endblock %}">
         {% block searchcarousel %}
         <div class="post-carousel-search">
             <div class="post-carousel-container">
@@ -78,18 +78,20 @@
         {% endblock %}
         {% block header %}
         <div class="header-nav">
-            <a href="/"></a><div class="logo">
-                {% if settings.blog.SiteLogo.logo %}
-                <img src="{{settings.blog.SiteLogo.logo.url}}" alt="Mirrored Logo" width="80" />
-                {% else %}
-                Mirrored
-                {% endif %}
-            </div>
+            <a href="/">
+                <div class="logo">
+                    {% if settings.blog.SiteLogo.logo %}
+                    <img src="{{settings.blog.SiteLogo.logo.url}}" alt="Mirrored Logo" width="80" />
+                    {% else %}
+                    Mirrored
+                    {% endif %}
+                </div>
+            </a>
             <div class="navigation-menu">
                 <nav>
                     <ul>
                         {% for item in menu.menu_items.all %}
-                        <div class="{% if item.title == 'Blog' %} menu-with-dropdown {% else %} main-menu {% endif %}">
+                        <div class="{% if item.title == 'Blog' %} menu-with-dropdown {% else %} main-menu {% endif %} menu-list">
                             <li class="main-menu "><a href="{{item.link}}" title="{{item.title}}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>{{item.title}}</a></li>
                             {% if item.title == 'Blog' %}
                             <div class="dropdown">
@@ -112,9 +114,9 @@
                             {% endif %}
                         </div>
                         {% endfor %}
-                        <div>
+                        {% comment %} <div>
                             <li class="main-menu"><a href="#">Contact</a></li>
-                        </div>
+                        </div> {% endcomment %}
                     </ul>
                 </nav>
             </div>
@@ -170,7 +172,7 @@
         {% block pagecaption %}
         <div class="first-section-content">
             <div class="first-text">
-                <p>{{page.caption_main_text}}</p>
+                <h1>{{page.caption_main_text}}</h1>
             </div>
             <div class="first-text">
                 <h2>{{page.caption_sub_text}}
@@ -179,41 +181,59 @@
         </div>
         {% endblock %}
         {% block cta %}
-        <div class="call-to-action-btn">
+        {% comment %} <div class="call-to-action-btn">
             <a href="{{ settings.blog.ImportantPages.page_url.about_page }}"><button><p>About us</p></button></a>
             <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}"><button><p>Blog</p></button></a>
             <a href="{{ settings.blog.ImportantPages.page_url.how_index_page }}"><button><p>How</p></button></a>
-        </div>
+        </div> {% endcomment %}
         {% endblock %}
     </div>
-     {% block content %}{% endblock %} {% block footer %}
-    <section class="section6 " style="background: url(/static/images/background-885434_1280.png); background-size: cover; background-repeat: no-repeat; min-height: 100vh; ">
+     {% block content %}{% endblock %}
+
+     {% block mission %}
+     <div class="mission-footer">
+        <div class="mission-header ">
+            <h2>Mission</h2>
+        </div>
+        <span class="quote-symbol ">
+            <svg xmlns="http://www.w3.org/2000/svg " xmlns:xlink="http://www.w3.org/1999/xlink " version="1.1 " x="0px " y="0px " viewBox="0 0 2000 2500 " style="enable-background:new 0 0 2000 2000; " xml:space="preserve ">
+                <g>
+                    <g>
+                        <path d="M833.39,646.4l13.57,9.05c-70.37,43.23-110.08,107.56-119.12,193.01c134.18,39.71,201.29,119.87,201.29,240.5 c0,74.39-24.63,137.11-73.89,188.11c-49.26,51.03-109.57,76.53-180.95,76.53c-72.38,0-131.95-25.63-178.69-76.9
+                        c-46.74-51.27-70.11-116.85-70.11-196.79c0-100.53,38.81-193.01,116.48-277.45S716.78,666,833.39,646.4z M1478.76,646.4 l13.57,9.05c-70.37,43.23-110.08,107.56-119.12,193.01c134.18,39.71,201.29,119.87,201.29,240.5 c0,74.39-24.63,137.11-73.89,188.11c-49.26,51.03-109.57,76.53-180.95,76.53c-72.38,0-131.95-25.63-178.69-76.9
+                        c-46.74-51.27-70.11-116.85-70.11-196.79c0-100.53,38.81-193.01,116.48-277.45C1265.02,718.02,1362.15,666,1478.76,646.4z "/>
+                    </g>
+                </g>
+            </svg>
+        </span>
+        <div class="mission-statement">
+            <p>{{home_page.mission|richtext}}</p>
+        </div>
+    </div>
+     {% endblock mission %}
+
+     {% block request %}
+     <div class="prayer-request-form">
+        <h2>Prayer Requests And Enquiries</h2>
+        {% include "blog/request_form.html" %}
+    </div>
+     {% endblock request %}
+     
+    {% block footer %}
+    <section class="section6" style="background: url(/static/images/background-885434_1280.png); background-size: cover; background-repeat: no-repeat; height: fit-content; ">
         <footer>
-            <div class="mission-footer ">
-                <div class="mission-header ">
-                    <h2>Mission</h2>
-                </div>
-                <span class="quote-symbol ">
-                    <svg xmlns="http://www.w3.org/2000/svg " xmlns:xlink="http://www.w3.org/1999/xlink " version="1.1 " x="0px " y="0px " viewBox="0 0 2000 2500 " style="enable-background:new 0 0 2000 2000; " xml:space="preserve ">
-                        <g>
-                            <g>
-                                <path d="M833.39,646.4l13.57,9.05c-70.37,43.23-110.08,107.56-119.12,193.01c134.18,39.71,201.29,119.87,201.29,240.5 c0,74.39-24.63,137.11-73.89,188.11c-49.26,51.03-109.57,76.53-180.95,76.53c-72.38,0-131.95-25.63-178.69-76.9
-                                c-46.74-51.27-70.11-116.85-70.11-196.79c0-100.53,38.81-193.01,116.48-277.45S716.78,666,833.39,646.4z M1478.76,646.4 l13.57,9.05c-70.37,43.23-110.08,107.56-119.12,193.01c134.18,39.71,201.29,119.87,201.29,240.5 c0,74.39-24.63,137.11-73.89,188.11c-49.26,51.03-109.57,76.53-180.95,76.53c-72.38,0-131.95-25.63-178.69-76.9
-                                c-46.74-51.27-70.11-116.85-70.11-196.79c0-100.53,38.81-193.01,116.48-277.45C1265.02,718.02,1362.15,666,1478.76,646.4z "/>
-                            </g>
-                        </g>
-                    </svg>
-                </span>
-                <div class="mission-statement">
-                    <p>{{home_page.mission|richtext}}</p>
-                </div>
-            </div>
-            <div class="prayer-request-form">
-                <h2>Prayer Requests And Enquiries</h2>
-                {% include "blog/request_form.html" %}
-            </div>
             <div class="main-footer ">
-                <div class="mirrored-logo ">Mirrored</div>
+                <div class="mirrored-logo">
+                    <a href="/">
+                        <div class="logo">
+                            {% if settings.blog.SiteLogo.logo %}
+                            <img src="{{settings.blog.SiteLogo.logo.url}}" alt="Mirrored Logo" width="80" />
+                            {% else %}
+                            Mirrored
+                            {% endif %}
+                        </div>
+                    </a>
+                </div>
                 <div class="quicklinks ">
                     <h3>Quick Links</h3>
                     <ul>
@@ -236,7 +256,7 @@
                     <ul>
                         {% if settings.blog.SiteContact.email1 %}
                         <li><svg xmlns="http://www.w3.org/2000/svg " viewBox="0 0 32 40 " x="0px " y="0px "><path d="m29.57001,7.5c-.66897.60322-10.95223,9.89021-11.96007,10.78999-.43996.42998-1.01991.64001-1.59993.64001-.59003,0-1.17999-.21002-1.64001-.64996L2.64001,7.10999c-.41003.66003-.64001,1.45001-.64001,2.28003v13.21997c0,2.39001,1.89001,4.33002,4.21997,4.33002h19.56006c2.32996,0,4.21997-1.94,4.21997-4.33002v-13.21997c0-.67004-.15002-1.32001-.42999-1.89001Z
-        "/><path d="m15.75,16.83002c.14001.13995.35999.13995.5,0,.93903-.84517,11.50015-10.37813,12.07001-10.89001-.70001-.56-1.59003-.88001-2.53998-.88001H6.21997c-.78998,0-1.53998.22003-2.16998.62.6032.57933,10.7567,10.25075,11.70001,11.15002Z "/></svg>
+                        "/><path d="m15.75,16.83002c.14001.13995.35999.13995.5,0,.93903-.84517,11.50015-10.37813,12.07001-10.89001-.70001-.56-1.59003-.88001-2.53998-.88001H6.21997c-.78998,0-1.53998.22003-2.16998.62.6032.57933,10.7567,10.25075,11.70001,11.15002Z "/></svg>
                             <a href="mailto:{{ settings.blog.SiteContact.email1 }}">{{ settings.blog.SiteContact.email1 }}</a>
                         </li>
                         {% endif %} {% if settings.blog.SiteContact.email2 %}
@@ -283,15 +303,14 @@
                     </ul>
                 </div>
             </div>
+            <div class="copyright">
+                <p>&copy; <span id="present_year "></span> mirrored</p>
+                <script>
+                    document.getElementById("present_year ").innerHTML = new Date().getFullYear();
+                </script>
+            </div>
         </footer>
-    </section>
-    <section class="section7 ">
-        <div class="copyright ">
-            <p>&copy; <span id="present_year "></span> mirrored</p>
-            <script>
-                document.getElementById("present_year ").innerHTML = new Date().getFullYear();
-            </script>
-        </div>
+        
     </section>
     {% endblock footer %} {% block scripts %}
     <script src="/static/js/main/carousel.js"></script>
