@@ -90,18 +90,22 @@ body {
     min-height: fit-content;
     /* padding: 5px 20px 30px 20px; */
     padding: 0;
+    min-height: 50vh !important;
+    /* position: relative; */
 }
 
 .screen-mask {
     background-color: #000000;
-    opacity: 0.7;
+    opacity: 0.6;
     width: 100%;
-    min-height: 50vh;
-    /* position: absolute;
+    /* min-height: 50vh !important; */
+    z-index: 500;
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0; */
-    /* bottom: 0; */
+    right: 0;
+    bottom: 0;
+    /* height: max-content; */
 }
 
 .logo {
@@ -119,6 +123,8 @@ body {
     width: fit-content;
     margin-left: auto;
     max-width: 100%;
+    z-index: 1000;
+    position: relative;
 }
 
 .post-carousel-container {
@@ -131,6 +137,8 @@ body {
     background-color: var(--blue);
     color: #fff;
     padding: 7.5px 12px;
+    width: 80px;
+    height: 37px;
 }
 
 .post-carousel-text a {
@@ -144,7 +152,7 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     background-color: #919191b9;
-    max-width: 100%;
+    max-width: 400px;
     width: fit-content;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -164,6 +172,8 @@ body {
     justify-content: space-around;
     /* border: solid #fff; */
     padding: 10px 15px;
+    z-index: 1000;
+    position: relative;
 }
 
 .header-fix-top {
@@ -346,6 +356,8 @@ a {
     margin-left: auto;
     margin-right: auto;
     padding: 5px 5px 20px 5px;
+    z-index: 1000;
+    position: relative;
 }
 
 .first-text {
@@ -382,6 +394,8 @@ a {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    z-index: 1000;
+    position: relative;
 }
 
 .call-to-action-btn button {
@@ -474,10 +488,15 @@ nav ul .menu-with-dropdown:hover .dropdown {
 section {
     /* margin-bottom: 60px; */
     padding: 60px 30px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
 }
 
 .section1 {
     background-color: #012265;
+    z-index: 1000;
+    position: relative;
 }
 
 .section1 .title h1 {
@@ -489,7 +508,7 @@ section {
 }
 
 .section4 {
-    background-color: #187001;
+    background-color: #dd6503;
 }
 
 .section4 * {
@@ -498,6 +517,7 @@ section {
 
 .section5 {
     background-color: #ddccff;
+    width: 100%;
 }
 
 .section-title {
@@ -513,12 +533,6 @@ section {
     border: thin solid;
     width: 100%;
 } */
-
-.section-content-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
 
 .rotate45 {
     transform: rotate(45deg);
@@ -537,7 +551,7 @@ section {
 .post-card {
     /* min-width: 500px; */
     min-width: 280px;
-    width: 100% !important;
+    max-width: 420px;
     /* height: 230px; */
     aspect-ratio: 3/1.4;
     /* border: solid; */
@@ -547,8 +561,8 @@ section {
     margin-bottom: 20px;
     margin-right: 10px;
     flex-wrap: wrap;
-    max-width: 604px;
-    /* margin: 10px; */
+    border-radius: 15px 0 0 15px;
+    /* height: fit-content; */
 }
 
 .post-image {
@@ -593,19 +607,26 @@ section {
 }
 
 .post-title h2 {
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     color: #141941;
-    line-height: 1;
+    line-height: 1.1 !important;
+    text-overflow: ellipsis;
 }
 
 .post-title h2:hover {
     color: var(--deep-orange);
 }
 
+.post-body {
+    margin-bottom: 10px;
+}
+
 .post-body p {
-    font-size: small;
-    line-height: 0.8;
+    font-size: 12px;
+    line-height: 1 !important;
+    text-overflow: ellipsis;
+    color: #000;
 }
 
 .post-tags {
@@ -654,14 +675,15 @@ section {
 
 .author .author-name p {
     font-weight: 800;
-    color: var(--gray);
-    font-size: small;
-    line-height: 0.8;
+    color: #000;
+    font-size: 11px;
+    line-height: 0.95;
 }
 
 .post-date p {
-    font-size: small;
-    line-height: 0.8;
+    font-size: 11px;
+    line-height: 0.95;
+    color: #000;
 }
 
 .how-header {
@@ -799,7 +821,7 @@ iframe {
 }
 
 .video-card iframe {
-    width: 100%;
+    width: 200px;
     aspect-ratio: 1.77 / 1;
 }
 
@@ -813,15 +835,15 @@ iframe {
 }
 
 .section-videos-post-container .videos {
-    width: 50%;
+    width: 35%;
     margin: 10px;
-    max-width: 600px;
+    /* max-width: 600px; */
 }
 
 .section-videos-post-container .all-post-container {
-    width: 50%;
+    width: 65%;
     margin: 10px;
-    max-width: 600px;
+    /* max-width: 600px; */
 }
 
 .all-post-container-card {
@@ -1522,7 +1544,7 @@ form {
     height: 170px;
     width: 100%;
     position: relative;
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 15px 15px 0 0;
     max-width: 260px;
 }
 
@@ -1679,4 +1701,11 @@ form {
     .first-section-content h2 {
         font-size: 18px;
     }
+}
+
+.section-content-container {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-wrap: wrap;
 }

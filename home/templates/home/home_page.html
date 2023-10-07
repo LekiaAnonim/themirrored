@@ -53,15 +53,13 @@
                     <div class="title">
                         <h1>Recent Posts</h1>
                     </div>
-                    <div class="horizontal-line"></div>
                 </div>
             </div>
             <div class="section-content-container">
                 {% if recent_blogs %} {% for blog in recent_blogs %} {% if blog %}
                 <div class="post-card">
-                    {% comment %} {% image blog.post_image fill-300x230 as post_image %} {% endcomment %}
-                    <div class="post-image" style="background-image: url({{blog.post_image.url}}); background-size: cover; background-repeat: no-repeat;">
-                        <a href="{% if blog.post_category %}{% pageurl blog.post_category %} {% else %}#{% endif %}">
+                    <div class="post-image" style="background-image: url('{{blog.post_image.url}}'); background-size: cover; background-repeat: no-repeat;">
+                        <a href="{% if blog.post_category %} {% pageurl blog.post_category %} {% else %} # {% endif %}">
                             <div class="post-category">
                                 <p>{{blog.post_category.name}}</p>
                             </div>
@@ -70,20 +68,11 @@
                     <div class="post-content">
                         <div class="post-title">
                             <a href="{% pageurl blog %}">
-                                <h2>{{blog.post_title|title}}</h2>
+                                <h2>{{blog.post_title|title|truncatewords:4}}</h2>
                             </a>
                         </div>
                         <div class="post-body">
-                            <p>{{blog.body|richtext|truncatewords:10}}</p>
-                        </div>
-                        <div class="post-tags">
-                            <!-- Add this: -->
-                            {% with tags=blog.tags.all %} {% if tags %}
-                            <div class="tags">
-                                {% for tag in tags %}
-                                <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button class="tag" type="button">{{ tag }}</button></a> {% endfor %}
-                            </div>
-                            {% endif %} {% endwith %}
+                            <p>{{blog.body|richtext|striptags|truncatewords:8}}</p>
                         </div>
                         <div class="author">
                             <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div>
@@ -98,11 +87,11 @@
                         </div>
                     </div>
                 </div>
-                {% endif %} {% endfor %} {% else %}
+                {% else %}
+                <p>No recent post</p> {% endif %} {% endfor %} {% else %}
                 <p>No recent post</p>
                 {% endif %}
             </div>
-
         </div>
     </section>
     <section class="section1">
@@ -218,7 +207,7 @@
                     <div class="post-card-vertical">
                         {% comment %} {% image blog.post_image fill-300x230 as post_image %} {% endcomment %}
                         <div class="post-image" style="background-image: url('{{blog.post_image.url}}'); background-size: cover; background-repeat: no-repeat;">
-                            <a href="{% pageurl blog.post_category %}">
+                            <a href="{% if blog.post_cateory %}{% pageurl blog.post_category %} {% else %}#{% endif %}">
                                 <div class="post-category">
                                     <p>{{blog.post_category.name}}</p>
                                 </div>
