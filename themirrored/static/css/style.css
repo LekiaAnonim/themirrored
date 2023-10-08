@@ -81,7 +81,7 @@ body {
     height: 100vh;
     width: 100%;
     position: fixed;
-    z-index: 100;
+    z-index: 1000000000000;
 }
 
 .first-screen {
@@ -863,7 +863,7 @@ section {
 .video-card iframe {
     width: 300px;
     aspect-ratio: 1.77 / 1.5;
-    margin: 10px;
+    /* margin: 10px; */
 }
 
 .video-title h2 {
@@ -894,11 +894,12 @@ section {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: left;
+    justify-content: center;
 }
 
 .view-all {
-    margin-left: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .view-all button {
@@ -948,7 +949,7 @@ footer * {
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    opacity: 0.8;
+    opacity: 0.95;
 }
 
 .mission-footer h2 {
@@ -1284,6 +1285,7 @@ footer * {
     border: thin #cacaca solid;
     /* height: 250px; */
     max-width: 320px;
+    width: 100%;
 }
 
 .post-card {
