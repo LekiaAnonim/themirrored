@@ -435,7 +435,7 @@ class ImportantPages(BaseSiteSetting):
         PageChooserPanel('blog_index_page', ['blog.BlogIndexPage']),
         PageChooserPanel('about_page', ['home.AboutPage']),
         PageChooserPanel('how_index_page', ['blog.HowIndexPage']),
-        PageChooserPanel('word_index_page', ['blog.HowIndexPage']),
+        PageChooserPanel('word_index_page', ['blog.WeeklyWordIndexPage']),
         PageChooserPanel('video_index_page', ['blog.VideoIndexPage']),
         # PageChooserPanel('contact_page', ['blog.ContactPage']),
     ]

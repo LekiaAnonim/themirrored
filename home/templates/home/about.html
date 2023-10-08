@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-    {% load wagtailmetadata_tags %}
-    {% meta_tags %}
+    {% load wagtailmetadata_tags %} {% meta_tags %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -11,15 +10,13 @@
 <body>
     {% comment %} {% image page.post_image fill-300x230 as post_image %} {% endcomment %}
     <div class="first-screen" style="{% block landingbackground %}{% if post_image %} background: url('{{post_image.url}}') {% else %}background: url('/static/images/nasa-Q1p7bh3SHj8-unsplash.jpg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
-    {% block pagecaption %}
+        {% block pagecaption %}
         <div class="first-section-content">
             <div class="first-text">
-                <p style="color: #fff;">{{page.title|title}}</p>
+                <h1 style="color: #fff;">{{page.title|title}}</h1>
             </div>
         </div>
-    {% endblock %}
-    {% block cta %}
-    {% endblock %}
+        {% endblock %} {% block cta %} {% endblock %}
     </div>
     {% block content %}
     <section class="about-section">
@@ -45,10 +42,7 @@
             </div>
         </div>
     </section>
-    {% endblock %}
-
-    {% block request %}
-    {% endblock request %}
+    {% endblock %} {% block request %} {% endblock request %}
 
 </body>
 

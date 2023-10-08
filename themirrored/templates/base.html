@@ -44,7 +44,6 @@
 
     <div class="first-screen" style="{% block landingbackground %}background: url('/static/images/blonde-woman-posing-outdoors-while-holding-book.a64923f1ba96.jpg'); background-size: cover; background-position: 0;{% endblock %}">
         <div class="screen-mask">
-
         </div>
         {% block searchcarousel %}
         <div class="post-carousel-search">
@@ -98,7 +97,7 @@
                                     <li><a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}">All post</a></li>
                                 </div>
 
-                                <div class="post-category ">
+                                <div class="post-category">
                                     {% if categories %} {% for category in categories %}
                                     <li>
                                         <a href="{% pageurl category %}">{{category.name}}</a>
@@ -185,7 +184,6 @@
             <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}"><button><p>Blog</p></button></a>
             <a href="{{ settings.blog.ImportantPages.page_url.how_index_page }}"><button><p>How</p></button></a>
         </div> {% endcomment %} {% endblock %}
-
     </div>
 
 

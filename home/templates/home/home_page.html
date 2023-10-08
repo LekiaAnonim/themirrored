@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="how-content">
-                    <div class="post-full-text">{{how_of_the_week.body|richtext|truncatewords:50}}</div>
+                    <div class="post-full-text">{{how_of_the_week.body|richtext|striptags|truncatewords:50}}</div>
                     <a href="{% pageurl how_of_the_week %}"><span class="more">more</span></a>
                 </div>
                 {% comment %} {% image how_of_the_week.post_image fill-300x230 as post_image %} {% endcomment %}
@@ -118,7 +118,7 @@
                     </div>
                 </div>
                 <div class="how-content">
-                    <div class="post-full-text">{{article_of_the_week.body|richtext|truncatewords:50}}</div>
+                    <div class="post-full-text">{{article_of_the_week.body|richtext|striptags|truncatewords:50}}</div>
                     {% comment %} <span class="more" onclick="toggleEllipsisMore(this)">more</span> {% endcomment %}
                     <a href="{% pageurl article_of_the_week %}"><span class="more">more</span></a>
                 </div>
@@ -135,7 +135,7 @@
         <div class="word-of-the-week">
             <div class="section-header">
                 <div class="section-title">
-                    <div class="post-title">
+                    <div class="title">
                         <h1>Word of the Week</h1>
                     </div>
                     <div class="horizontal-line"></div>
@@ -193,6 +193,11 @@
                     <a href="{% url 'blog:video_list' %}"><button>View All</button></a>
                 </div>
             </div>
+        </div>
+
+    </section>
+    <section class="section5">
+        <div class="section-videos-post-container">
             <div class="all-post-container">
                 <div class="section-header">
                     <div class="section-title">
@@ -220,7 +225,7 @@
                                 </a>
                             </div>
                             <div class="post-body">
-                                <p>{{blog.body|richtext|truncatewords:10}}</p>
+                                <p>{{blog.body|richtext|striptags|truncatewords:10}}</p>
                             </div>
                             <div class="post-tags">
                                 <!-- Add this: -->

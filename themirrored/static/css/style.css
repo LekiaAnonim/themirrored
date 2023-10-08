@@ -53,6 +53,7 @@ span {
 body {
     width: 100%;
     overflow-x: hidden;
+    background-color: #0000009a;
 }
 
  :root {
@@ -91,12 +92,13 @@ body {
     /* padding: 5px 20px 30px 20px; */
     padding: 0;
     min-height: 50vh !important;
-    /* position: relative; */
+    position: relative;
+    z-index: 1000;
 }
 
 .screen-mask {
     background-color: #000000;
-    opacity: 0.6;
+    opacity: 0.2;
     width: 100%;
     /* min-height: 50vh !important; */
     z-index: 500;
@@ -139,6 +141,7 @@ body {
     padding: 7.5px 12px;
     width: 80px;
     height: 37px;
+    cursor: pointer;
 }
 
 .post-carousel-text a {
@@ -181,8 +184,8 @@ body {
     left: 0;
     right: 0;
     top: 0;
-    background-color: #050505;
-    z-index: 1000;
+    background-color: #000000;
+    z-index: 10000;
     opacity: 1;
 }
 
@@ -206,13 +209,14 @@ body {
 }
 
 .search-area {
-    background: #4746479f;
-    position: absolute;
+    background: #474647f6;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     transition: all 0.8s;
+    z-index: 1000000000000;
 }
 
 .cancel-search-area {
@@ -357,7 +361,7 @@ a {
     margin-right: auto;
     padding: 5px 5px 20px 5px;
     z-index: 1000;
-    position: relative;
+    position: static;
 }
 
 .first-text {
@@ -424,10 +428,12 @@ a {
     padding: 30px;
     background: rgba(255, 255, 255, 0.767);
     min-width: 250px;
-    position: absolute;
     transition: all 2s;
     height: 0;
     display: none;
+    /* position: fixed; */
+    z-index: 10000000;
+    position: absolute;
 }
 
 nav ul .menu-with-dropdown:hover .dropdown {
@@ -493,31 +499,57 @@ section {
     max-width: 1200px;
 }
 
-.section1 {
-    background-color: #012265;
+.how-section {
+    background-color: #ffff;
     z-index: 1000;
     position: relative;
 }
 
+.post-detail-container-section {
+    background-color: #ffff;
+    z-index: 1000;
+    position: relative;
+}
+
+.about-section {
+    background-color: #ffff;
+    z-index: 1000;
+    position: relative;
+}
+
+.section1 {
+    background-color: #ffffff;
+    z-index: 500;
+    position: relative;
+    border: thin #686868 solid;
+    border-bottom: none;
+}
+
 .section1 .title h1 {
-    color: #fff;
+    color: #000000;
 }
 
 .section2 {
-    background-color: #EDEDEB;
+    background-color: #ffffff;
+    border: thin #9b9b9b solid;
+    border-bottom: none;
 }
 
 .section4 {
-    background-color: #dd6503;
+    background-color: #ffffff;
+    border: 0.1px #9b9b9b solid;
+    border-bottom: none;
 }
 
 .section4 * {
-    color: #fff;
+    color: #000000;
 }
 
 .section5 {
-    background-color: #ddccff;
+    background-color: #ffffff;
     width: 100%;
+    border: 0.1px #9b9b9b solid;
+    border-bottom: none;
 }
 
 .section-title {
@@ -561,7 +593,7 @@ section {
     margin-bottom: 20px;
     margin-right: 10px;
     flex-wrap: wrap;
-    border-radius: 15px 0 0 15px;
+    border-radius: 0 0 0 0;
     /* height: fit-content; */
 }
 
@@ -569,7 +601,7 @@ section {
     width: 45%;
     height: 100%;
     position: relative;
-    border-radius: 15px 0 0 15px;
+    border-radius: 0 0 0 0;
     /* max-width: 304px; */
 }
 
@@ -604,6 +636,7 @@ section {
 
 .post-title {
     margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .post-title h2 {
@@ -620,11 +653,12 @@ section {
 
 .post-body {
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .post-body p {
-    font-size: 12px;
-    line-height: 1 !important;
+    font-size: 16px;
+    line-height: 1.8 !important;
     text-overflow: ellipsis;
     color: #000;
 }
@@ -755,7 +789,7 @@ section {
 }
 
 .more:hover {
-    color: var(--green);
+    color: var(--deep-orange);
 }
 
 .how-image img {
@@ -796,33 +830,40 @@ section {
     font-size: 30px;
 }
 
+.word-content-container .word-content .word-text {
+    background-color: var(--medium-orange);
+    padding: 10px;
+}
+
+.word-content-container .word-content .word-text * {
+    color: #fff;
+}
+
 .word-content-container .word-content .word-text p {
     width: 100%;
 }
 
 .section-videos-post-container {
-    display: flex;
-    align-items: baseline;
-}
-
-iframe {
-    border-radius: 20px;
+    display: block;
 }
 
 .videos-container {
     padding: 10px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .video-card {
     width: 280px;
-    margin: 10px 8px 10px 0;
+    margin: 10px;
 }
 
 .video-card iframe {
-    width: 200px;
-    aspect-ratio: 1.77 / 1;
+    width: 300px;
+    aspect-ratio: 1.77 / 1.5;
+    margin: 10px;
 }
 
 .video-title h2 {
@@ -835,32 +876,36 @@ iframe {
 }
 
 .section-videos-post-container .videos {
-    width: 35%;
+    width: 100%;
     margin: 10px;
     /* max-width: 600px; */
 }
 
 .section-videos-post-container .all-post-container {
-    width: 65%;
+    width: 100%;
     margin: 10px;
-    /* max-width: 600px; */
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
 }
 
 .all-post-container-card {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: left;
 }
 
 .view-all {
-    margin-left: 0;
+    margin-left: 10px;
 }
 
 .view-all button {
     padding: 10px 20px;
     border: none;
-    background-color: #fff;
-    color: var(--medium-orange);
+    background-color: var(--deep-orange);
+    color: #fff;
     transition: all 0.8s;
     font-weight: 900;
     cursor: pointer;
@@ -868,14 +913,8 @@ iframe {
 
 .view-all button:hover {
     padding: 10px 20px;
-    border: solid var(--medium-orange);
     background-color: var(--medium-orange);
     color: #fff;
-}
-
-.post-card-vertical {
-    width: 260px;
-    margin: 10px;
 }
 
 .post-card-vertical .post-content {
@@ -887,6 +926,7 @@ iframe {
     width: 100%;
     padding: 0;
     height: fit-content;
+    max-width: 100%;
 }
 
 footer {
@@ -933,7 +973,7 @@ footer * {
     padding: 30px 20px;
     margin-left: auto;
     margin-right: auto;
-    background-color: #fff;
+    background: #ffffff;
     opacity: 0.8;
 }
 
@@ -1231,17 +1271,24 @@ footer * {
     border-radius: 15px 15px 0 0;
 }
 
-.how-card-container .post-card-vertical {
+
+/* .how-card-container .post-card-vertical {
     height: fit-content;
-}
+} */
 
 .post-card-vertical {
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: rgba(70, 70, 70, 0.2) 0px 2px 8px 0px;
     border-radius: 15px 15px 15px 15px;
+    min-width: 260px;
+    margin: 10px;
+    border: thin #cacaca solid;
+    /* height: 250px; */
+    max-width: 320px;
 }
 
 .post-card {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border: thin #cacaca solid;
 }
 
 .post-content {
@@ -1263,8 +1310,13 @@ footer * {
 
 .how-card-container {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     flex-wrap: wrap;
+}
+
+.how-card-container .post-title p {
+    line-height: 1.2;
+    font-size: 11px;
 }
 
 .author-socials {
@@ -1334,6 +1386,7 @@ footer * {
     padding: 30px;
     margin-top: 30px;
     margin-bottom: 30px;
+    background-color: #fff;
 }
 
 .hamburger {
@@ -1540,12 +1593,12 @@ form {
 }
 
 .post-card-vertical .post-image {
-    min-width: 260px;
-    height: 170px;
     width: 100%;
+    height: 170px;
+    /* width: 100%; */
     position: relative;
     border-radius: 15px 15px 0 0;
-    max-width: 260px;
+    /* max-width: 260px; */
 }
 
 .post-card-vertical .post-content .post-title * {
@@ -1612,6 +1665,7 @@ form {
 @media (max-width: 1220px) {
     .videos-container {
         flex-wrap: wrap;
+        justify-content: center;
     }
 }
 
@@ -1708,4 +1762,28 @@ form {
     align-items: start;
     justify-content: center;
     flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-content-container .post-body p {
+    font-size: 12px;
+    line-height: 0.9 !important;
+    text-overflow: ellipsis;
+    color: #000;
+}
+
+.post-card-vertical .post-body p {
+    font-size: 12px;
+    line-height: 0.9 !important;
+    text-overflow: ellipsis;
+    color: #000;
+}
+
+.section-content-container .post-title h2 {
+    font-size: 13px;
+    cursor: pointer;
+    color: #000000;
+    line-height: 1.1 !important;
+    text-overflow: ellipsis;
 }

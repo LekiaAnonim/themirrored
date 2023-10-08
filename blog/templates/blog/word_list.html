@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-    {% load wagtailmetadata_tags %}
-    {% meta_tags %}
+    {% load wagtailmetadata_tags %} {% meta_tags %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -11,15 +10,13 @@
 <body>
     {% comment %} {% image page.post_image fill-300x230 as post_image %} {% endcomment %}
     <div class="first-screen" style="{% block landingbackground %}{% if page.post_image %} background: url('{{page.post_image.url}}') {% else %}background: url('/static/images/nasa-Q1p7bh3SHj8-unsplash.jpg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
-    {% block pagecaption %}
+        {% block pagecaption %}
         <div class="first-section-content">
             <div class="first-text">
                 <h1 style="color: #fff;">{{page.title|title}}</h1>
             </div>
         </div>
-    {% endblock %}
-    {% block cta %}
-    {% endblock %}
+        {% endblock %} {% block cta %} {% endblock %}
     </div>
     {% block content %}
     <section class="how-section">
@@ -37,11 +34,11 @@
                 <div class="post-card-vertical">
                     {% comment %} {% image obj.post_image fill-300x230 as post_image %} {% endcomment %}
                     <div class="post-image" style="background-image: url({{obj.post_image.url}}); background-size: cover; background-repeat: no-repeat;">
-                        <a href="{% pageurl obj.word_category %}">
+                        <!-- <a href="{% if blog.post_cateory %}{% pageurl obj.word_category %}{% else %}#{% endif %}">
                             <div class="post-category">
                                 <p>{{obj.word_category}}</p>
                             </div>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="post-content">
                         <div class="author">
@@ -57,7 +54,7 @@
                         </div>
                         <div class="post-title">
                             <a href="{% pageurl obj %}">
-                                <h2>{{obj.post_title}}</h2>
+                                <p>{{obj.post_title|truncatewords:50}}</p>
                             </a>
                         </div>
                     </div>
@@ -67,13 +64,7 @@
         </div>
         {% endfor %} {% endfor %}
     </section>
-    {% endblock content %}
-
-    {% block mission %}
-    {% endblock mission %}
-
-    {% block request %}
-    {% endblock request %}
+    {% endblock content %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %}
 </body>
 
 </html>
