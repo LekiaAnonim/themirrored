@@ -131,9 +131,11 @@ class PostInfo(models.Model):
 class BlogIndexPage(MetadataPageMixin, Page):
     template = 'blog/blog_list.html'
     intro = RichTextField(blank=True)
+    banner = CloudinaryField("image", null=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro')
+        FieldPanel('intro'),
+        FieldPanel('banner')
     ]
 
 class BlogPageTag(TaggedItemBase):
@@ -222,9 +224,11 @@ class HowPageTag(TaggedItemBase):
 class HowIndexPage(MetadataPageMixin, Page):
     template = 'blog/how_list.html'
     intro = RichTextField(blank=True)
+    banner = CloudinaryField("image", null=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro')
+        FieldPanel('intro'),
+        FieldPanel('banner')
     ]  
 class HowPage(MetadataPageMixin, PostInfo, Page):
     # how_author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='how_author')
@@ -290,9 +294,11 @@ class WordPageTag(TaggedItemBase):
 class WeeklyWordIndexPage(MetadataPageMixin, Page):
     template = 'blog/word_list.html'
     intro = RichTextField(blank=True)
+    banner = CloudinaryField("image", null=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro')
+        FieldPanel('intro'),
+        FieldPanel('banner')
     ] 
 class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
     # word_author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='word_author')
@@ -356,9 +362,11 @@ class WordTagIndexPage(MetadataPageMixin, Page):
 class VideoIndexPage(MetadataPageMixin, Page):
     template = 'blog/video_list.html'
     intro = RichTextField(blank=True)
+    banner = CloudinaryField("image", null=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro')
+        FieldPanel('intro'),
+        FieldPanel('banner')
     ]
 
     def get_context(self, request, *args, **kwargs):

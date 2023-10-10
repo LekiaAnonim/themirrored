@@ -32,11 +32,11 @@
                 <div class="Post-title">
                     <h1>{{page.post_title|title}}</h1>
                     <div class="post-meta">
-                        <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div>
+                        <!-- <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div> -->
                         <div class="author-name-read-count">
-                            <div class="author-name">
+                            <!-- <div class="author-name">
                                 <h5>{{page.owner.first_name}} {{page.owner.last_name}}</h5>
-                            </div>
+                            </div> -->
                             <div class="read-time-date">
                                 <p class="read-time">{{page.read_time}} min{{ page.read_time|pluralize }} read</p>
                                 <li class="post-date">{{page.date_created|date:"d M Y"}}</li>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div class="post-body">
-                    <p>{{page.body|safe|richtext}}</p>
+                    <p>{{page.body|richtext}}</p>
                 </div>
                 <div class="post-tags">
                     <!-- Add this: -->

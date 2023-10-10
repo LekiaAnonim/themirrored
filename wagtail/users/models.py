@@ -66,13 +66,13 @@ class UserProfile(models.Model):
     )
 
     avatar = CloudinaryField('images', null=True)
-    bio = models.TextField(null=True, blank=True)
-    facebook_url = models.URLField(max_length=500, null=True, blank=True)
-    twitter_url = models.URLField(max_length=500, null=True, blank=True)
-    instagram_url = models.URLField(max_length=500, null=True, blank=True)
-    threads_url = models.URLField(max_length=500, null=True, blank=True)
-    linkedin_url = models.URLField(max_length=500, null=True, blank=True)
-    youtube_url = models.URLField(max_length=500, null=True, blank=True)
+    # bio = models.TextField(null=True, blank=True)
+    # facebook_url = models.URLField(max_length=500, null=True, blank=True)
+    # twitter_url = models.URLField(max_length=500, null=True, blank=True)
+    # instagram_url = models.URLField(max_length=500, null=True, blank=True)
+    # threads_url = models.URLField(max_length=500, null=True, blank=True)
+    # linkedin_url = models.URLField(max_length=500, null=True, blank=True)
+    # youtube_url = models.URLField(max_length=500, null=True, blank=True)
 
     dismissibles = models.JSONField(default=dict, blank=True)
 

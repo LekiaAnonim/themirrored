@@ -501,19 +501,19 @@ section {
 
 .how-section {
     background-color: #ffff;
-    z-index: 1000;
+    z-index: 500;
     position: relative;
 }
 
 .post-detail-container-section {
     background-color: #ffff;
-    z-index: 1000;
+    z-index: 500;
     position: relative;
 }
 
 .about-section {
     background-color: #ffff;
-    z-index: 1000;
+    z-index: 500;
     position: relative;
 }
 

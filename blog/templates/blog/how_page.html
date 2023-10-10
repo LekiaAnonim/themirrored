@@ -1,33 +1,25 @@
-<!DOCTYPE html>{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %} {% load wagtailimages_tags %}
-{% load social_share %}
-{% load comments %}
-{% load comments_xtd %}
+<!DOCTYPE html>{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %} {% load wagtailimages_tags %} {% load social_share %} {% load comments %} {% load comments_xtd %}
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load wagtailmetadata_tags %}
-    {% meta_tags %}
-    {% block og_tag %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% load wagtailmetadata_tags %} {% meta_tags %} {% block og_tag %}
     <meta property="og:title" content="How: {{page.post_title}}" />
     <meta property="og:description" content="{{page.body|truncatewords:40}}." />
-    <meta property="og:image" content="{{page.post_image.url}}" />
-    {% endblock og_tag %}
+    <meta property="og:image" content="{{page.post_image.url}}" /> {% endblock og_tag %}
 </head>
 
 <body>
     {% comment %} {% image page.post_image fill-300x230 as post_image %} {% endcomment %}
     <div class="first-screen" style="{% block landingbackground %}{% if page.post_image %} background: url('{{page.post_image.url}}') {% else %}background: url('/static/images/nasa-Q1p7bh3SHj8-unsplash.jpg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
-    {% block pagecaption %}
+        {% block pagecaption %}
         <div class="first-section-content">
             <div class="first-text">
                 <h1 style="color: #fff;">{{page.title|title}}</h1>
             </div>
         </div>
-    {% endblock %}
-    {% block cta %}
-    {% endblock %}
+        {% endblock %} {% block cta %} {% endblock %}
     </div>
     {% block content %}
     <section class="post-detail-container-section">
@@ -36,11 +28,11 @@
                 <div class="Post-title">
                     <h1>{{page.post_title|title}}</h1>
                     <div class="post-meta">
-                        <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div>
+                        <!-- <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div> -->
                         <div class="author-name-read-count">
-                            <div class="author-name">
+                            <!-- <div class="author-name">
                                 <h5>{{page.owner.first_name}} {{page.owner.last_name}}</h5>
-                            </div>
+                            </div> -->
                             <div class="read-time-date">
                                 <p class="read-time">{{page.read_time}} min{{ page.read_time|pluralize }} read</p>
                                 <li class="post-date">{{page.date_created|date:"d M Y"}}</li>
@@ -79,13 +71,8 @@
                                 "clip-rule="evenodd " d="M73.9,5.75c0.467-0.467,1.067-0.7,1.8-0.7c0.7,0,1.283,0.233,1.75,0.7l16.8,16.8 c0.467,0.5,0.7,1.084,0.7,1.75c0,0.733-0.233,1.334-0.7,1.801L70.35,50l23.9,23.95c0.5,0.467,0.75,1.066,0.75,1.8 c0,0.667-0.25,1.25-0.75,1.75l-16.8,16.75c-0.534,0.467-1.117,0.7-1.75,0.7s-1.233-0.233-1.8-0.7L50,70.351L26.1,94.25
                                 c-0.567,0.467-1.167,0.7-1.8,0.7c-0.667,0-1.283-0.233-1.85-0.7L5.75,77.5C5.25,77,5,76.417,5,75.75c0-0.733,0.25-1.333,0.75-1.8 L29.65,50L5.75,26.101C5.25,25.667,5,25.066,5,24.3c0-0.666,0.25-1.25,0.75-1.75l16.8-16.8c0.467-0.467,1.05-0.7,1.75-0.7 c0.733,0,1.333,0.233,1.8,0.7L50,29.65L73.9,5.75z "/></svg>
                             </div>
-                            {% post_to_facebook object_or_url "Post to Facebook!" %}
-                            {% post_to_twitter "Mirrored Blog post: {{page.post_title}}. Check it out!" object_or_url "Post to Twitter" %}
-                            {% post_to_linkedin object_or_url %}
-                            {% send_email object.title "Mirrored Blog post: {{page.post_title}}. Check it out!" object_or_url "Share via email" %}
-                            {% post_to_whatsapp object_or_url "Share via WhatsApp" %}
-                            {% copy_to_clipboard object_or_url "Copy to clipboard!" %}
-                            {% add_copy_script %}
+                            {% post_to_facebook object_or_url "Post to Facebook!" %} {% post_to_twitter "Mirrored Blog post: {{page.post_title}}. Check it out!" object_or_url "Post to Twitter" %} {% post_to_linkedin object_or_url %} {% send_email object.title "Mirrored Blog post:
+                            {{page.post_title}}. Check it out!" object_or_url "Share via email" %} {% post_to_whatsapp object_or_url "Share via WhatsApp" %} {% copy_to_clipboard object_or_url "Copy to clipboard!" %} {% add_copy_script %}
                         </div>
                     </div>
                 </div>
@@ -122,11 +109,13 @@
                             {{page.owner.bio|richtext}}
                         </p>
                     </div>
-                    {% comment %} <div class="view-all">
+                    {% comment %}
+                    <div class="view-all">
                         <a href="#"><button>More About the Author</button></a>
                     </div> {% endcomment %}
                 </div>
-                {% comment %} <div class="similar-posts">
+                {% comment %}
+                <div class="similar-posts">
                     <div class="all-post-container">
                         <div class="section-header">
                             <div class="section-title">
@@ -194,35 +183,26 @@
                 {% if page.allow_comments %}
                 <h4 class="text-center mb-4">Your comment</h4>
                 <div class="card card-block mb-5">
-                <div class="card-body">
-                    <h6 class="card-title text-center pb-3">Post your comment</h6>
-                    {% render_comment_form for page %}
+                    <div class="card-body">
+                        <h6 class="card-title text-center pb-3">Post your comment</h6>
+                        {% render_comment_form for page %}
+                    </div>
                 </div>
-                </div>
-                {% endif %}
-                {% get_comment_count for page as comment_count %}
+                {% endif %} {% get_comment_count for page as comment_count %}
                 <div class="py-4 text-center">
-                {% comment %} <a href="{{page.get_parent.url}}">Back to the post list</a> {% endcomment %}
-                &nbsp;&sdot;&nbsp;
-                {{ comment_count }} comment{{ comment_count|pluralize }}
-                ha{{ comment_count|pluralize:"s,ve"}} been posted.
+                    {% comment %} <a href="{{page.get_parent.url}}">Back to the post list</a> {% endcomment %} &nbsp;&sdot;&nbsp; {{ comment_count }} comment{{ comment_count|pluralize }} ha{{ comment_count|pluralize:"s,ve"}} been posted.
                 </div>
-    
+
                 {% if comment_count %}
                 <ul class="media-list">
-                {% render_xtdcomment_tree for page %}
+                    {% render_xtdcomment_tree for page %}
                 </ul>
                 {% endif %}
             </div>
         </div>
-        
-    </section>
-    {% endblock %}
-    {% block mission %}
-    {% endblock mission %}
 
-    {% block request %}
-    {% endblock request %}
+    </section>
+    {% endblock %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %}
 </body>
 
 </html>

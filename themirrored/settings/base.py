@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     'comment',
     'wagalytics',
     'wagtailfontawesome',
+    'el_pagination',
     # 'colorful',
 ]
 
