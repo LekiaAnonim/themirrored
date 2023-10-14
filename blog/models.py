@@ -26,6 +26,9 @@ from wagtail.snippets.models import register_snippet
 from cloudinary.models import CloudinaryField
 from wagtailmetadata.models import MetadataPageMixin
 from django.utils.translation import gettext_lazy as _
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 # Create your models here.
 AUTH_USER = settings.AUTH_USER_MODEL
 # class User(AbstractBaseUser):
@@ -56,6 +59,15 @@ AUTH_USER = settings.AUTH_USER_MODEL
 #     class Meta:
 #         verbose_name = _("user profile")
 #         verbose_name_plural = _("user profiles")
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 class Category(MetadataPageMixin, Page):
     template = 'blog/category_blogs.html'
     name = models.CharField(max_length=500, null=True, blank=True)
@@ -112,7 +124,11 @@ class Category(MetadataPageMixin, Page):
     # def get_absolute_url(self):
     #     return reverse('blog:author_detail', kwargs={ 'slug': self.user.username})
 
+class IpModel(models.Model):
+    ip = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.ip
 
 class PostInfo(models.Model):
     post_title = models.CharField(
@@ -151,6 +167,8 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
     article_of_the_week = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     read_time = models.CharField(max_length=50, default=0)
+    views = models.ManyToManyField(IpModel, related_name="blog_views", blank=True)
+    likes = models.ManyToManyField(IpModel, related_name="blog_likes", blank=True)
 
     search_fields = Page.search_fields + [
         index.SearchField('post_title'),
@@ -179,6 +197,12 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
 
     def __str__(self):
         return self.post_title
+    
+    def total_views(self):
+        return self.views.count()
+
+    def total_likes(self):
+        return self.likes.count()
 
     def get_absolute_url(self):
         return self.get_url()
@@ -203,6 +227,22 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
         
         context["related_content"] = related_content
         return context
+    
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+
+        # adding like count
+        like_status = False
+        ip = get_client_ip(request)
+        if self.object.likes.filter(id=IpModel.objects.get(ip=ip).id).exists():
+            like_status = True
+        else:
+            like_status=False
+        context['like_status'] = like_status
+
+
+        return self.render_to_response(context)
 
 class BlogTagIndexPage(MetadataPageMixin, Page):
     def get_context(self, request):
@@ -236,6 +276,8 @@ class HowPage(MetadataPageMixin, PostInfo, Page):
     how_of_the_week = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=HowPageTag, blank=True)
     read_time = models.CharField(max_length=50, default=0)
+    views = models.ManyToManyField(IpModel, related_name="how_views", blank=True)
+    likes = models.ManyToManyField(IpModel, related_name="how_likes", blank=True)
 
     search_fields = Page.search_fields + [
         index.SearchField('post_title'),
@@ -264,6 +306,12 @@ class HowPage(MetadataPageMixin, PostInfo, Page):
     def __str__(self):
         return self.post_title
 
+    def total_views(self):
+        return self.views.count()
+
+    def total_likes(self):
+        return self.likes.count()
+
     def get_absolute_url(self):
         return self.get_url()
     
@@ -272,6 +320,22 @@ class HowPage(MetadataPageMixin, PostInfo, Page):
         if self.how_of_the_week:
             HowPage.objects.all().update(**{'how_of_the_week': False})
         super(HowPage, self).save(*args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+
+        # adding like count
+        like_status = False
+        ip = get_client_ip(request)
+        if self.object.likes.filter(id=IpModel.objects.get(ip=ip).id).exists():
+            like_status = True
+        else:
+            like_status=False
+        context['like_status'] = like_status
+
+
+        return self.render_to_response(context)
 
 class HowTagIndexPage(MetadataPageMixin, Page):
     def get_context(self, request):
@@ -306,6 +370,8 @@ class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
     word_of_the_week = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=WordPageTag, blank=True)
     read_time = models.CharField(max_length=50, default=0)
+    views = models.ManyToManyField(IpModel, related_name="word_views", blank=True)
+    likes = models.ManyToManyField(IpModel, related_name="word_likes", blank=True)
 
     search_fields = Page.search_fields + [
         index.SearchField('post_title'),
@@ -331,6 +397,12 @@ class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
 
     def __str__(self):
         return self.post_title
+    
+    def total_views(self):
+        return self.views.count()
+
+    def total_likes(self):
+        return self.likes.count()
 
     def get_absolute_url(self):
         return self.get_url()
@@ -341,6 +413,21 @@ class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
             WeeklyWordPage.objects.all().update(**{'word_of_the_week': False})
         super(WeeklyWordPage, self).save(*args, **kwargs)
 
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+
+        # adding like count
+        like_status = False
+        ip = get_client_ip(request)
+        if self.object.likes.filter(id=IpModel.objects.get(ip=ip).id).exists():
+            like_status = True
+        else:
+            like_status=False
+        context['like_status'] = like_status
+
+
+        return self.render_to_response(context)
 class WordTagIndexPage(MetadataPageMixin, Page):
     def get_context(self, request):
         # Filter by tag
@@ -351,6 +438,43 @@ class WordTagIndexPage(MetadataPageMixin, Page):
         context = super().get_context(request)
         context['wordpages'] = wordpages
         return context
+
+def blogLike(request, pk):
+    postid = request.POST.get('blogid')
+    post = get_object_or_404(BlogPage, pk=postid)
+    ip = get_client_ip(request)
+    if not IpModel.objects.filter(ip=ip).exists():
+        IpModel.objects.create(ip=ip)
+    if post.likes.filter(id=IpModel.objects.get(ip=ip).id).exists():
+        post.likes.remove(IpModel.objects.get(ip=ip))
+    else:
+        post.likes.add(IpModel.objects.get(ip=ip))
+    return redirect(post)
+
+
+def howLike(request, pk):
+    postid = request.POST.get('blogid')
+    post = get_object_or_404(HowPage, pk=postid)
+    ip = get_client_ip(request)
+    if not IpModel.objects.filter(ip=ip).exists():
+        IpModel.objects.create(ip=ip)
+    if post.likes.filter(id=IpModel.objects.get(ip=ip).id).exists():
+        post.likes.remove(IpModel.objects.get(ip=ip))
+    else:
+        post.likes.add(IpModel.objects.get(ip=ip))
+    return redirect(post)
+
+def wordLike(request, pk):
+    postid = request.POST.get('blogid')
+    post = get_object_or_404(WeeklyWordPage, pk=postid)
+    ip = get_client_ip(request)
+    if not IpModel.objects.filter(ip=ip).exists():
+        IpModel.objects.create(ip=ip)
+    if post.likes.filter(id=IpModel.objects.get(ip=ip).id).exists():
+        post.likes.remove(IpModel.objects.get(ip=ip))
+    else:
+        post.likes.add(IpModel.objects.get(ip=ip))
+    return redirect(post)
 
 # url = "https://youtu.be/wQSbQaSlG6s?si=f76aKaNUrEWnuYt-"
 # match = re.search(r'^(https?://[^/]+/[^/]+/[^/]+)/', url)

@@ -661,6 +661,27 @@ section {
     line-height: 1.8 !important;
     text-overflow: ellipsis;
     color: #000;
+    margin-bottom: 1.5em;
+}
+
+.post-body br {
+    margin-bottom: 1.5em;
+}
+
+.like-post button {
+    border: 0;
+    background: none;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.like-post form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .post-tags {
@@ -1166,6 +1187,7 @@ footer * {
 .post-interact svg {
     width: 25px;
     fill: var(--gray);
+    cursor: pointer;
 }
 
 .post-interact span {
