@@ -25,7 +25,7 @@
     <meta property="og:title" content="TheMirrored: Behold! Become! Live" />
     <meta property="og:description" content="Your destination for practical living, spiritual growth and faith." />
     <meta property="og:image" content="/static/images/banner.jpg" />
-    <link rel="icon" type="image/x-icon" href="{{settings.blog.SiteLogo.favicon.url}}"> {% endblock og_tag %} {# Force all links in the live preview panel to be opened in a new tab #} {% if request.in_preview_panel %}
+    <link rel="shortcut icon" href="/static/images/logo mirrored" type="image/x-icon"> {% endblock og_tag %} {# Force all links in the live preview panel to be opened in a new tab #} {% if request.in_preview_panel %}
     <base target="_blank"> {% endif %} {# Global stylesheets #} {% block styles %}
     <link rel="stylesheet" href="/static/js/slick-1.8.1/slick/slick-theme.css">
     <link rel="stylesheet" href="/static/js/slick-1.8.1/slick/slick.css">
@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="/static/css/style.css">
     <link rel="stylesheet" href="/static/css/media.css"> {% endblock styles %} {% block extra_css %}
     <link rel="stylesheet" href="/static/css/extra.css"> {% endblock %}
+
+    <!-- <link rel="icon" type="image/x-icon" href="{{settings.blog.SiteLogo.favicon.url}}"> -->
 </head>
 
 <body class="{% block body_class %}{% endblock %}">

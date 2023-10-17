@@ -1031,7 +1031,7 @@ footer * {
 }
 
 .submit {
-    background-color: var(--medium-orange);
+    background-color: var(--deep-orange);
     cursor: pointer;
     font-weight: 900;
     border: none;
