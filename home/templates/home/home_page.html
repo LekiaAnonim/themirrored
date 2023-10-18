@@ -75,10 +75,11 @@
                             <p>{{blog.body|richtext|striptags|truncatewords:8}}</p>
                         </div>
                         <div class="author">
-                            <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div>
+                            <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
+                                <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
                             <div class="author-name">
                                 <a href="#">
-                                    <p>{{page.owner.first_name}} {{page.owner.last_name}}</p>
+                                    <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
                                 </a>
                             </div>
                             <div class="post-date">
@@ -237,10 +238,11 @@
                                 {% endif %} {% endwith %}
                             </div>
                             <div class="author">
-                                <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div>
+                                <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
+                                    <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
                                 <div class="author-name">
                                     <a href="#">
-                                        <p>{{page.owner.first_name}} {{page.owner.last_name}}</p>
+                                        <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
                                     </a>
                                 </div>
                                 <div class="post-date">

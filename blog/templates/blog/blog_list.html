@@ -34,10 +34,11 @@
                 </div>
                 <div class="post-content">
                     <div class="author">
-                        <div class="author-image"><img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt=""></div>
+                        <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
+                            <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
                         <div class="author-name">
                             <a href="{{blog.post_author.get_absolute_url}}">
-                                <p>{{page.owner.first_name|title}} {{page.owner.last_name|title}}</p>
+                                <p>{{blog.owner.first_name|title}} {{blog.owner.last_name|title}}</p>
                             </a>
                         </div>
                         <div class="post-date">

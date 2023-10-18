@@ -720,6 +720,16 @@ section {
     width: 25px;
     height: 25px;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--deep-orange);
+}
+
+.author .author-image p {
+    color: #fff;
+    margin-top: 5px;
 }
 
 .author .author-image img {
@@ -1813,4 +1823,11 @@ form {
     color: #000000;
     line-height: 1.1 !important;
     text-overflow: ellipsis;
+}
+
+cursor: pointer;
+color: #000000;
+line-height: 1.1 !important;
+text-overflow: ellipsis;
+
 }
