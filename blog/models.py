@@ -29,6 +29,7 @@ from django.utils.translation import gettext_lazy as _
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 # Create your models here.
 AUTH_USER = settings.AUTH_USER_MODEL
 # class User(AbstractBaseUser):
@@ -154,6 +155,31 @@ class BlogIndexPage(MetadataPageMixin, Page):
         FieldPanel('banner')
     ]
 
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        # Get all posts
+        all_posts = BlogPage.objects.live().public().order_by('-first_published_at')
+        # Paginate all posts by 2 per page
+        paginator = Paginator(all_posts, 6)
+        # Try to get the ?page=x value
+        page = request.GET.get("page")
+        try:
+            # If the page exists and the ?page=x is an int
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            # If the ?page=x is not an int; show the first page
+            posts = paginator.page(1)
+        except EmptyPage:
+            # If the ?page=x is out of range (too high most likely)
+            # Then return the last page
+            posts = paginator.page(paginator.num_pages)
+
+        # "posts" will have child pages; you'll need to use .specific in the template
+        # in order to access child properties, such as youtube_video_id and subtitle
+        context["posts"] = posts
+        return context
+
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
         'BlogPage',
@@ -269,7 +295,32 @@ class HowIndexPage(MetadataPageMixin, Page):
     content_panels = Page.content_panels + [
         FieldPanel('intro'),
         FieldPanel('banner')
-    ]  
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        # Get all posts
+        all_posts = HowPage.objects.live().public().order_by('-first_published_at')
+        # Paginate all posts by 2 per page
+        paginator = Paginator(all_posts, 6)
+        # Try to get the ?page=x value
+        page = request.GET.get("page")
+        try:
+            # If the page exists and the ?page=x is an int
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            # If the ?page=x is not an int; show the first page
+            posts = paginator.page(1)
+        except EmptyPage:
+            # If the ?page=x is out of range (too high most likely)
+            # Then return the last page
+            posts = paginator.page(paginator.num_pages)
+
+        # "posts" will have child pages; you'll need to use .specific in the template
+        # in order to access child properties, such as youtube_video_id and subtitle
+        context["posts"] = posts
+        return context
 class HowPage(MetadataPageMixin, PostInfo, Page):
     # how_author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='how_author')
     how_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='how_category')
@@ -363,7 +414,32 @@ class WeeklyWordIndexPage(MetadataPageMixin, Page):
     content_panels = Page.content_panels + [
         FieldPanel('intro'),
         FieldPanel('banner')
-    ] 
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        """Adding custom stuff to our context."""
+        context = super().get_context(request, *args, **kwargs)
+        # Get all posts
+        all_posts = WeeklyWordPage.objects.live().public().order_by('-first_published_at')
+        # Paginate all posts by 2 per page
+        paginator = Paginator(all_posts, 6)
+        # Try to get the ?page=x value
+        page = request.GET.get("page")
+        try:
+            # If the page exists and the ?page=x is an int
+            posts = paginator.page(page)
+        except PageNotAnInteger:
+            # If the ?page=x is not an int; show the first page
+            posts = paginator.page(1)
+        except EmptyPage:
+            # If the ?page=x is out of range (too high most likely)
+            # Then return the last page
+            posts = paginator.page(paginator.num_pages)
+
+        # "posts" will have child pages; you'll need to use .specific in the template
+        # in order to access child properties, such as youtube_video_id and subtitle
+        context["posts"] = posts
+        return context
 class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
     # word_author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='word_author')
     word_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='word_category')

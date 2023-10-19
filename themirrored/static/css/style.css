@@ -1825,9 +1825,27 @@ form {
     text-overflow: ellipsis;
 }
 
-cursor: pointer;
-color: #000000;
-line-height: 1.1 !important;
-text-overflow: ellipsis;
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.pagination li {
+    list-style: none;
+}
+
+.pagination .page-item {
+    padding: 5px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(199, 199, 199);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
 }
