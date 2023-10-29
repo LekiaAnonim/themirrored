@@ -7,3 +7,9 @@ $(document).ready(function() {
 
     });
 });
+$('.blog-carousel').slick({
+    ltr: true,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    dots: true
+});

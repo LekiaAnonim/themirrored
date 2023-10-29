@@ -8,18 +8,58 @@
 </head>
 
 <body>
-    {% comment %} {% image page.post_image fill-300x230 as post_image %} {% endcomment %}
-    <div class="first-screen" style="{% block landingbackground %}{% if page.post_image %} background: url('{{page.post_image.url}}') {% else %}background: url('/static/images/nasa-Q1p7bh3SHj8-unsplash.jpg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
-        {% block pagecaption %}
-        <div class="first-section-content">
-            <div class="first-text">
-                <h1 style="color: #fff;">{{page.title|title}}</h1>
+    <section class="first-section">
+        {% block coverimage %}
+        <div class="blog-carousel" dir="ltr">
+            {% for blog in posts %}{% with blog=blog.specific %}
+            <div class="main-image blog-section" style="{% block landingbackground %}{% if blog.post_image %} background: url('{{blog.post_image.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
+                <div class="bloglist-author-name">
+                    <p>{{blog.owner.first_name}} {{blog.owner.last_name}} | {{blog.date_created|date:"d M Y"}} </p>
+                </div>
+                <div class="bloglist-post-title">
+                    <h1>{{blog.post_title|title|truncatewords:3}}</h1>
+                </div>
+                <div class="bloglist-post-body">
+                    <p>{{blog.body|richtext|striptags|truncatewords:100}}</p>
+                </div>
+                <div class="cover-background"></div>
             </div>
+            {% endwith %} {% endfor %}
         </div>
-        {% endblock %} {% block cta %} {% endblock %}
-    </div>
+
+        {% endblock %} {% block pagecaption %}{% endblock %} {% block searchcarousel %}{% endblock %}
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr>
+    </section>
     {% block content %}
+    <section class="weekly-article-section">
+        <div class="section-title">
+            <h2>This week’s Word</h2>
+        </div>
+        {% if word_of_the_week %}
+        <div class="post-image" style="background-image: url('{{word_of_the_week.post_image.url}}');"></div>
+        <div class="post-title">
+            <a href="{% pageurl word_of_the_week %}">
+                <h3>{{word_of_the_week.post_title|title}}</h3>
+            </a>
+        </div>
+        <div class="post-body">
+            <p>
+                {{word_of_the_week.body|richtext|striptags|truncatewords:70}}
+            </p>
+        </div>
+        <a href="{% pageurl word_of_the_week %}">
+            <button class="read-more">Read more</button>
+        </a> {% endif %}
+    </section>
     <section class="how-section">
+        <div class="section-title recent-section-title">
+            <h2>More Word</h2>
+        </div>
         {% regroup posts by date_created.year as year_list %} {% for year in year_list %}
         <div class="how-date">
             <h2>{{ year.grouper|date:"Y" }} {# Display the year #}</h2>
@@ -29,35 +69,45 @@
             <div class="how-month">
                 <h3>{{ month.grouper|date:"F" }} {# Display the month as full name #}</h3>
             </div>
-            <div class="how-card-container">
+            <div class="more-post-container">
                 {% for obj in month.list %} {% with obj=obj.specific %}
-                <div class="post-card-vertical">
-                    {% comment %} {% image obj.post_image fill-300x230 as post_image %} {% endcomment %}
-                    <div class="post-image" style="background-image: url({{obj.post_image.url}}); background-size: cover; background-repeat: no-repeat;">
-                        <!-- <a href="{% if blog.post_cateory %}{% pageurl obj.word_category %}{% else %}#{% endif %}">
-                            <div class="post-category">
-                                <p>{{obj.word_category}}</p>
-                            </div>
-                        </a> -->
+                <div class="more-post-card">
+                    <div class="post-image" style="background-image: url('{{obj.post_image.url}}');"></div>
+                    <div class="post-title">
+                        <a href="{% pageurl obj %}">
+                            <h3>{{obj.post_title|title|truncatewords:4}}</h3>
+                        </a>
                     </div>
-                    <div class="post-content">
-                        <div class="author">
-                            <div class="author-image">{% if obj.owner.wagtail_userprofile.avatar %}<img src="{{obj.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
-                                <p>{{obj.owner.first_name|make_list|first}}</p>{% endif %}</div>
-                            <div class="author-name">
-                                <a href="#">
-                                    <p>{{obj.owner.first_name}} {{obj.owner.last_name}}</p>
-                                </a>
+                    {% with tags=obj.tags.all %} {% if tags %}
+                    <div class="post-tag-container">
+                        {% for tag in tags|slice:":2" %}
+                        <a href="{% slugurl 'tags' %}?tag={{ tag }}">
+                            <div class="post-tag">
+                                <p>{{ tag }}</p>
                             </div>
-                            <div class="post-date">
-                                <p>{{obj.date_created|date:"d M Y"}}</p>
-                            </div>
-                        </div>
-                        <div class="post-title">
-                            <a href="{% pageurl obj %}">
-                                <p>{{obj.post_title|truncatewords:50}}</p>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %} {% endwith %}
+                    <div class="post-date">
+                        <p>{{obj.date_created|date:"d M Y"}}</p>
+                    </div>
+                    <div class="post-body">
+                        {{obj.body|richtext|striptags|truncatewords:10}}
+                    </div>
+                    <div class="author">
+                        <div class="author-image">{% if obj.owner.wagtail_userprofile.avatar %}<img src="{{obj.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
+                            <p>{{obj.owner.first_name|make_list|first}}</p>{% endif %}</div>
+                        <div class="author-name">
+                            <a href="#">
+                                <p>{{obj.owner.first_name}} {{obj.owner.last_name}}</p>
                             </a>
                         </div>
+                    </div>
+                    <div>
+                        <a href="{% pageurl obj %}">
+                            <button class="read-more">Read more</button>
+                        </a>
                     </div>
                 </div>
                 {% endwith %} {% endfor %}

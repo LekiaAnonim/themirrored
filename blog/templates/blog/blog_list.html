@@ -8,54 +8,83 @@
 </head>
 
 <body>
-    {% comment %} {% image page.post_image fill-300x230 as post_image %} {% endcomment %}
-    <div class="first-screen" style="{% block landingbackground %}{% if post_image %} background: url('{{page.post_image.url}}') {% else %}background: url('/static/images/nasa-Q1p7bh3SHj8-unsplash.jpg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
-        {% block pagecaption %}
-        <div class="first-section-content">
-            <div class="first-text">
-                <h1 style="color: #fff;">{{page.title|title}}</h1>
+    <section class="first-section">
+        {% block coverimage %}
+        <div class="blog-carousel" dir="ltr">
+            {% for blog in posts %}{% with blog=blog.specific %}
+            <div class="main-image blog-section" style="{% block landingbackground %}{% if blog.post_image %} background: url('{{blog.post_image.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
+                <div class="bloglist-author-name">
+                    <p>{{blog.owner.first_name}} {{blog.owner.last_name}} | {{blog.date_created|date:"d M Y"}} </p>
+                </div>
+                <div class="bloglist-post-title">
+                    <h1>{{blog.post_title|title|truncatewords:3}}</h1>
+                </div>
+                <div class="bloglist-post-body">
+                    <p>{{blog.body|richtext|striptags|truncatewords:20}}</p>
+                </div>
+                <div class="cover-background"></div>
             </div>
+            {% endwith %} {% endfor %}
         </div>
-        {% endblock %} {% block cta %} {% endblock %}
-    </div>
-    {% block content %}
-    <section class="how-section">
-        <div class="how-card-container">
-            {% if page %} {% for blog in posts %} {% with blog=blog.specific %}
-            <div class="post-card-vertical">
-                {% comment %} {% image blog.post_image fill-300x230 as post_image %} {% endcomment %}
-                <div class="post-image" style="background-image: url({{blog.post_image.url}}); background-size: cover; background-repeat: no-repeat;">
 
-                    <a href="{% if blog.post_cateory %}{% pageurl blog.post_category %}{% else %}#{% endif %}">
-                        <div class="post-category">
-                            <p>{{blog.post_category.name|title}}</p>
-                        </div>
+        {% endblock %} {% block pagecaption %}{% endblock %} {% block searchcarousel %}{% endblock %}
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr>
+    </section>
+    {% block content %}
+
+    <section class="more-post">
+        <div class="section-title recent-section-title">
+            <h2>All posts</h2>
+            <!-- <button class="visit-blog">Visit blog</button> -->
+        </div>
+        <div class="more-post-container" style="flex-wrap: wrap;">
+            {% if page %} {% for blog in posts %}{% with blog=blog.specific %}
+            <div class="more-post-card">
+                <div class="post-image" style="background-image: url('{{blog.post_image.url}}');"></div>
+                <div class="post-title">
+                    <a href="{% pageurl blog %}">
+                        <h3>{{blog.post_title|title|truncatewords:4}}</h3>
                     </a>
                 </div>
-                <div class="post-content">
-                    <div class="author">
-                        <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
-                            <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
-                        <div class="author-name">
-                            <a href="{{blog.post_author.get_absolute_url}}">
-                                <p>{{blog.owner.first_name|title}} {{blog.owner.last_name|title}}</p>
-                            </a>
+                {% with tags=blog.tags.all %} {% if tags %}
+                <div class="post-tag-container">
+                    {% for tag in tags|slice:":2" %}
+                    <a href="{% slugurl 'tags' %}?tag={{ tag }}">
+                        <div class="post-tag">
+                            <p>{{ tag }}</p>
                         </div>
-                        <div class="post-date">
-                            <p>{{blog.date_created|date:"d M Y"}}</p>
-                        </div>
-                    </div>
-                    <div class="post-title">
-                        <a href="{% pageurl blog %}">
-                            <h2>{{blog.post_title|title}}</h2>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% endif %} {% endwith %}
+                <div class="post-date">
+                    <p>{{blog.date_created|date:"d M Y"}}</p>
+                </div>
+                <div class="post-body">
+                    {{blog.body|richtext|striptags|truncatewords:10}}
+                </div>
+                <div class="author">
+                    <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
+                        <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
+                    <div class="author-name">
+                        <a href="#">
+                            <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
                         </a>
                     </div>
                 </div>
-            </div>
-            {% endwith %} {% endfor %} {% else %}
-            <div>
-                <p>No post available</p>
-            </div>{% endif %}
+                <div>
+                    <a href="{% pageurl blog %}">
+                        <button class="read-more">Read more</button>
+                    </a>
+                </div>
+            </div>{% endwith %} {% endfor %} {% else %}
+            <p>No blog available</p>
+            {% endif %}
         </div>
         {# Only show pagination if there is more than one page to click through #} {% if posts.paginator.num_pages > 1 %}
         <div class="container">
@@ -86,6 +115,9 @@
             </div>
         </div>
         {% endif %}
-    </section> {% endblock content %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %} </body>
+    </section>
+
+
+    {% endblock content %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %} </body>
 
 </html>

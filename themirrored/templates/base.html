@@ -34,7 +34,9 @@
     <script src="/static/js/slick-1.8.1/slick/slick.js"></script>
     <script src="/static/js/slick-1.8.1/slick/slick.min.js"></script>
     <link rel="stylesheet" href="/static/css/style.css">
-    <link rel="stylesheet" href="/static/css/media.css"> {% endblock styles %} {% block extra_css %}
+    <link rel="stylesheet" href="/static/css/media.css">
+    <link rel="stylesheet" href="/static/css/newstyle.css"> {% endblock styles %} {% block extra_css %}
+    <link rel="stylesheet" href="/static/css/extra.css">
     <link rel="stylesheet" href="/static/css/extra.css"> {% endblock %}
 
     <!-- <link rel="icon" type="image/x-icon" href="{{settings.blog.SiteLogo.favicon.url}}"> -->
@@ -43,83 +45,21 @@
 <body class="{% block body_class %}{% endblock %}">
     <!-- {% wagtailuserbar %} -->
     <div id="preloader"></div>
-
-    <div class="first-screen" style="{% block landingbackground %}background: url('/static/images/blonde-woman-posing-outdoors-while-holding-book.a64923f1ba96.jpg'); background-size: cover; background-position: 0;{% endblock %}">
-        <div class="screen-mask">
-        </div>
-        {% block searchcarousel %}
-        <div class="post-carousel-search">
-            <div class="post-carousel-container">
-                <div class="post-carousel">
-                    {% if blogs %} {% for blog in blogs %}
-                    <div class="post-carousel-text">
-                        <a href="{% pageurl blog %} ">{{blog.post_title}} | {{page.owner.get_full_name}} | {{blog.date_created|date:"d M Y"}}</a>
-                    </div>
-                    {% endfor %} {% else %}
-                    <div class="post-carousel-text"><a href="#">title 2 | author2 | date2</a></div>
-                    {% endif %}
-                </div>
-                <div class="all-posts">
-                    <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}"><button>All Posts</button></a>
-                </div>
-            </div>
-            <div class="search">
-                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40" x="0px" y="0px"><g data-name="Layer 2 "><path d="M29.707,28.293l-6.552-6.552a12.027,12.027,0,1,0-1.414,1.414l6.552,6.552a1,1,0,0,0,1.414-1.414ZM4,14A10,10,0,1,1,14,24,10.011,10.011,0,0,1,4,14Z "/></g></svg>
-                <div class="search-area hide">
-                    <div class="cancel-search-area">
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1 " x="0px " y="0px " viewBox="0 0 100 125 " enable-background="new 0 0 100 100 " xml:space="preserve "><path fill-rule="evenodd
-                        "clip-rule="evenodd " d="M73.9,5.75c0.467-0.467,1.067-0.7,1.8-0.7c0.7,0,1.283,0.233,1.75,0.7l16.8,16.8 c0.467,0.5,0.7,1.084,0.7,1.75c0,0.733-0.233,1.334-0.7,1.801L70.35,50l23.9,23.95c0.5,0.467,0.75,1.066,0.75,1.8 c0,0.667-0.25,1.25-0.75,1.75l-16.8,16.75c-0.534,0.467-1.117,0.7-1.75,0.7s-1.233-0.233-1.8-0.7L50,70.351L26.1,94.25
-                        c-0.567,0.467-1.167,0.7-1.8,0.7c-0.667,0-1.283-0.233-1.85-0.7L5.75,77.5C5.25,77,5,76.417,5,75.75c0-0.733,0.25-1.333,0.75-1.8 L29.65,50L5.75,26.101C5.25,25.667,5,25.066,5,24.3c0-0.666,0.25-1.25,0.75-1.75l16.8-16.8c0.467-0.467,1.05-0.7,1.75-0.7 c0.733,0,1.333,0.233,1.8,0.7L50,29.65L73.9,5.75z "/></svg>
-                    </div>
-                    <div class="search-form">
-                        <form action="{% url 'blog:search_results' %}" method="get">
-                            <input class="search-input" type="search" name="search" id="search" placeholder="Search blog..."> <input class="submit-search" type="submit" value="Submit">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endblock %} {% block header %}
-        <div class="header-nav">
+    {% block header %}
+    <header>
+        <nav class="navigation-bar">
             <a href="/">
-                <div class="logo">
-                    {% if settings.blog.SiteLogo.logo %}
+                <div class="logo">{% if settings.blog.SiteLogo.logo %}
                     <img src="{{settings.blog.SiteLogo.logo.url}}" alt="Mirrored Logo" width="80" /> {% else %} Mirrored {% endif %}
                 </div>
             </a>
-            <div class="navigation-menu">
-                <nav>
-                    <ul>
-                        {% for item in menu.menu_items.all %}
-                        <div class="{% if item.title == 'Blog' %} menu-with-dropdown {% else %} main-menu {% endif %} menu-list">
-                            <li class="main-menu "><a href="{{item.link}}" title="{{item.title}}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>{{item.title}}</a></li>
-                            {% if item.title == 'Blog' %}
-                            <div class="dropdown">
-                                <div class="all-post">
-                                    <li><a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}">All post</a></li>
-                                </div>
-
-                                <div class="post-category">
-                                    {% if categories %} {% for category in categories %}
-                                    <li>
-                                        <a href="{% pageurl category %}">{{category.name}}</a>
-                                    </li>
-                                    {% endfor %} {% else %}
-                                    <li></li>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            {% else %}
-                            <p></p>
-                            {% endif %}
-                        </div>
-                        {% endfor %} {% comment %}
-                        <div>
-                            <li class="main-menu"><a href="#">Contact</a></li>
-                        </div> {% endcomment %}
-                    </ul>
-                </nav>
-            </div>
+            <ul class="nav-menus navigation-menu">
+                {% for item in menu.menu_items.all %}
+                <a href="{{item.link}}" title="{{item.title}}" {% if item.open_in_new_tab %} target="_blank" {% endif %}>
+                    <li class="nav-menu">{{item.title}}</li>
+                </a>
+                {% endfor %}
+            </ul>
             <div class="hamburger" onclick="displaySideMenu()">
                 <span class="ham ham-1"></span>
                 <span class="ham ham-2"></span>
@@ -136,58 +76,93 @@
                     {% endfor %}
                 </ul>
             </div>
-            <div class="social-media">
-                <div class="social">
-                    {% if settings.blog.SiteSocial.facebook %}
-                    <a href="{{ settings.blog.SiteSocial.facebook }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path></svg></a>
-                    {% endif %}
+            <div class="search">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 40" x="0px" y="0px"><g data-name="Layer 2 "><path d="M29.707,28.293l-6.552-6.552a12.027,12.027,0,1,0-1.414,1.414l6.552,6.552a1,1,0,0,0,1.414-1.414ZM4,14A10,10,0,1,1,14,24,10.011,10.011,0,0,1,4,14Z "/></g></svg>
+                <div class="search-area hide">
+                    <div class="cancel-search-area">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1 " x="0px " y="0px " viewBox="0 0 100 125 " enable-background="new 0 0 100 100 " xml:space="preserve "><path fill-rule="evenodd
+                            "clip-rule="evenodd " d="M73.9,5.75c0.467-0.467,1.067-0.7,1.8-0.7c0.7,0,1.283,0.233,1.75,0.7l16.8,16.8 c0.467,0.5,0.7,1.084,0.7,1.75c0,0.733-0.233,1.334-0.7,1.801L70.35,50l23.9,23.95c0.5,0.467,0.75,1.066,0.75,1.8 c0,0.667-0.25,1.25-0.75,1.75l-16.8,16.75c-0.534,0.467-1.117,0.7-1.75,0.7s-1.233-0.233-1.8-0.7L50,70.351L26.1,94.25
+                            c-0.567,0.467-1.167,0.7-1.8,0.7c-0.667,0-1.283-0.233-1.85-0.7L5.75,77.5C5.25,77,5,76.417,5,75.75c0-0.733,0.25-1.333,0.75-1.8 L29.65,50L5.75,26.101C5.25,25.667,5,25.066,5,24.3c0-0.666,0.25-1.25,0.75-1.75l16.8-16.8c0.467-0.467,1.05-0.7,1.75-0.7 c0.733,0,1.333,0.233,1.8,0.7L50,29.65L73.9,5.75z "/></svg>
+                    </div>
+                    <div class="search-form">
+                        <form action="{% url 'blog:search_results' %}" method="get">
+                            <input class="search-input" type="search" name="search" id="search" placeholder="Search blog..."> <input class="submit-search" type="submit" value="Submit">
+                        </form>
+                    </div>
                 </div>
-                <div class="social">
-                    {% if settings.blog.SiteSocial.instagram %}
-                    <a href="{{ settings.blog.SiteSocial.instagram }}"><svg xmlns="http://www.w3.org/2000/svg " viewBox="0 0 64 64 "><path d="M 31.820312 12 C 13.438312 12 12 13.439312 12 31.820312 L 12 32.179688 C 12 50.560688 13.438313 52 31.820312 52 L 32.179688 52 C 50.561688 52 52
+            </div>
+        </nav>
+    </header>
+
+    <div class="social-media">
+        <div class="social">
+            {% if settings.blog.SiteSocial.facebook %}
+            <a href="{{ settings.blog.SiteSocial.facebook }}">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path></svg></a>
+            {% endif %}
+        </div>
+        <div class="social">
+            {% if settings.blog.SiteSocial.instagram %}
+            <a href="{{ settings.blog.SiteSocial.instagram }}"><svg xmlns="http://www.w3.org/2000/svg " viewBox="0 0 64 64 "><path d="M 31.820312 12 C 13.438312 12 12 13.439312 12 31.820312 L 12 32.179688 C 12 50.560688 13.438313 52 31.820312 52 L 32.179688 52 C 50.561688 52 52
                     50.560688 52 32.179688 L 52 32 C 52 13.452 50.548 12 32 12 L 31.820312 12 z M 43.994141 18 C 45.099141 17.997 45.997 18.889141 46 19.994141 C 46.003 21.099141 45.110859 21.997 44.005859 22 C 42.900859 22.003 42.003 21.110859 42 20.005859 C 41.997
                     18.900859 42.889141 18.003 43.994141 18 z M 31.976562 22 C 37.498562 21.987 41.987 26.454563 42 31.976562 C 42.013 37.498562 37.545437 41.987 32.023438 42 C 26.501437 42.013 22.013 37.545437 22 32.023438 C 21.987 26.501437 26.454563 22.013 31.976562
-                    22 z M 31.986328 26 C 28.672328 26.008 25.992 28.701625 26 32.015625 C 26.008 35.328625 28.700672 38.008 32.013672 38 C 35.327672 37.992 38.008 35.299328 38 31.986328 C 37.992 28.672328 35.299328 25.992 31.986328 26 z "/></svg></a>                    {% endif %}
-                </div>
-                <div class="social ">
-                    {% if settings.blog.SiteSocial.tiktok %}
-                    <a href="{{ settings.blog.SiteSocial.tiktok }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path></svg></a>                    {% endif %}
-                </div>
-                <div class="social ">
-                    {% if settings.blog.SiteSocial.twitter %}
-                    <a href="{{ settings.blog.SiteSocial.twitter }}"><svg xmlns="http://www.w3.org/2000/svg " enable-background="new 0 0 1668.56 1221.19 " viewBox="0 0 1668.56 1221.19 " id="twitter-x "><path d="M283.94,167.31l386.39,516.64L281.5,1104h87.51l340.42-367.76L984.48,1104h297.8L874.15,558.3l361.92-390.99
-                    h-87.51l-313.51,338.7l-253.31-338.7H283.94z M412.63,231.77h136.81l604.13,807.76h-136.81L412.63,231.77z " transform="translate(52.39 -25.059) "></path></svg></a> {% endif %}
-                </div>
-                <div class="social ">
-                    {% if settings.blog.SiteSocial.youtube %}
-                    <a href="{{ settings.blog.SiteSocial.youtube }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M21.593 7.203a2.506 2.506 0 0 0-1.762-1.766C18.265 5.007 12 5 12 5s-6.264-.007-7.831.404a2.56 2.56 0 0 0-1.766 1.778c-.413 1.566-.417 4.814-.417 4.814s-.004 3.264.406 4.814c.23.857.905 1.534 1.763 1.765 1.582.43 7.83.437 7.83.437s6.265.007 7.831-.403a2.515 2.515 0 0 0 1.767-1.763c.414-1.565.417-4.812.417-4.812s.02-3.265-.407-4.831zM9.996 15.005l.005-6 5.207 3.005-5.212 2.995z"></path></svg></a>                    {% endif %}
-                </div>
-                <div class="social ">
-                    {% if settings.blog.SiteSocial.threads %}
-                    <a href="{{ settings.blog.SiteSocial.threads }}"><svg xmlns="http://www.w3.org/2000/svg " enable-background="new 0 0 1668.56 1221.19 " viewBox="0 0 1668.56 1221.19 " id="twitter-x "><path d="M283.94,167.31l386.39,516.64L281.5,1104h87.51l340.42-367.76L984.48,1104h297.8L874.15,558.3l361.92-390.99
-                    h-87.51l-313.51,338.7l-253.31-338.7H283.94z M412.63,231.77h136.81l604.13,807.76h-136.81L412.63,231.77z " transform="translate(52.39 -25.059) "></path></svg></a> {% endif %}
-                </div>
-            </div>
+                    22 z M 31.986328 26 C 28.672328 26.008 25.992 28.701625 26 32.015625 C 26.008 35.328625 28.700672 38.008 32.013672 38 C 35.327672 37.992 38.008 35.299328 38 31.986328 C 37.992 28.672328 35.299328 25.992 31.986328 26 z "/></svg></a>            {% endif %}
         </div>
-        {% endblock header %} {% block pagecaption %}
-        <div class="first-section-content">
-            <div class="first-text">
-                <h1>{{page.caption_main_text}}</h1>
-            </div>
-            <div class="first-text">
-                <h2>{{page.caption_sub_text}}
-                </h2>
-            </div>
+        <div class="social ">
+            {% if settings.blog.SiteSocial.tiktok %}
+            <a href="{{ settings.blog.SiteSocial.tiktok }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path></svg></a>            {% endif %}
         </div>
-        {% endblock %} {% block cta %} {% comment %}
-        <div class="call-to-action-btn">
-            <a href="{{ settings.blog.ImportantPages.page_url.about_page }}"><button><p>About us</p></button></a>
-            <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}"><button><p>Blog</p></button></a>
-            <a href="{{ settings.blog.ImportantPages.page_url.how_index_page }}"><button><p>How</p></button></a>
-        </div> {% endcomment %} {% endblock %}
+        <div class="social ">
+            {% if settings.blog.SiteSocial.twitter %}
+            <a href="{{ settings.blog.SiteSocial.twitter }}"><svg xmlns="http://www.w3.org/2000/svg " enable-background="new 0 0 1668.56 1221.19 " viewBox="0 0 1668.56 1221.19 " id="twitter-x "><path d="M283.94,167.31l386.39,516.64L281.5,1104h87.51l340.42-367.76L984.48,1104h297.8L874.15,558.3l361.92-390.99
+                    h-87.51l-313.51,338.7l-253.31-338.7H283.94z M412.63,231.77h136.81l604.13,807.76h-136.81L412.63,231.77z " transform="translate(52.39 -25.059) "></path></svg></a> {% endif %}
+        </div>
+        <div class="social ">
+            {% if settings.blog.SiteSocial.youtube %}
+            <a href="{{ settings.blog.SiteSocial.youtube }}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M21.593 7.203a2.506 2.506 0 0 0-1.762-1.766C18.265 5.007 12 5 12 5s-6.264-.007-7.831.404a2.56 2.56 0 0 0-1.766 1.778c-.413 1.566-.417 4.814-.417 4.814s-.004 3.264.406 4.814c.23.857.905 1.534 1.763 1.765 1.582.43 7.83.437 7.83.437s6.265.007 7.831-.403a2.515 2.515 0 0 0 1.767-1.763c.414-1.565.417-4.812.417-4.812s.02-3.265-.407-4.831zM9.996 15.005l.005-6 5.207 3.005-5.212 2.995z"></path></svg></a>            {% endif %}
+        </div>
+        <div class="social ">
+            {% if settings.blog.SiteSocial.threads %}
+            <a href="{{ settings.blog.SiteSocial.threads }}"><svg xmlns="http://www.w3.org/2000/svg " enable-background="new 0 0 1668.56 1221.19 " viewBox="0 0 1668.56 1221.19 " id="twitter-x "><path d="M283.94,167.31l386.39,516.64L281.5,1104h87.51l340.42-367.76L984.48,1104h297.8L874.15,558.3l361.92-390.99
+                    h-87.51l-313.51,338.7l-253.31-338.7H283.94z M412.63,231.77h136.81l604.13,807.76h-136.81L412.63,231.77z " transform="translate(52.39 -25.059) "></path></svg></a> {% endif %}
+        </div>
     </div>
+    {% endblock header %}
 
+
+    <section class="first-section">
+        {% block coverimage %}
+        <div class="main-image" style="{% block landingbackground %}background: url('/static/images/blonde-woman-posing-outdoors-while-holding-book.a64923f1ba96.jpg'); background-size: cover; background-position: 0;{% endblock %}">
+            <div class="cover-background"></div>
+        </div> {% endblock %}
+        <div class="main-page-text-and-carousel">
+            {% block pagecaption %}
+            <div class="top-conatainer-card main-page-text">
+                <h1>Behold! <span>Live!</span> Become!</h1>
+                <div class="main-page-subtitle">
+                    <p>{{page.caption_sub_text}}</p>
+                </div>
+            </div>
+            {% endblock %} {% block searchcarousel %}
+            <div class="post-carousel">{% for blog in blogs %}
+                <a href="{% pageurl blog %}">
+                    <div class="carousel top-conatainer-card" style="background-image: url('{{blog.post_image.url}}'); background-size: cover; background-repeat: no-repeat;">
+                        <div class="top-card-carouel-text-button">
+                            <div class="top-card-text">
+                                <p>{{blog.post_title|title|truncatewords:4}} | {{page.owner.get_full_name}} | {{blog.date_created|date:"d M Y"}}</p>
+                            </div>
+                            <button>All Posts</button>
+                        </div>
+                    </div>
+                </a>{% endfor %}
+            </div> {% endblock %}
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr>
+    </section>
 
     {% block content %}{% endblock %} {% block mission %}
     <div class="mission-footer">
@@ -217,7 +192,7 @@
     {% endblock request %} {% block footer %}
     <section class="section6" style="background: url(/static/images/background-885434_1280.png); background-size: cover; background-repeat: no-repeat; height: fit-content; ">
         <footer>
-            <div class="main-footer ">
+            <div class="main-footer">
                 <div class="mirrored-logo">
                     <a href="/">
                         <div class="logo">

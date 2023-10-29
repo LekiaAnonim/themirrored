@@ -2,25 +2,30 @@
 <html lang="en">
 
 <head>
-    {% load wagtailmetadata_tags %}
-    {% meta_tags %}
+    {% load wagtailmetadata_tags %} {% meta_tags %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-    {% comment %} {% image page.post_image fill-300x230 as post_image %} {% endcomment %}
-    <div class="first-screen" style="{% block landingbackground %}{% if page.post_image %} background: url('{{page.post_image.url}}') {% else %}background: url('/static/images/nasa-Q1p7bh3SHj8-unsplash.jpg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
-    {% block pagecaption %}
-        <div class="first-section-content">
-            <div class="first-text">
-                <h1 style="color: #fff;">{{page.title|title}}</h1>
+    <section class="first-section">
+        {% block coverimage %}
+        <div>
+            <div class="main-image blog-section" style="{% block landingbackground %}{% if page.post_image %} background: url('{{page.post_image.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
+                <div class="bloglist-post-title">
+                    <h1>{{blog.video_title|title|truncatewords:3}}</h1>
+                </div>
+                <div class="cover-background"></div>
             </div>
         </div>
-    {% endblock %}
-    {% block cta %}
-    {% endblock %}
-    </div>
+        {% endblock %} {% block pagecaption %}{% endblock %} {% block searchcarousel %}{% endblock %}
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr>
+    </section>
     {% block content %}
     <section class="how-section">
         <div class="how-container">
@@ -40,13 +45,7 @@
             </div>
         </div>
     </section>
-    {% endblock content %}
-
-    {% block mission %}
-    {% endblock mission %}
-
-    {% block request %}
-    {% endblock request %}
+    {% endblock content %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %}
 </body>
 
 </html>

@@ -164,6 +164,7 @@ class BlogIndexPage(MetadataPageMixin, Page):
         paginator = Paginator(all_posts, 6)
         # Try to get the ?page=x value
         page = request.GET.get("page")
+
         try:
             # If the page exists and the ?page=x is an int
             posts = paginator.page(page)
@@ -177,8 +178,21 @@ class BlogIndexPage(MetadataPageMixin, Page):
 
         # "posts" will have child pages; you'll need to use .specific in the template
         # in order to access child properties, such as youtube_video_id and subtitle
+        recent_blogs = BlogPage.objects.live().order_by('date_created')[:4]
+        article_of_the_week = BlogPage.objects.live().filter(article_of_the_week=True).order_by('date_created').first()
+        videos = Video.objects.all().order_by('date_created')[:6]
+        how_of_the_week = HowPage.objects.live().filter(how_of_the_week=True).order_by('date_created').first()
+        word_of_the_week = WeeklyWordPage.objects.live().filter(word_of_the_week=True).order_by('date_created').first()
+        categories = Category.objects.live()
+        context["recent_blogs"] = recent_blogs
+        context["videos"] = videos
+        context["how_of_the_week"] = how_of_the_week
+        context["word_of_the_week"] = word_of_the_week
+        context["article_of_the_week"] = article_of_the_week
         context["posts"] = posts
         return context
+    
+
 
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
@@ -319,6 +333,17 @@ class HowIndexPage(MetadataPageMixin, Page):
 
         # "posts" will have child pages; you'll need to use .specific in the template
         # in order to access child properties, such as youtube_video_id and subtitle
+        recent_blogs = BlogPage.objects.live().order_by('date_created')[:4]
+        article_of_the_week = BlogPage.objects.live().filter(article_of_the_week=True).order_by('date_created').first()
+        videos = Video.objects.all().order_by('date_created')[:6]
+        how_of_the_week = HowPage.objects.live().filter(how_of_the_week=True).order_by('date_created').first()
+        word_of_the_week = WeeklyWordPage.objects.live().filter(word_of_the_week=True).order_by('date_created').first()
+        categories = Category.objects.live()
+        context["recent_blogs"] = recent_blogs
+        context["videos"] = videos
+        context["how_of_the_week"] = how_of_the_week
+        context["word_of_the_week"] = word_of_the_week
+        context["article_of_the_week"] = article_of_the_week
         context["posts"] = posts
         return context
 class HowPage(MetadataPageMixin, PostInfo, Page):
@@ -438,6 +463,17 @@ class WeeklyWordIndexPage(MetadataPageMixin, Page):
 
         # "posts" will have child pages; you'll need to use .specific in the template
         # in order to access child properties, such as youtube_video_id and subtitle
+        recent_blogs = BlogPage.objects.live().order_by('date_created')[:4]
+        article_of_the_week = BlogPage.objects.live().filter(article_of_the_week=True).order_by('date_created').first()
+        videos = Video.objects.all().order_by('date_created')[:6]
+        how_of_the_week = HowPage.objects.live().filter(how_of_the_week=True).order_by('date_created').first()
+        word_of_the_week = WeeklyWordPage.objects.live().filter(word_of_the_week=True).order_by('date_created').first()
+        categories = Category.objects.live()
+        context["recent_blogs"] = recent_blogs
+        context["videos"] = videos
+        context["how_of_the_week"] = how_of_the_week
+        context["word_of_the_week"] = word_of_the_week
+        context["article_of_the_week"] = article_of_the_week
         context["posts"] = posts
         return context
 class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
