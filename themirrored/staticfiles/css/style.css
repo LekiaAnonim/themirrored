@@ -62,7 +62,7 @@
 }
 
 .search {
-    margin-left: 20px;
+    margin-left: 90px;
     display: flex;
     align-items: center;
     width: fit-content;
@@ -772,7 +772,7 @@ footer * {
     align-items: center;
     justify-content: space-between;
     position: absolute;
-    right: 90px;
+    right: 15px;
     cursor: pointer;
     display: none;
 }
