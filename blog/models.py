@@ -32,34 +32,23 @@ from django.shortcuts import redirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 # Create your models here.
 AUTH_USER = settings.AUTH_USER_MODEL
-# class User(AbstractBaseUser):
-#     identifier = models.CharField(max_length=40, unique=True)
-#     user = models.OneToOneField(
-#         settings.AUTH_USER_MODEL,
-#         on_delete=models.CASCADE,
-#         related_name="mirrored_userprofile",
-#     )
-#     avatar = CloudinaryField('images', null=True)
-#     bio = models.TextField(null=True, blank=True)
-#     facebook_url = models.URLField(max_length=500, null=True, blank=True)
-#     twitter_url = models.URLField(max_length=500, null=True, blank=True)
-#     instagram_url = models.URLField(max_length=500, null=True, blank=True)
-#     threads_url = models.URLField(max_length=500, null=True, blank=True)
-#     linkedin_url = models.URLField(max_length=500, null=True, blank=True)
-#     youtube_url = models.URLField(max_length=500, null=True, blank=True)
+class Author(AbstractBaseUser):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="mirrored_userprofile",
+    )
+    bio = models.TextField(null=True, blank=True)
+    facebook_url = models.URLField(max_length=500, null=True, blank=True)
+    twitter_url = models.URLField(max_length=500, null=True, blank=True)
+    instagram_url = models.URLField(max_length=500, null=True, blank=True)
+    threads_url = models.URLField(max_length=500, null=True, blank=True)
+    linkedin_url = models.URLField(max_length=500, null=True, blank=True)
+    youtube_url = models.URLField(max_length=500, null=True, blank=True)
 
-    
-#     USERNAME_FIELD = "identifier"
-
-#     REQUIRED_FIELDS = ["avata", "bio"]
-
-#     @classmethod
-#     def get_for_user(cls, user):
-#         return cls.objects.get_or_create(user=user)[0]
-
-#     class Meta:
-#         verbose_name = _("user profile")
-#         verbose_name_plural = _("user profiles")
+    class Meta:
+        verbose_name = _("Author profile")
+        verbose_name_plural = _("Author profiles")
 
 
 def get_client_ip(request):

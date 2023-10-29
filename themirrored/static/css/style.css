@@ -62,10 +62,12 @@
 }
 
 .search {
-    margin-left: 90px;
+    /* margin-left: 120px; */
     display: flex;
     align-items: center;
     width: fit-content;
+    position: absolute;
+    right: 90px;
 }
 
 .search svg {
@@ -364,7 +366,7 @@ footer * {
     padding: 15px;
     width: 280px;
     height: 50px;
-    border: 1.5px var(--deep-orange) solid;
+    border: 1.5px var(--blue) solid;
 }
 
 .prayer-request-form textarea {
@@ -380,7 +382,7 @@ footer * {
 }
 
 .submit {
-    background-color: var(--deep-orange);
+    background-color: var(--blue);
     cursor: pointer;
     font-weight: 900;
     border: none;
@@ -389,7 +391,7 @@ footer * {
 }
 
 .submit:hover {
-    background-color: var(--medium-orange);
+    background-color: blue;
 }
 
 .main-footer {
@@ -981,7 +983,7 @@ form {
     color: #000;
 }
 
-.post-body p {
+.post-detail-card .post-body p {
     font-size: 16px;
     line-height: 1.8 !important;
     text-overflow: ellipsis;

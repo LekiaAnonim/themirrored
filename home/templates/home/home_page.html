@@ -135,20 +135,22 @@
             <h2>Weekly Article</h2>
         </div>
         {% if article_of_the_week %}
-        <div class="post-image" style="background-image: url('{{article_of_the_week.post_image.url}}');"></div>
-        <div class="post-title">
+        <div class="large-post-card">
+            <div class="post-image" style="background-image: url('{{article_of_the_week.post_image.url}}');"></div>
+            <div class="post-title">
+                <a href="{% pageurl article_of_the_week %}">
+                    <h3>{{article_of_the_week.post_title|title}}</h3>
+                </a>
+            </div>
+            <div class="post-body">
+                <p>
+                    {{article_of_the_week.body|richtext|striptags|truncatewords:70}}
+                </p>
+            </div>
             <a href="{% pageurl article_of_the_week %}">
-                <h3>{{article_of_the_week.post_title|title}}</h3>
-            </a>
+                <button class="read-more">Read more</button>
+            </a> {% endif %}
         </div>
-        <div class="post-body">
-            <p>
-                {{article_of_the_week.body|richtext|striptags|truncatewords:70}}
-            </p>
-        </div>
-        <a href="{% pageurl article_of_the_week %}">
-            <button class="read-more">Read more</button>
-        </a> {% endif %}
     </section>
 
 

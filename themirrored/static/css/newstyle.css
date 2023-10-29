@@ -43,6 +43,8 @@ li {
 .nav-menus {
     display: flex;
     align-items: center;
+    position: absolute;
+    left: 150px;
 }
 
 .nav-menus li {
@@ -88,6 +90,7 @@ section {
     background-attachment: fixed;
     z-index: 10;
     position: relative;
+    min-width: 300px;
     /* border-radius: 20px; */
 }
 
@@ -218,6 +221,7 @@ width: 320px;
     border-radius: 10px;
     padding: 15px;
     background-color: var(--lightpurple);
+    min-width: 300px;
 }
 
 .large-post-card div {
@@ -276,7 +280,7 @@ width: 320px;
 
 .recent-post {
     width: 50%;
-    min-width: 320px;
+    min-width: 300px;
     margin-left: 72px;
 }
 
@@ -357,7 +361,7 @@ width: 320px;
 .recent-post-card .post-content h3 {
     color: #000;
     font-family: Noto Sans Hebrew New;
-    font-size: 16px;
+    font-size: 13px;
     font-style: normal;
     font-weight: 600;
 }
@@ -365,13 +369,14 @@ width: 320px;
 .recent-post-card .post-content p {
     color: #000;
     font-family: Noto Sans Hebrew New;
-    font-size: 13px;
+    font-size: 11px;
     font-style: normal;
     font-weight: 400;
+    line-height: 0.9;
 }
 
 .recent-post-card .post-content div {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .recent-post-card .read-more {
@@ -473,16 +478,18 @@ max-width: 100%; */
 }
 
 .more-post-card {
-    max-width: 320px;
+    max-width: 300px;
     height: fit-content;
     flex-shrink: 0;
-    min-width: 250px;
+    /* min-width: 250px; */
     border-radius: 10px;
     background: #F8F8FF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     padding: 8px;
     margin-right: 34px;
     margin-bottom: 30px;
+    width: 100%;
+    min-width: 280px;
 }
 
 .more-post {
@@ -696,6 +703,10 @@ border-radius: 20px; */
     .bloglist-post-title h1 {
         font-size: 60px;
     }
+    .more-post-card {
+        margin-right: auto;
+        margin-left: auto;
+    }
 }
 
 @media (max-width: 640px) {
@@ -719,6 +730,9 @@ border-radius: 20px; */
     }
     .bloglist-post-title h1 {
         font-size: 40px;
+    }
+    section {
+        padding: 16px 10px 15px 10px;
     }
 }
 
