@@ -117,6 +117,7 @@ height: 100%;
     width: 100%;
     height: 193px;
     border-radius: 20px;
+    min-width: 280px;
 }
 
 .main-page-text-and-carousel {
@@ -210,6 +211,7 @@ width: 320px;
 .main-page-text-and-carousel .carousel {
     padding: 10px 20px;
     position: relative;
+    min-width: 280px;
 }
 
 .how-of-the-week {
@@ -252,7 +254,7 @@ width: 320px;
     font-family: Noto Sans Hebrew New;
     font-size: 35px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 1;
     text-transform: capitalize;
 }
@@ -363,7 +365,7 @@ width: 320px;
     font-family: Noto Sans Hebrew New;
     font-size: 13px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .recent-post-card .post-content p {
@@ -418,7 +420,7 @@ iframe {
     font-family: Noto Sans Hebrew New;
     font-size: 25px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 hr {
@@ -722,6 +724,9 @@ border-radius: 20px; */
     .bloglist-post-title h1 {
         font-size: 50px;
     }
+    .post-carousel {
+        width: 100%;
+    }
 }
 
 @media (max-width: 430px) {
@@ -734,10 +739,28 @@ border-radius: 20px; */
     section {
         padding: 16px 10px 15px 10px;
     }
+    section {
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 370px) {
     .recent-section-title {
         flex-wrap: wrap;
+    }
+    .section-title h2 {
+        font-size: 25px;
+    }
+    .large-post-card .post-title h3 {
+        font-size: 18px;
+    }
+    .video-title h3 {
+        font-size: 18px;
+    }
+    .word-of-the-week-title h3 {
+        font-size: 18px;
+    }
+    .weekly-article-section .post-title h3 {
+        font-size: 18px;
     }
 }

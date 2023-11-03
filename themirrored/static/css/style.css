@@ -995,10 +995,6 @@ form {
     .post-carousel-container .all-posts {
         display: none;
     }
-    section {
-        /* margin-bottom: 60px; */
-        padding: 60px 10px;
-    }
     .author .author-name p {
         font-size: x-small;
     }
@@ -1022,17 +1018,11 @@ form {
     .post-tags {
         display: none;
     }
-    .post-carousel {
-        max-width: 240px;
-    }
 }
 
 @media (max-width: 290px) {
     .post-tags {
         display: none;
-    }
-    .post-carousel {
-        max-width: 210px;
     }
 }
 

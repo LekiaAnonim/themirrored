@@ -32,11 +32,12 @@ from django.shortcuts import redirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 # Create your models here.
 AUTH_USER = settings.AUTH_USER_MODEL
+@register_snippet
 class Author(AbstractBaseUser):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name="mirrored_userprofile",
+        related_name="author",
     )
     bio = models.TextField(null=True, blank=True)
     facebook_url = models.URLField(max_length=500, null=True, blank=True)
@@ -49,6 +50,10 @@ class Author(AbstractBaseUser):
     class Meta:
         verbose_name = _("Author profile")
         verbose_name_plural = _("Author profiles")
+
+    def save(self, *args, **kwargs):
+        self.user = self.specific.owner
+        super(Author, self).save(*args, **kwargs)
 
 
 def get_client_ip(request):

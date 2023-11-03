@@ -1,0 +1,120 @@
+<!DOCTYPE html>{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %} {% load wagtailimages_tags %}{% load el_pagination_tags %}
+<html lang="en">
+
+<head>
+    {% load wagtailmetadata_tags %} {% meta_tags %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <section class="first-section">
+        {% block coverimage %}
+        <div class="blog-carousel" dir="ltr">
+            {% for blog in posts %}{% with blog=blog.specific %}
+            <div class="main-image blog-section" style="{% block landingbackground %}{% if blog.resource_cover_image %} background: url('{{blog.resource_cover_image.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
+                <div class="bloglist-post-title">
+                    <h1>{{blog.resource_title|title|truncatewords:3}}</h1>
+                </div>
+                <div class="bloglist-post-body">
+                    <p>{{blog.resource_summary|richtext|striptags|truncatewords:20}}</p>
+                </div>
+                <div class="cover-background"></div>
+            </div>
+            {% endwith %} {% endfor %}
+        </div>
+
+        {% endblock %} {% block pagecaption %}{% endblock %} {% block searchcarousel %}{% endblock %}
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr>
+    </section>
+    {% block content %}
+
+    <section class="more-post">
+        <div class="section-title recent-section-title">
+            <h2>All posts</h2>
+            <!-- <button class="visit-blog">Visit blog</button> -->
+        </div>
+        <div class="more-post-container" style="flex-wrap: wrap;">
+            {% if page %} {% for blog in posts %}{% with blog=blog.specific %}
+            <div class="more-post-card">
+                <div class="post-image" style="background-image: url('{{blog.post_image.url}}');"></div>
+                <div class="post-title">
+                    <a href="{% pageurl blog %}">
+                        <h3>{{blog.post_title|title|truncatewords:4}}</h3>
+                    </a>
+                </div>
+                {% with tags=blog.tags.all %} {% if tags %}
+                <div class="post-tag-container">
+                    {% for tag in tags|slice:":2" %}
+                    <a href="{% slugurl 'tags' %}?tag={{ tag }}">
+                        <div class="post-tag">
+                            <p>{{ tag }}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% endif %} {% endwith %}
+                <div class="post-date">
+                    <p>{{blog.date_created|date:"d M Y"}}</p>
+                </div>
+                <div class="post-body">
+                    {{blog.body|richtext|striptags|truncatewords:10}}
+                </div>
+                <div class="author">
+                    <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
+                        <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
+                    <div class="author-name">
+                        <a href="#">
+                            <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <a href="{% pageurl blog %}">
+                        <button class="read-more">Read more</button>
+                    </a>
+                </div>
+            </div>{% endwith %} {% endfor %} {% else %}
+            <p>No blog available</p>
+            {% endif %}
+        </div>
+        {# Only show pagination if there is more than one page to click through #} {% if posts.paginator.num_pages > 1 %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="pagination">
+                        {% if posts.has_previous %}
+                        <li class="page-item">
+                            <a href="?page={{ posts.previous_page_number }}" class="page-link">
+                                <span>&laquo;</span>
+                            </a>
+                        </li>
+                        {% endif %} {% for page_num in posts.paginator.page_range %}
+                        <li class="page-item {% if page_num == posts.number %} active{% endif %}">
+                            <a href="?page={{ page_num }}" class="page-link">
+                        {{ page_num }}
+                      </a>
+                        </li>
+                        {% endfor %} {% if posts.has_next %}
+                        <li class="page-item">
+                            <a href="?page={{ posts.next_page_number }}" class="page-link">
+                                <span>&raquo;</span>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+
+
+    {% endblock content %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %} </body>
+
+</html>

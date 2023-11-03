@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %} {% load wagtailimages_tags %}
+
+<body>
+    <section class="first-section">
+        {% block coverimage %}
+        <div class="blog-carousel" dir="ltr">
+            {% for blog in posts %}{% with blog=blog.specific %}
+            <div class="main-image blog-section" style="{% block landingbackground %}{% if blog.post_image %} background: url('{{blog.post_image.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
+                <div class="bloglist-author-name">
+                    <p>{{blog.owner.first_name}} {{blog.owner.last_name}} | {{blog.date_created|date:"d M Y"}} </p>
+                </div>
+                <div class="bloglist-post-title">
+                    <h1>{{blog.post_title|title|truncatewords:3}}</h1>
+                </div>
+                <div class="bloglist-post-body">
+                    <p>{{blog.body|richtext|striptags|truncatewords:20}}</p>
+                </div>
+                <div class="cover-background"></div>
+            </div>
+            {% endwith %} {% endfor %}
+        </div>
+
+        {% endblock %} {% block pagecaption %}{% endblock %} {% block searchcarousel %}{% endblock %}
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr>
+    </section>
+    {% block content %}
+    <main class="about">
+        <style>
+            .conference-report-summary img {
+                float: right;
+                margin: 15px;
+                width: 200px;
+                height: 300px;
+            }
+            
+            .conference-report-summary p {
+                text-align: left;
+            }
+        </style>
+        <h1>{{page.title}}</h1>
+        <div class="about-container">
+            <span><h2>{{page.report_title|title}}</h2></span> <br>
+            <div class="conference-report-summary">
+                <img src="{{page.report_cover_image.url}}" alt=""> {{page.report_summary|richtext}}
+            </div>
+            <br>
+            <div class="download-report">
+                <button class="pay-btn" onclick="displayDownloadForm()">Download report</button>
+            </div>
+            <br>
+            <div class="abstract-form download-report-form-container">
+                <span>Fill the form below to get the NiHMEC report in your inbox.</span>
+                <form action="{% pageurl page %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-card registration-form-1">
+                        <div class="form-card-wordwrap">
+                            <div class="form-field">
+                                {{form.full_name.label_tag}}
+                                <h6 class="text-danger">{{ form.full_name.errors }}</h6>
+                                {{form.full_name}}
+                            </div>
+                            <div class="form-field">
+                                {{form.email_address.label_tag}}
+                                <h6 class="text-danger">{{ form.email_address.errors }}</h6>
+                                {{form.email_address}}
+                            </div>
+                        </div>
+                        <div class="form-card-wordwrap">
+                            <div class="form-field">
+                                {{form.country.label_tag}}
+                                <h6 class="text-danger">{{ form.country.errors }}</h6>
+                                {{form.country}}
+                            </div>
+                            <div class="form-field">
+                                {{form.companyorganization.label_tag}}
+                                <h6 class="text-danger">{{ form.companyorganization.errors }}</h6>
+                                {{form.companyorganization}}
+                            </div>
+                        </div>
+                    </div>
+                    <input class="pay-btn" type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </main>
+    <script>
+        downloadFormCont = document.querySelector('.abstract-form');
+        downloadButton = document.querySelector('.download-report .pay-btn');
+
+        function displayDownloadForm() {
+            downloadFormCont.classList.remove('download-report-form-container');
+        }
+    </script>
+    {% endblock %}
+</body>

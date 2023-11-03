@@ -37,6 +37,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 INSTALLED_APPS = [
     'django_comments_xtd',
     'django_comments',
+    "resources",
     "blog",
     "home",
     "menus",
