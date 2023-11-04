@@ -1,10 +1,10 @@
 @font-face {
-    font-family: Roboto !important;
+    font-family: Roboto;
     src: url('/static/fonts/Roboto-Regular.ttf');
 }
 
 * {
-    font-family: Roboto;
+    font-family: Roboto !important;
 }
 
 #preloader {

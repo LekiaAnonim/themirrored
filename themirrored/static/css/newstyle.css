@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Roboto;
+    src: url('/static/fonts/Roboto-Regular.ttf');
+}
+
 :root {
     --blue: #000083;
     --white: #FFFFFF;
@@ -272,7 +277,7 @@ width: 320px;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
-    padding: 15px 19px;
+    padding: 15px 15px;
     border-radius: 10px;
 }
 
@@ -400,13 +405,17 @@ iframe {
     border-radius: 10px;
 }
 
+.video-card {
+    margin: 20px;
+}
+
 .video-title {
     margin-top: 15px;
 }
 
 .video-title h3 {
     color: #000;
-    font-size: 25px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 700;
 }

@@ -13,7 +13,7 @@
         <div>
             <div class="main-image blog-section" style="{% block landingbackground %}{% if page.post_image %} background: url('{{page.post_image.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
                 <div class="bloglist-post-title">
-                    <h1>{{blog.video_title|title|truncatewords:6}}</h1>
+                    <h1>{{page.title|title|truncatewords:6}}</h1>
                 </div>
                 <div class="cover-background"></div>
             </div>
