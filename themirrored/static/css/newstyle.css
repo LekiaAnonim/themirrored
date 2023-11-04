@@ -13,7 +13,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: Noto Sans Hebrew New;
+    font-family: Roboto !important;
 }
 
 a {
@@ -242,7 +242,6 @@ width: 320px;
 
 .section-title h2 {
     color: var(--blue, #000083);
-    font-family: Abril Fatface;
     font-size: 55px;
     font-style: normal;
     font-weight: 400;
@@ -251,7 +250,6 @@ width: 320px;
 
 .large-post-card .post-title h3 {
     color: #000;
-    font-family: Noto Sans Hebrew New;
     font-size: 35px;
     font-style: normal;
     font-weight: 700;
@@ -261,7 +259,6 @@ width: 320px;
 
 .large-post-card .post-body {
     color: #000;
-    font-family: Noto Sans Hebrew New;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -272,11 +269,10 @@ width: 320px;
     border: none;
     background-color: var(--blue);
     color: #FFF;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 600;
-    line-height: 25px;
-    padding: 20px 37px;
+    padding: 15px 19px;
     border-radius: 10px;
 }
 
@@ -294,13 +290,10 @@ width: 320px;
 }
 
 .visit-blog {
-    width: 129px;
-    height: 42px;
     flex-shrink: 0;
     border-radius: 5px;
     background: var(--orange, #FFC700);
     color: #000;
-    font-family: Noto Sans New Tai Lue;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -340,7 +333,6 @@ width: 320px;
 
 .category-date p {
     color: #0C0C0C;
-    font-family: Noto Sans Hebrew New;
     font-size: 7px;
     font-style: normal;
     font-weight: 400;
@@ -348,7 +340,6 @@ width: 320px;
 
 .category-date span {
     color: #FFF;
-    font-family: Noto Sans Hebrew New;
     font-size: 10px;
     font-style: normal;
     font-weight: 700;
@@ -362,7 +353,6 @@ width: 320px;
 
 .recent-post-card .post-content h3 {
     color: #000;
-    font-family: Noto Sans Hebrew New;
     font-size: 13px;
     font-style: normal;
     font-weight: 700;
@@ -370,7 +360,6 @@ width: 320px;
 
 .recent-post-card .post-content p {
     color: #000;
-    font-family: Noto Sans Hebrew New;
     font-size: 11px;
     font-style: normal;
     font-weight: 400;
@@ -417,7 +406,6 @@ iframe {
 
 .video-title h3 {
     color: #000;
-    font-family: Noto Sans Hebrew New;
     font-size: 25px;
     font-style: normal;
     font-weight: 700;
@@ -430,7 +418,6 @@ hr {
 
 .word-of-the-week-title h3 {
     color: #fff;
-    font-family: Noto Sans Hebrew New;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -459,7 +446,6 @@ max-width: 100%; */
 
 .weekly-article-section .post-title h3 {
     color: #000;
-    font-family: Noto Sans New Tai Lue;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -472,7 +458,6 @@ max-width: 100%; */
 
 .weekly-article-section .post-body p {
     color: #000;
-    font-family: Noto Sans New Tai Lue;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -481,7 +466,7 @@ max-width: 100%; */
 
 .more-post-card {
     max-width: 300px;
-    height: fit-content;
+    height: 450px;
     flex-shrink: 0;
     /* min-width: 250px; */
     border-radius: 10px;
@@ -492,6 +477,14 @@ max-width: 100%; */
     margin-bottom: 30px;
     width: 100%;
     min-width: 280px;
+    position: relative;
+}
+
+.author-readmore-container {
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+    right: 8px;
 }
 
 .more-post {
@@ -511,7 +504,6 @@ max-width: 100%; */
 
 .more-post-card .post-title h3 {
     color: #000;
-    font-family: Noto Sans New Tai Lue;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -544,7 +536,6 @@ max-width: 100%; */
 
 .post-date p {
     color: #726F6F;
-    font-family: Noto Sans Hebrew New;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -552,7 +543,6 @@ max-width: 100%; */
 
 .more-post-card .post-body p {
     color: #000;
-    font-family: Noto Sans New Tai Lue;
     font-size: 10px;
     font-style: normal;
     font-weight: 400;
@@ -608,7 +598,7 @@ max-width: 100%; */
 
 .bloglist-post-title h1 {
     color: var(--orange);
-    font-size: 70px;
+    font-size: 50px;
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -624,7 +614,6 @@ max-width: 100%; */
 
 .bloglist-post-body p {
     color: #FFF;
-    font-family: Noto Sans Hebrew New;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -633,7 +622,6 @@ max-width: 100%; */
 .bloglist-author-name p {
     color: #FFF;
     text-align: right;
-    font-family: Poppins;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;
@@ -651,6 +639,82 @@ max-width: 100%; */
     padding: 0;
     height: fit-content;
     max-width: 100%;
+}
+
+.resource-card {
+    width: 200px;
+    height: 300px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    border-radius: none;
+}
+
+.resource-card .post-title {
+    position: absolute;
+    bottom: 20px;
+    left: 5px;
+    right: 5px;
+    z-index: 200;
+}
+
+.resource-card .post-title h3 {
+    font-size: 17px;
+    color: white;
+}
+
+.resource-card .cover-background {
+    border-radius: 0;
+}
+
+.download-report-form-container {
+    display: none;
+}
+
+.word-card {
+    width: 50%;
+    margin: 10px;
+    padding: 10px;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    max-width: 450px;
+}
+
+.word-card .post-title {
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    right: 5px;
+    z-index: 200;
+}
+
+.word-card .author-readmore-container {
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+    right: 5px;
+    z-index: 200;
+}
+
+.word-card h3 {
+    font-size: 20px;
+    color: #fff;
+    z-index: 200;
+    text-align: center;
+}
+
+.word-card .author-readmore-container * {
+    font-weight: 200;
+    color: #b1b1b1 !important;
+}
+
+.word-card .author-readmore-container div {
+    margin-bottom: 8px;
+}
+
+.word-card .cover-background {
+    border-radius: 0;
+    background: linear-gradient(1deg, #000083 0.62%, rgba(0, 0, 0, 0.623) 99.57%);
 }
 
 @media (max-width: 1120px) {
@@ -679,6 +743,10 @@ border-radius: 20px; */
     .top-card-carouel-text-button button {
         min-width: 100px;
     }
+    .word-card {
+        width: 100%;
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 760px) {
@@ -703,50 +771,11 @@ border-radius: 20px; */
         flex-wrap: wrap;
     }
     .bloglist-post-title h1 {
-        font-size: 60px;
+        font-size: 40px;
     }
     .more-post-card {
         margin-right: auto;
         margin-left: auto;
-    }
-}
-
-@media (max-width: 640px) {
-    .nav-menus {
-        display: none;
-    }
-}
-
-@media (max-width: 540px) {
-    .main-page-text-and-carousel .main-page-text h1 {
-        font-size: 60px;
-    }
-    .bloglist-post-title h1 {
-        font-size: 50px;
-    }
-    .post-carousel {
-        width: 100%;
-    }
-}
-
-@media (max-width: 430px) {
-    .main-page-text-and-carousel .main-page-text h1 {
-        font-size: 50px;
-    }
-    .bloglist-post-title h1 {
-        font-size: 40px;
-    }
-    section {
-        padding: 16px 10px 15px 10px;
-    }
-    section {
-        margin-bottom: 20px;
-    }
-}
-
-@media (max-width: 370px) {
-    .recent-section-title {
-        flex-wrap: wrap;
     }
     .section-title h2 {
         font-size: 25px;
@@ -762,5 +791,44 @@ border-radius: 20px; */
     }
     .weekly-article-section .post-title h3 {
         font-size: 18px;
+    }
+}
+
+@media (max-width: 640px) {
+    .nav-menus {
+        display: none;
+    }
+}
+
+@media (max-width: 540px) {
+    .main-page-text-and-carousel .main-page-text h1 {
+        font-size: 60px;
+    }
+    .bloglist-post-title h1 {
+        font-size: 30px;
+    }
+    .post-carousel {
+        width: 100%;
+    }
+}
+
+@media (max-width: 430px) {
+    .main-page-text-and-carousel .main-page-text h1 {
+        font-size: 50px;
+    }
+    .bloglist-post-title h1 {
+        font-size: 25px;
+    }
+    section {
+        padding: 16px 10px 15px 10px;
+    }
+    section {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 370px) {
+    .recent-section-title {
+        flex-wrap: wrap;
     }
 }

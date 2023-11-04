@@ -35,6 +35,7 @@ class ResourceIndexPage(MetadataPageMixin, Page):
         context = super().get_context(request, *args, **kwargs)
         # Get all posts
         all_resources = DownloadResourcesForm.objects.live().public().order_by('-first_published_at')
+        print(all_resources)
         # Paginate all posts by 2 per page
         paginator = Paginator(all_resources, 6)
         # Try to get the ?page=x value
@@ -49,6 +50,8 @@ class ResourceIndexPage(MetadataPageMixin, Page):
             # If the ?page=x is out of range (too high most likely)
             # Then return the last page
             posts = paginator.page(paginator.num_pages)
+
+        print(posts)
 
         # "posts" will have child pages; you'll need to use .specific in the template
         # in order to access child properties, such as youtube_video_id and subtitle
@@ -70,9 +73,9 @@ class FormField(AbstractFormField):
     page = ParentalKey('DownloadResourcesForm', on_delete=models.CASCADE, related_name='form_fields')
 
 
-class DownloadResourcesForm(AbstractEmailForm):
+class DownloadResourcesForm(AbstractEmailForm, Page):
     template = 'resources/report.html'
-    year = models.CharField(max_length=4, blank=True, null=True)
+    # year = models.CharField(max_length=4, blank=True, null=True)
     resource_title = models.CharField(max_length=500, blank=True, null=True)
     resource_summary = RichTextField(blank = True, null=True)
     resource_download_link = models.URLField(blank=True, null=True)
@@ -80,7 +83,7 @@ class DownloadResourcesForm(AbstractEmailForm):
     thank_you_text = RichTextField(blank=True)
     content_panels = AbstractEmailForm.content_panels + [
         FormSubmissionsPanel(),
-        FieldPanel('year'),
+        # FieldPanel('year'),
         FieldPanel('resource_title'),
         FieldPanel('resource_summary'),
         FieldPanel('resource_download_link'),
@@ -120,7 +123,7 @@ class DownloadResourcesForm(AbstractEmailForm):
                 download_link = '<a href="{}" style="padding:10px; background:green; margin-top: 20px; color: white;">Download</a>'.format(self.report_download_link)
                 html_content = render_to_string('reports/email_header.html', context, request=request)+text_content+render_to_string('reports/registration_email_template.html', context, request=request)+download_link
 
-                msg = EmailMultiAlternatives(subject, text_content, self.from_address, [address for address in addresses]+[form.cleaned_data['email_address']])
+                msg = EmailMultiAlternatives(subject, text_content, self.from_address, [address for address in addresses]+[form.cleaned_data['email']])
                 # msg.content_subtype = "html"  # Main content is now text/html
                 msg.attach_alternative(html_content, "text/html")
                 msg.send()

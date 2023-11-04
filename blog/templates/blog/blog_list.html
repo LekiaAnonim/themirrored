@@ -17,7 +17,7 @@
                     <p>{{blog.owner.first_name}} {{blog.owner.last_name}} | {{blog.date_created|date:"d M Y"}} </p>
                 </div>
                 <div class="bloglist-post-title">
-                    <h1>{{blog.post_title|title|truncatewords:3}}</h1>
+                    <h1>{{blog.post_title|title|truncatewords:6}}</h1>
                 </div>
                 <div class="bloglist-post-body">
                     <p>{{blog.body|richtext|striptags|truncatewords:20}}</p>
@@ -68,19 +68,21 @@
                 <div class="post-body">
                     {{blog.body|richtext|striptags|truncatewords:10}}
                 </div>
-                <div class="author">
-                    <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
-                        <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
-                    <div class="author-name">
-                        <a href="#">
-                            <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
+                <div class="author-readmore-container">
+                    <div class="author">
+                        <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
+                            <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
+                        <div class="author-name">
+                            <a href="#">
+                                <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="{% pageurl blog %}">
+                            <button class="read-more">Read more</button>
                         </a>
                     </div>
-                </div>
-                <div>
-                    <a href="{% pageurl blog %}">
-                        <button class="read-more">Read more</button>
-                    </a>
                 </div>
             </div>{% endwith %} {% endfor %} {% else %}
             <p>No blog available</p>

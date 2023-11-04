@@ -5,23 +5,14 @@
 <body>
     <section class="first-section">
         {% block coverimage %}
-        <div class="blog-carousel" dir="ltr">
-            {% for blog in posts %}{% with blog=blog.specific %}
-            <div class="main-image blog-section" style="{% block landingbackground %}{% if blog.post_image %} background: url('{{blog.post_image.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
-                <div class="bloglist-author-name">
-                    <p>{{blog.owner.first_name}} {{blog.owner.last_name}} | {{blog.date_created|date:"d M Y"}} </p>
-                </div>
+        <div>
+            <div class="main-image blog-section" style="{% block landingbackground %}{% if page.post_image %} background: url('{{page.post_image.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
                 <div class="bloglist-post-title">
-                    <h1>{{blog.post_title|title|truncatewords:3}}</h1>
-                </div>
-                <div class="bloglist-post-body">
-                    <p>{{blog.body|richtext|striptags|truncatewords:20}}</p>
+                    <h1>{{page.title|title|truncatewords:3}}</h1>
                 </div>
                 <div class="cover-background"></div>
             </div>
-            {% endwith %} {% endfor %}
         </div>
-
         {% endblock %} {% block pagecaption %}{% endblock %} {% block searchcarousel %}{% endblock %}
 
         <br>
@@ -44,22 +35,21 @@
                 text-align: left;
             }
         </style>
-        <h1>{{page.title}}</h1>
-        <div class="about-container">
-            <span><h2>{{page.report_title|title}}</h2></span> <br>
+        <div class="post-detail-card">
+            <span class="Post-title"><h1>{{page.resource_title|title}}</h1></span> <br>
             <div class="conference-report-summary">
-                <img src="{{page.report_cover_image.url}}" alt=""> {{page.report_summary|richtext}}
+                <img src="{{page.resource_cover_image.url}}" alt="page.resource_title|title"> {{page.resource_summary|richtext}}
             </div>
             <br>
             <div class="download-report">
-                <button class="pay-btn" onclick="displayDownloadForm()">Download report</button>
+                <button class="pay-btn read-more" onclick="displayDownloadForm()">Download</button>
             </div>
             <br>
             <div class="abstract-form download-report-form-container">
-                <span>Fill the form below to get the NiHMEC report in your inbox.</span>
+                <span>Fill the form below to get the resources in your inbox.</span>
                 <form action="{% pageurl page %}" method="post">
                     {% csrf_token %}
-                    <div class="form-card registration-form-1">
+                    <div class="form-card registration-form-1 prayer-request-form">
                         <div class="form-card-wordwrap">
                             <div class="form-field">
                                 {{form.full_name.label_tag}}
@@ -67,25 +57,14 @@
                                 {{form.full_name}}
                             </div>
                             <div class="form-field">
-                                {{form.email_address.label_tag}}
-                                <h6 class="text-danger">{{ form.email_address.errors }}</h6>
-                                {{form.email_address}}
+                                {{form.email.label_tag}}
+                                <h6 class="text-danger">{{ form.email.errors }}</h6>
+                                {{form.email}}
                             </div>
                         </div>
-                        <div class="form-card-wordwrap">
-                            <div class="form-field">
-                                {{form.country.label_tag}}
-                                <h6 class="text-danger">{{ form.country.errors }}</h6>
-                                {{form.country}}
-                            </div>
-                            <div class="form-field">
-                                {{form.companyorganization.label_tag}}
-                                <h6 class="text-danger">{{ form.companyorganization.errors }}</h6>
-                                {{form.companyorganization}}
-                            </div>
-                        </div>
+
                     </div>
-                    <input class="pay-btn" type="submit" value="Submit">
+                    <input class="pay-btn read-more" type="submit" value="Submit">
                 </form>
             </div>
         </div>
@@ -98,5 +77,5 @@
             downloadFormCont.classList.remove('download-report-form-container');
         }
     </script>
-    {% endblock %}
+    {% endblock %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %}
 </body>

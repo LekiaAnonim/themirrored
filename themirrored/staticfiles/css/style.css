@@ -1,31 +1,10 @@
 @font-face {
-    font-family: Montserrat;
-    src: url('/static/fonts/Montserrat-VariableFont_wght.ttf');
+    font-family: Roboto !important;
+    src: url('/static/fonts/Roboto-Regular.ttf');
 }
 
-@font-face {
-    font-family: iAWriter;
-    src: url('/static/fonts/iAWriterDuospace-Regular.otf');
-}
-
-@font-face {
-    font-family: Resist;
-    src: url('/static/fonts/Groteskly Yours - Resist Sans Text Light.otf');
-}
-
-@font-face {
-    font-family: shrimp;
-    src: url('/static/fonts/SHRIMP.ttf');
-}
-
-@font-face {
-    font-family: Obrazec;
-    src: url('/static/fonts/Obrazec-2.ttf');
-}
-
-@font-face {
-    font-family: Magilio;
-    src: url('/static/fonts/MagilioRegular-8Mxvg.otf');
+* {
+    font-family: Roboto;
 }
 
 #preloader {
@@ -71,7 +50,7 @@
 }
 
 .search svg {
-    width: 30px;
+    width: 20px;
     height: auto;
     fill: #fff;
     margin-top: 8px;
@@ -780,9 +759,9 @@ footer * {
 }
 
 .hamburger .ham {
-    border: 2px solid #fff;
-    width: 30px;
-    margin-bottom: 5px;
+    border: 0.5px solid #fff;
+    width: 20px;
+    margin-bottom: 4px;
 }
 
 .ham-side-nav-bar {
@@ -995,10 +974,6 @@ form {
     .post-carousel-container .all-posts {
         display: none;
     }
-    section {
-        /* margin-bottom: 60px; */
-        padding: 60px 10px;
-    }
     .author .author-name p {
         font-size: x-small;
     }
@@ -1022,17 +997,11 @@ form {
     .post-tags {
         display: none;
     }
-    .post-carousel {
-        max-width: 240px;
-    }
 }
 
 @media (max-width: 290px) {
     .post-tags {
         display: none;
-    }
-    .post-carousel {
-        max-width: 210px;
     }
 }
 
@@ -1197,4 +1166,11 @@ form {
     align-items: center;
     justify-content: center;
     margin-right: 10px;
+}
+
+display: flex;
+align-items: center;
+justify-content: center;
+margin-right: 10px;
+
 }

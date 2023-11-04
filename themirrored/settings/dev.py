@@ -22,8 +22,8 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 
 cloudinary.config( 
   cloud_name = "damdz7xux", 
-  api_key = os.getenv('CLOUDINARY_API_KEY'), 
-  api_secret = os.getenv('CLOUDINARY_SECRET')
+  api_key = "365139568314788", 
+  api_secret = "m2OEjq0TA6lSOWmsmEvlyGoFGzg"
 )
 
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
