@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %}
 
-<body>
+<body>{% block coverimage %}{% endblock %} {% block content %}
     <main class="thank-you-main">
         <h1>{{page.title}}</h1>
         <div class="thank-you-card">
@@ -11,7 +11,7 @@
             <p>{{ self.thank_you_text|richtext }}</p>
             <br>
         </div> <br>
-        <a href="/">Return Home</a>
+        <p><a href="{{ page.get_parent.url }}"><i class='bx bx-arrow-back'></i> Return Home</a></p>
     </main>
+    {% endblock %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %}
 </body>
-{% endblock %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %}

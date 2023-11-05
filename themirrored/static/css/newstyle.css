@@ -726,6 +726,10 @@ max-width: 100%; */
     background: linear-gradient(1deg, #000083 0.62%, rgba(0, 0, 0, 0.623) 99.57%);
 }
 
+button {
+    cursor: pointer;
+}
+
 @media (max-width: 1120px) {
     .more-post-container {
         flex-wrap: wrap;
