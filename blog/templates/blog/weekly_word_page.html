@@ -99,7 +99,7 @@
                     <div class="tags">
                         <h3>Tags</h3>
                         {% for tag in tags %}
-                        <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button class="tag" type="button">{{ tag }}</button></a> {% endfor %}
+                        <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button class="tag post-tag" type="button">{{ tag }}</button></a> {% endfor %}
                     </div>
                     {% endif %} {% endwith %}
                 </div>
@@ -113,82 +113,18 @@
                 <div class="about-author">
                     <h3>Author</h3>
                     <div class="author-fullname">
-                        <a href="#">{{page.owner.first_name}} {{page.owner.last_name}}</a>
+                        <a href="{% if page.word_author %}{% pageurl page.word_author %}{% else %}#{% endif %}">{{page.owner.first_name}} {{page.owner.last_name}}</a>
                     </div>
                     <div class="author-large-image">
                         <img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt="">
                     </div>
-                    <div class="about-author-description">
+                    <!-- <div class="about-author-description">
                         <p>
                             {{page.owner.bio|richtext}}
                         </p>
-                    </div>
-                    {% comment %}
+                    </div> -->
                     <div class="view-all">
-                        <a href="#"><button>More About the Author</button></a>
-                    </div> {% endcomment %}
-                </div>
-                <div class="similar-posts">
-                    <div class="all-post-container">
-                        {% comment %}
-                        <div class="section-header">
-                            <div class="section-title">
-                                <div class="title">
-                                    <h1>Similar Posts</h1>
-                                </div>
-                                <div class="horizontal-line"></div>
-                            </div>
-                        </div> {% endcomment %} {% comment %}
-                        <div class="all-post-container-card">
-                            {% if similar_posts %}
-                            <div class="post-card-vertical">
-                                <div class="post-image" style="background-image: url(/static/images/front-view-curly-woman-reading-outside.jpg); background-size: cover; background-repeat: no-repeat;">
-                                    <a href="#">
-                                        <div class="post-category">
-                                            <p>Category 1</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <div class="post-title">
-                                        <a href="#">
-                                            <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                                        </a>
-                                    </div>
-                                    <div class="post-body">
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur esse deleniti corrupti. </p>
-                                    </div>
-                                    <div class="post-tags">
-                                        <div class="tag">
-                                            <p>tag1</p>
-                                        </div>
-                                        <div class="tag">
-                                            <p>tag2</p>
-                                        </div>
-                                        <div class="tag">
-                                            <p>tag3</p>
-                                        </div>
-                                    </div>
-                                    <div class="author">
-                                        <div class="author-image"><img src="/static/images/blonde-woman-posing-outdoors-while-holding-book.jpg" alt=""></div>
-                                        <div class="author-name">
-                                            <a href="#">
-                                                <p>Eve Wilkins</p>
-                                            </a>
-                                        </div>
-                                        <div class="post-date">
-                                            <p>18 Aug 2023</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% else %}
-                            <p>No similar posts</p>
-                            {% endif %}
-                        </div>
-                        <div class="view-all">
-                            <a href="#"><button>View All</button></a>
-                        </div> {% endcomment %}
+                        <a href="{% if page.word_author %}{% pageurl page.word_author %}{% else %}#{% endif %}"><button class="visit-blog">More About the Author</button></a>
                     </div>
                 </div>
             </div>

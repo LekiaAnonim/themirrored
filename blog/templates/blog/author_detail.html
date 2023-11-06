@@ -1,4 +1,5 @@
 <html lang="en">
+{% extends 'base.html' %} {% load wagtailcore_tags %} {% load static %} {% load wagtailimages_tags %} {% load social_share %} {% load comments %} {% load comments_xtd %}
 
 <head>
     {% load wagtailmetadata_tags %} {% meta_tags %}
@@ -14,14 +15,13 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 
-<body>
-    {% block content %}
+<body>{% block coverimage %}{% endblock %} {% block content %}
     <section class="author-section">
         <div class="author-detail-header">
 
             <div class="author-details">
                 <span>Author</span>
-                <h1>{{request.user.first_name}} {{request.user.last_name}}</h1>
+                <h1>{{page.user.first_name}} {{page.user.last_name}}</h1>
                 <h4>Writer on Mirrored</h4>
                 <div class="author-socials">
                     <div class="social">
@@ -56,16 +56,12 @@
             <h2>About Me</h2>
             <div class="about-me-text ">
                 <p>
-                    {{request.user.author.bio|richtext}}
+                    {{page.bio|richtext}}
                 </p>
             </div>
         </div>
     </section>
-    {% block content %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %}
+    {% endblock content %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %}
 </body>
-
-</html>
-
-</html>
 
 </html>

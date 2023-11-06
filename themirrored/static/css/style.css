@@ -672,7 +672,7 @@ footer * {
 }
 
 .how-card-container .post-title p {
-    line-height: 1.2;
+    line-height: 1.1;
     font-size: 11px;
 }
 
@@ -769,7 +769,6 @@ footer * {
     width: 80%;
     /* background: rgb(174,189,238);
     background: radial-gradient(circle, rgba(174,189,238,1) 0%, rgba(148,233,156,1) 100%); */
-    background-color: var(--blue);
     position: fixed;
     top: 0;
     left: 0;
@@ -980,28 +979,11 @@ form {
     .post-date p {
         font-size: x-small;
     }
-    .post-tags {
-        display: flex;
-        align-items: center;
-        margin-top: 15px;
-    }
     .post-title h2 {
         font-size: 16px;
     }
     .Post-title h1 {
         font-size: 18px;
-    }
-}
-
-@media (max-width: 474px) {
-    .post-tags {
-        display: none;
-    }
-}
-
-@media (max-width: 290px) {
-    .post-tags {
-        display: none;
     }
 }
 

@@ -64,12 +64,16 @@
                                 <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
                                     <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
                                 <div class="author-name">
-                                    <a href="#">
+                                    <a href="{% if blog.post_author %}{% pageurl blog.post_author %}{% else %}#{% endif %}">
                                         <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
                                     </a>
                                 </div>
                             </div>
-                            <button class="read-more">Read more</button>
+                            <div>
+                                <a href="{% pageurl blog %}">
+                                    <button class="read-more">Read more</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <hr>
@@ -132,7 +136,7 @@
 
     <section class="weekly-article-section">
         <div class="section-title">
-            <h2>Weekly Article</h2>
+            <h2>Article of the Week</h2>
         </div>
         {% if article_of_the_week %}
         <div class="large-post-card">
@@ -190,7 +194,7 @@
                         <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
                             <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
                         <div class="author-name">
-                            <a href="#">
+                            <a href="{% if blog.post_author %}{% pageurl blog.post_author %}{% else %}#{% endif %}">
                                 <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
                             </a>
                         </div>

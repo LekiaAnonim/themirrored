@@ -32,11 +32,12 @@ from django.shortcuts import redirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 # Create your models here.
 AUTH_USER = settings.AUTH_USER_MODEL
-@register_snippet
-class Author(AbstractBaseUser):
+
+class Author(Page):
+    template = 'blog/author_detail.html'
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
+        settings.AUTH_USER_MODEL, null=True, blank=True,
+        on_delete=models.SET_NULL,
         related_name="author",
     )
     bio = models.TextField(null=True, blank=True)
@@ -46,6 +47,18 @@ class Author(AbstractBaseUser):
     threads_url = models.URLField(max_length=500, null=True, blank=True)
     linkedin_url = models.URLField(max_length=500, null=True, blank=True)
     youtube_url = models.URLField(max_length=500, null=True, blank=True)
+
+    content_panels = Page.content_panels + [
+
+        FieldPanel('user'),
+        FieldPanel('bio'),
+        FieldPanel('facebook_url'),
+        FieldPanel('twitter_url'),
+        FieldPanel('instagram_url'),
+        FieldPanel('threads_url'),
+        FieldPanel('linkedin_url'),
+        FieldPanel('youtube_url'),
+    ]
 
     class Meta:
         verbose_name = _("Author profile")
@@ -196,7 +209,7 @@ class BlogPageTag(TaggedItemBase):
     )
 class BlogPage(MetadataPageMixin, PostInfo, Page):
     template = 'blog/blog_page.html'
-    # post_author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='post_author')
+    post_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='post_author')
     post_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='post_category')
     article_of_the_week = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
@@ -216,7 +229,7 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
         MultiFieldPanel([
             FieldPanel('post_title'),
             FieldPanel('post_category'),
-            # FieldPanel('post_author'),
+            FieldPanel('post_author'),
             # FieldPanel('date_created'),
             # FieldPanel('date_updated'),
             FieldPanel('tags'),
@@ -243,6 +256,7 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
 
     def save(self, *args, **kwargs):
         self.read_time = read_time(self.body)
+        self.post_author = self.owner.author
         if self.article_of_the_week:
             BlogPage.objects.all().update(**{'article_of_the_week': False})
         super(BlogPage, self).save(*args, **kwargs)
@@ -341,7 +355,7 @@ class HowIndexPage(MetadataPageMixin, Page):
         context["posts"] = posts
         return context
 class HowPage(MetadataPageMixin, PostInfo, Page):
-    # how_author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='how_author')
+    how_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='how_author')
     how_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='how_category')
     how_of_the_week = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=HowPageTag, blank=True)
@@ -360,7 +374,7 @@ class HowPage(MetadataPageMixin, PostInfo, Page):
         MultiFieldPanel([
             FieldPanel('post_title'),
             FieldPanel('how_category'),
-            # FieldPanel('how_author'),
+            FieldPanel('how_author'),
             # FieldPanel('date_created'),
             # FieldPanel('date_updated'),
             FieldPanel('tags'),
@@ -387,6 +401,7 @@ class HowPage(MetadataPageMixin, PostInfo, Page):
     
     def save(self, *args, **kwargs):
         self.read_time = read_time(self.body)
+        self.how_author = self.owner.author
         if self.how_of_the_week:
             HowPage.objects.all().update(**{'how_of_the_week': False})
         super(HowPage, self).save(*args, **kwargs)
@@ -471,7 +486,7 @@ class WeeklyWordIndexPage(MetadataPageMixin, Page):
         context["posts"] = posts
         return context
 class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
-    # word_author = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='word_author')
+    word_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='word_author')
     word_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='word_category')
     word_of_the_week = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=WordPageTag, blank=True)
@@ -490,7 +505,7 @@ class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
         MultiFieldPanel([
             FieldPanel('post_title'),
             FieldPanel('word_category'),
-            # FieldPanel('word_author'),
+            FieldPanel('word_author'),
             FieldPanel('tags'),
             FieldPanel('post_image'),
             FieldPanel('word_of_the_week'),
@@ -515,6 +530,7 @@ class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
     
     def save(self, *args, **kwargs):
         self.read_time = read_time(self.body)
+        self.word_author = self.owner.author
         if self.word_of_the_week:
             WeeklyWordPage.objects.all().update(**{'word_of_the_week': False})
         super(WeeklyWordPage, self).save(*args, **kwargs)
@@ -689,6 +705,8 @@ class SiteEmails(models.Model):
     def __str__(self):
         return self.emails
     
+    class Meta:
+        verbose_name_plural = _("Site Emails")
 
 class FormField(AbstractFormField):
     page = ParentalKey('RequestFormPage', on_delete=models.CASCADE, related_name='form_fields')

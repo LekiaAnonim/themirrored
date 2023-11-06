@@ -100,7 +100,7 @@
                     <div class="tags">
                         <h3>Tags</h3>
                         {% for tag in tags %}
-                        <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button class="tag" type="button">{{ tag }}</button></a> {% endfor %}
+                        <a href="{% slugurl 'tags' %}?tag={{ tag }}"><button class="tag post-tag" type="button">{{ tag }}</button></a> {% endfor %}
                     </div>
                     {% endif %} {% endwith %}
                 </div>
@@ -114,20 +114,17 @@
                 <div class="about-author">
                     <h3>Author</h3>
                     <div class="author-fullname">
-                        <a href="#">{{page.owner.first_name}} {{page.owner.last_name}}</a>
+                        <a href="{% if page.how_author %}{% pageurl page.how_author %}{% else %}#{% endif %}">{{page.owner.first_name}} {{page.owner.last_name}}</a>
                     </div>
                     <div class="author-large-image">
                         <img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt="">
                     </div>
-                    <div class="about-author-description">
-                        <p>
-                            {{page.owner.bio|richtext}}
-                        </p>
-                    </div>
-                    {% comment %}
+                    <!-- <div class="about-author-description">
+                        <p>{{page.owner.bio|richtext}}</p>
+                    </div> -->
                     <div class="view-all">
-                        <a href="#"><button>More About the Author</button></a>
-                    </div> {% endcomment %}
+                        <a href="{% if page.how_author %}{% pageurl page.how_author %}{% else %}#{% endif %}"><button class="visit-blog">More About the Author</button></a>
+                    </div>
                 </div>
                 {% comment %}
                 <div class="similar-posts">
