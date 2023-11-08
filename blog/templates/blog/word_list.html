@@ -11,7 +11,7 @@
     <section class="first-section">
         {% block coverimage %}
         <div class="blog-carousel" dir="ltr">
-            {% for blog in posts %}{% with blog=blog.specific %}
+            {% for blog in posts|slice:":5" %}{% with blog=blog.specific %}
             <div class="main-image blog-section" style="{% block landingbackground %}{% if blog.post_image %} background: url('{{blog.post_image.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
                 <div class="bloglist-author-name">
                     <p>{{blog.owner.first_name}} {{blog.owner.last_name}} | {{blog.date_created|date:"d M Y"}} </p>
@@ -31,14 +31,12 @@
 
         <br>
         <br>
-        <br>
-        <br>
         <hr>
     </section>
     {% block content %}
     <section class="weekly-article-section">
         <div class="section-title">
-            <h2>This week’s Word</h2>
+            <h2>Word of the Week</h2>
         </div>
         {% if word_of_the_week %}
         <div class="post-image" style="background-image: url('{{word_of_the_week.post_image.url}}');"></div>

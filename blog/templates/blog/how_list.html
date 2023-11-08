@@ -11,7 +11,7 @@
     <section class="first-section">
         {% block coverimage %}
         <div class="blog-carousel" dir="ltr">
-            {% for blog in posts %}{% with blog=blog.specific %}
+            {% for blog in posts|slice:":5" %}{% with blog=blog.specific %}
             <div class="main-image blog-section" style="{% block landingbackground %}{% if blog.post_image %} background: url('{{blog.post_image.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
                 <div class="bloglist-author-name">
                     <p>{{blog.owner.first_name}} {{blog.owner.last_name}} | {{blog.date_created|date:"d M Y"}} </p>
