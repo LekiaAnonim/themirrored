@@ -393,7 +393,7 @@ width: 320px;
 }
 
 .recent-post-card-container {
-    margin-bottom: 15px;
+    margin-bottom: 0;
     max-width: 340px;
 }
 

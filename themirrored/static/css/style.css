@@ -818,7 +818,7 @@ footer * {
 .ham-side-main-menu {
     padding: 5px;
     cursor: pointer;
-    border-bottom: thin dashed white;
+    /* border-bottom: thin dashed white; */
 }
 
 .ham-side-main-menu:hover {
