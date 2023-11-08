@@ -768,7 +768,7 @@ class RequestFormSettings(BaseSiteSetting):
 
 
 class SubscribeFormField(AbstractFormField):
-    page = ParentalKey('SubscribeFormPage', on_delete=models.CASCADE, related_name='subscribe_form_fields')
+    page = ParentalKey('SubscribeFormPage', on_delete=models.CASCADE, related_name='form_fields')
 
 class SubscribeFormPage(AbstractEmailForm):
     template = 'blog/subscribe_form.html'
@@ -777,7 +777,7 @@ class SubscribeFormPage(AbstractEmailForm):
     content_panels = AbstractEmailForm.content_panels + [
         FormSubmissionsPanel(),
         FieldPanel('intro'),
-        InlinePanel('subscribe_form_fields', label="Form fields"),
+        InlinePanel('form_fields', label="Form fields"),
         FieldPanel('thank_you_text'),
         MultiFieldPanel([
             FieldRowPanel([
