@@ -90,7 +90,7 @@ COMMENTS_XTD_SALT = (b"Timendi causa est nescire. "
                      b"Aequam memento rebus in arduis servare mentem.")
 
 # Source mail address used for notifications.
-COMMENTS_XTD_FROM_EMAIL = "tessy.somoye@themirrored.com"
+COMMENTS_XTD_FROM_EMAIL = "enquiries@themirrored.com"
 
 # Contact mail address to show in messages.
 COMMENTS_XTD_CONTACT_EMAIL = "enquiries@themirrored.com"

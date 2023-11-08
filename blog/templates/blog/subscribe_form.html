@@ -1,3 +1,4 @@
+{% load static wagtailcore_tags %} {% load static %} {% load subscribe_form %} {% get_subscribe_form as form %}
 <style>
     .subscribe-card {
         margin-left: auto;
@@ -18,7 +19,8 @@
 </style>
 <div class="subscribe-card">
     <h2>Subscribe to our Newsletter</h2>
-    <form action="" method="post">
+    <form action="{% pageurl form.page %}" method="post">
+        {% csrf_token %}
         <div class="field-wrapper">
             <input type="email" name="email" id="id_email" placeholder="Enter your email">
             <input class="subscribe-button" type="submit" value="Subscribe">

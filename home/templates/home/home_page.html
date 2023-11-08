@@ -160,7 +160,9 @@
     <section class="more-post">
         <div class="section-title recent-section-title">
             <h2>More posts</h2>
-            <button class="visit-blog">Visit blog</button>
+            <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}">
+                <button class="visit-blog">Visit blog</button>
+            </a>
         </div>
         <div class="more-post-container">
             {% if blogs %} {% for blog in blogs|slice:":3" %}
