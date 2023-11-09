@@ -3,8 +3,22 @@
     src: url('/static/fonts/Roboto-Regular.ttf');
 }
 
+@font-face {
+    font-family: Abril;
+    src: url('/static/fonts/AbrilFatface-Regular.ttf');
+}
+
 * {
     font-family: Roboto !important;
+}
+
+h1,
+h2 {
+    font-family: Abril !important;
+}
+
+h1 * {
+    font-family: Abril !important;
 }
 
 #preloader {
@@ -297,13 +311,17 @@ footer * {
 .mission-footer {
     width: 100%;
     padding: 30px;
-    background-color: var(--light-orange);
+    border-radius: 20px 0px 0px 20px;
+    background: linear-gradient(178deg, #FFF 1.28%, #c0ebff 93.33%);
+    box-shadow: -50px 0px 50px 0px rgba(0, 0, 0, 0.10);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100%;
-    opacity: 0.95;
+    opacity: 1;
+    /* max-width: 400px; */
+    margin-bottom: 20px;
 }
 
 .mission-footer h2 {
@@ -580,13 +598,6 @@ footer * {
     font-size: 16px;
 }
 
-.about-section {
-    max-width: 100%;
-    padding: 100px 20px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .about-container {
     display: flex;
     align-items: center;
@@ -603,9 +614,17 @@ footer * {
     width: 100%;
     height: fit-content;
     padding: 25px;
-    background-color: var(--light-orange);
+    background-color: #F8F8FF;
     margin-left: auto;
     margin-right: auto;
+}
+
+.mission-header h2 {
+    color: var(--blue, #000083);
+}
+
+.about-scripture h3 {
+    margin-bottom: 37px;
 }
 
 .about-heading {
@@ -617,8 +636,8 @@ footer * {
 }
 
 .about-message p {
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .about-image {
@@ -627,7 +646,8 @@ footer * {
 
 .about-image img {
     min-width: 300px;
-    max-width: 100%;
+    max-width: 473px;
+    border-radius: 10px;
 }
 
 .how-card-container .post-image {
