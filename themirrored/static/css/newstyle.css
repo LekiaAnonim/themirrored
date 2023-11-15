@@ -795,7 +795,6 @@ button {
 }
 
 .main-page-text {
-    border: solid;
     width: fit-content !important;
     display: flex;
     justify-content: left;
