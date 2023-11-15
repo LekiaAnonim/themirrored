@@ -774,6 +774,7 @@ button {
 
 .search-card {
     padding: 15px;
+    border-radius: 15px;
 }
 
 .search-card .post-title h2 {
@@ -798,6 +799,20 @@ button {
     width: fit-content !important;
     display: flex;
     justify-content: left;
+}
+
+.search-card .post-title {
+    margin-bottom: 10px;
+}
+
+.search-card .post-title b {
+    color: var(--blue) !important;
+}
+
+.search-card .post-body * {
+    line-height: 1.5 !important;
+    font-style: normal !important;
+    font-weight: 400;
 }
 
 @media (max-width: 1120px) {
