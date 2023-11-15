@@ -794,6 +794,13 @@ button {
     height: 100%;
 }
 
+.main-page-text {
+    border: solid;
+    width: fit-content !important;
+    display: flex;
+    justify-content: left;
+}
+
 @media (max-width: 1120px) {
     .more-post-container {
         flex-wrap: wrap;
