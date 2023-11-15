@@ -8,17 +8,15 @@
     src: url('/static/fonts/AbrilFatface-Regular.ttf');
 }
 
-* {
-    font-family: Roboto !important;
-}
-
 h1,
 h2 {
     font-family: Abril !important;
+    font-style: normal !important
 }
 
 h1 * {
     font-family: Abril !important;
+    font-style: normal !important
 }
 
 #preloader {

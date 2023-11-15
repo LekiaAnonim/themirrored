@@ -13,9 +13,9 @@
         <div class="blog-carousel" dir="ltr">
             {% for blog in posts|slice:":5" %}{% with blog=blog.specific %}
             <div class="main-image blog-section" style="{% block landingbackground %}{% if blog.post_image %} background: url('{{blog.post_image.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
-                <div class="bloglist-author-name">
+                <!-- <div class="bloglist-author-name">
                     <p>{{blog.owner.first_name}} {{blog.owner.last_name}} | {{blog.date_created|date:"d M Y"}} </p>
-                </div>
+                </div> -->
                 <div class="bloglist-post-title">
                     <h1>{{blog.post_title|title|truncatewords:6}}</h1>
                 </div>
@@ -78,7 +78,7 @@
                             <h3>{{obj.post_title|title|truncatewords:4}}</h3>
                         </a>
                     </div>
-                    {% with tags=obj.tags.all %} {% if tags %}
+                    <!-- {% with tags=obj.tags.all %} {% if tags %}
                     <div class="post-tag-container">
                         {% for tag in tags|slice:":2" %}
                         <a href="{% slugurl 'tags' %}?tag={{ tag }}">
@@ -88,15 +88,15 @@
                         </a>
                         {% endfor %}
                     </div>
-                    {% endif %} {% endwith %}
+                    {% endif %} {% endwith %} -->
                     <div class="post-date">
                         <p>{{obj.date_created|date:"d M Y"}}</p>
                     </div>
                     <div class="post-body">
-                        {{obj.body|richtext|striptags|truncatewords:10}}
+                        <p>{{obj.body|richtext|striptags|truncatewords:20}}</p>
                     </div>
                     <div class="author-readmore-container">
-                        <div class="author">
+                        <!-- <div class="author">
                             <div class="author-image">{% if obj.owner.wagtail_userprofile.avatar %}<img src="{{obj.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
                                 <p>{{obj.owner.first_name|make_list|first}}</p>{% endif %}</div>
                             <div class="author-name">
@@ -104,7 +104,7 @@
                                     <p>{{obj.owner.first_name}} {{obj.owner.last_name}}</p>
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                         <div>
                             <a href="{% pageurl obj %}">
                                 <button class="read-more">Read more</button>

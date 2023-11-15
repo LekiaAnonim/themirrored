@@ -14,6 +14,9 @@
     <section id="how-of-the-week-recent-post" class="flex-section">
         <div class="how-of-the-week">
             <div class="section-title">
+                <div class="section-title-h">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M12 4C9.243 4 7 6.243 7 9h2c0-1.654 1.346-3 3-3s3 1.346 3 3c0 1.069-.454 1.465-1.481 2.255-.382.294-.813.626-1.226 1.038C10.981 13.604 10.995 14.897 11 15v2h2v-2.009c0-.024.023-.601.707-1.284.32-.32.682-.598 1.031-.867C15.798 12.024 17 11.1 17 9c0-2.757-2.243-5-5-5zm-1 14h2v2h-2z"></path></svg>
+                </div>
                 <h2>How of the week</h2>
             </div>
             {% if how_of_the_week %}
@@ -24,7 +27,7 @@
                     </a>
                 </div>
                 <div class="post-body">
-                    {{how_of_the_week.body|richtext|striptags|truncatewords:70}}
+                    {{how_of_the_week.body|richtext|striptags|truncatewords:25}}
                 </div>
                 <div class="post-image">
                     <img src="{{how_of_the_week.post_image.url}}" alt="">
@@ -47,7 +50,10 @@
                         <div class="post-image" style="background-image: url('{{blog.post_image.url}}'); background-size: cover; background-repeat: no-repeat;">
                             <a href="{% if blog.post_category %} {% pageurl blog.post_category %} {% else %} # {% endif %}">
                                 <div class="category-date">
-                                    <p><span>{{blog.post_category.name}} |</span> {{blog.date_created|date:"d M Y"}}</p>
+                                    <p>
+                                        <span>{{blog.post_category.name}}</span>
+                                        <!-- {{blog.date_created|date:"d M Y"}} -->
+                                    </p>
                                 </div>
                             </a>
                         </div>
@@ -58,9 +64,9 @@
                                 </a>
                             </div>
                             <div class="post-body">
-                                <p>{{blog.body|richtext|striptags|truncatewords:8}}</p>
+                                <p>{{blog.body|richtext|truncatewords:8}}</p>
                             </div>
-                            <div class="author">
+                            <!-- <div class="author">
                                 <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
                                     <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
                                 <div class="author-name">
@@ -68,7 +74,7 @@
                                         <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
                                     </a>
                                 </div>
-                            </div>
+                            </div> -->
                             <div>
                                 <a href="{% pageurl blog %}">
                                     <button class="read-more">Read more</button>
@@ -87,6 +93,20 @@
     <section class="flex-section">
         <div class="how-of-the-week">
             <div class="section-title">
+                <div class="section-title-h">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
+                        <g clip-path="url(#clip0_28_220)">
+                          <path d="M45.125 7.125H42.75V2.375H38V7.125H19V2.375H14.25V7.125H11.875C10.6164 7.12876 9.41038 7.63041 8.5204 8.5204C7.63041 9.41038 7.12876 10.6164 7.125 11.875V45.125C7.12876 46.3836 7.63041 47.5896 8.5204 48.4796C9.41038 49.3696 10.6164 49.8712 11.875 49.875H45.125C46.3836 49.8712 47.5896 49.3696 48.4796 48.4796C49.3696 47.5896 49.8712 46.3836 49.875 45.125V11.875C49.8712 10.6164 49.3696 9.41038 48.4796 8.5204C47.5896 7.63041 46.3836 7.12876 45.125 7.125ZM45.125 45.125H11.875V21.375H45.125V45.125ZM11.875 16.625V11.875H45.125V16.625H11.875Z" fill="black"/>
+                          <path d="M40.375 26.125H16.625V30.875H40.375V26.125Z" fill="black"/>
+                          <path d="M33.25 35.625H16.625V40.375H33.25V35.625Z" fill="black"/>
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_28_220">
+                            <rect width="57" height="57" fill="white"/>
+                          </clipPath>
+                        </defs>
+                      </svg>
+                </div>
                 <h2>Word of the week</h2>
             </div>
             {% if word_of_the_week %}
@@ -100,7 +120,7 @@
                     </a>
                 </div>
                 <div class="post-body">
-                    {{word_of_the_week.body|richtext}}
+                    {{word_of_the_week.body|richtext|truncatewords:30}}
                 </div>
 
                 <a href="{% pageurl word_of_the_week %}">
@@ -136,6 +156,19 @@
 
     <section class="weekly-article-section">
         <div class="section-title">
+            <div class="section-title-h">
+                <svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47" fill="none">
+                    <g clip-path="url(#clip0_60_1200)">
+                      <path d="M5.875 35.25H29.375V31.3333H5.875V35.25ZM5.875 11.75V15.6667H41.125V11.75H5.875ZM5.875 25.4583H41.125V21.5417H5.875V25.4583Z" fill="black"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_60_1200">
+                        <rect width="47" height="47" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+
+            </div>
             <h2>Article of the Week</h2>
         </div>
         {% if article_of_the_week %}
@@ -148,7 +181,7 @@
             </div>
             <div class="post-body">
                 <p>
-                    {{article_of_the_week.body|richtext|striptags|truncatewords:70}}
+                    {{article_of_the_week.body|richtext|striptags|truncatewords:25}}
                 </p>
             </div>
             <a href="{% pageurl article_of_the_week %}">
@@ -159,7 +192,23 @@
 
     <section class="more-post">
         <div class="section-title recent-section-title">
-            <h2>More posts</h2>
+            <div class="section-title">
+                <div class="section-title-h">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47" fill="none">
+                    <g clip-path="url(#clip0_60_1200)">
+                    <path d="M5.875 35.25H29.375V31.3333H5.875V35.25ZM5.875 11.75V15.6667H41.125V11.75H5.875ZM5.875 25.4583H41.125V21.5417H5.875V25.4583Z" fill="black"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_60_1200">
+                    <rect width="47" height="47" fill="white"/>
+                    </clipPath>
+                    </defs>
+                    </svg>
+                </div>
+                <h2>More posts</h2>
+            </div>
+
+
             <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}">
                 <button class="visit-blog">Visit blog</button>
             </a>
@@ -173,7 +222,7 @@
                         <h3>{{blog.post_title|title|truncatewords:4}}</h3>
                     </a>
                 </div>
-                {% with tags=blog.tags.all %} {% if tags %}
+                <!-- {% with tags=blog.tags.all %} {% if tags %}
                 <div class="post-tag-container">
                     {% for tag in tags|slice:":2" %}
                     <a href="{% slugurl 'tags' %}?tag={{ tag }}">
@@ -183,15 +232,15 @@
                     </a>
                     {% endfor %}
                 </div>
-                {% endif %} {% endwith %}
+                {% endif %} {% endwith %} -->
                 <div class="post-date">
                     <p>{{blog.date_created|date:"d M Y"}}</p>
                 </div>
                 <div class="post-body">
-                    {{blog.body|richtext|striptags|truncatewords:10}}
+                    <p>{{blog.body|richtext|striptags|truncatewords:20}}</p>
                 </div>
                 <div class="author-readmore-container">
-                    <div class="author">
+                    <!-- <div class="author">
                         <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
                             <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
                         <div class="author-name">
@@ -199,7 +248,7 @@
                                 <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
                             </a>
                         </div>
-                    </div>
+                    </div> -->
                     <div>
                         <a href="{% pageurl blog %}">
                             <button class="read-more">Read more</button>
