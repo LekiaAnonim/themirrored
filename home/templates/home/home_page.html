@@ -57,10 +57,9 @@
             </div>
             <div class="recent-post-container">
                 {% if videos %} {% for video in videos|slice:":2" %}
-                <div class="recent-post-card-container">
-                    <div class="recent-post-card">
+                <div class="video-card-container">
+                    <div class="video-card">
                         <iframe class="youtube-video" src="https://www.youtube.com/embed/{{video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
                     </div>
                     <div class="video-title">
                         <h3>{{video.video_title}}</h3>
