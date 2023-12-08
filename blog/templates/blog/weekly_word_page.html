@@ -18,15 +18,11 @@
                 <div class="bloglist-post-title">
                     <h1>{{page.title|title|truncatewords:6}}</h1>
                 </div>
-                <div class="cover-background"></div>
+                <!-- <div class="cover-background"></div> -->
             </div>
         </div>
         {% endblock %} {% block pagecaption %}{% endblock %} {% block searchcarousel %}{% endblock %}
-        <br>
-        <br>
-        <br>
-        <br>
-        <hr>
+
     </section>
     {% block content %}
     <section class="post-detail-container-section">
@@ -105,11 +101,6 @@
                 </div>
                 <br>
                 <br>
-                <br>
-                <br>
-                <hr>
-                <br>
-                <br>
                 <div class="about-author">
                     <h3>Author</h3>
                     <div class="author-fullname">
@@ -118,28 +109,23 @@
                     <div class="author-large-image">
                         <img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt="">
                     </div>
-                    <!-- <div class="about-author-description">
-                        <p>
-                            {{page.owner.bio|richtext}}
-                        </p>
-                    </div> -->
-                    <div class="view-all">
-                        <a href="{% if page.word_author %}{% pageurl page.word_author %}{% else %}#{% endif %}"><button class="visit-blog">More About the Author</button></a>
-                    </div>
+
                 </div>
             </div>
             <div class="post-comments">
                 {% if page.allow_comments %}
-                <h4 class="text-center mb-4">Your comment</h4>
+                <div class="comment-heading">
+                    <h4>leave a comment on this article</h4>
+                </div>
                 <div class="card card-block mb-5">
                     <div class="card-body">
-                        <h6 class="card-title text-center pb-3">Post your comment</h6>
+                        <!-- <h6 class="card-title text-center pb-3">Post your comment</h6> -->
                         {% render_comment_form for page %}
                     </div>
                 </div>
                 {% endif %} {% get_comment_count for page as comment_count %}
                 <div class="py-4 text-center">
-                    {% comment %} <a href="{{page.get_parent.url}}">Back to the post list</a> {% endcomment %} &nbsp;&sdot;&nbsp; {{ comment_count }} comment{{ comment_count|pluralize }} ha{{ comment_count|pluralize:"s,ve"}} been posted.
+                    {{ comment_count }} comment{{ comment_count|pluralize }} ha{{ comment_count|pluralize:"s,ve"}} been posted.
                 </div>
 
                 {% if comment_count %}

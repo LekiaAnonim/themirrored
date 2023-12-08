@@ -61,87 +61,6 @@ h1 * {
     right: 90px;
 }
 
-.search svg {
-    width: 20px;
-    height: auto;
-    fill: #fff;
-    margin-top: 8px;
-    cursor: pointer;
-}
-
-.search-icon:hover {
-    fill: var(--orange)
-}
-
-.search-area {
-    background: #474647f6;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transition: all 0.8s;
-    z-index: 1000000000000;
-}
-
-.cancel-search-area {
-    padding: 5px;
-    background-color: #fff;
-    border-radius: 50%;
-    height: 40px;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    cursor: pointer;
-}
-
-.cancel-search-area svg {
-    width: 100%;
-    height: 100%;
-    fill: var(--orange);
-}
-
-.cancel-search-area svg:hover {
-    fill: var(--orange);
-}
-
-.search-form {
-    height: fit-content;
-    width: fit-content;
-    margin: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-.search-form .search-input {
-    height: 40px;
-    min-width: 200px;
-    width: 400px;
-    padding: 10px 20px;
-    margin: 0;
-    outline: none;
-    border: thin #bebdbd solid;
-}
-
-.submit-search {
-    height: 40px;
-    padding: 10px 20px;
-    margin: 0;
-    border: none;
-    outline: none;
-    background-color: var(--blue);
-    color: #fff;
-    font-weight: 700;
-    cursor: pointer;
-}
-
 .social-media {
     display: flex;
     align-items: center;
@@ -289,13 +208,6 @@ nav ul .menu-with-dropdown:hover .dropdown {
     border-radius: 50%;
 }
 
-.author .author-name p {
-    font-weight: 800;
-    color: #000;
-    font-size: 11px;
-    line-height: 0.95;
-}
-
 footer {
     margin: 0;
     width: 100%;
@@ -349,44 +261,34 @@ footer * {
 }
 
 .prayer-request-form input {
-    padding: 10px;
+    padding: 12px 20px 12px 20px;
     width: 280px;
     height: 50px;
-    border: 1.5px grey solid;
+    border: 2px solid #D2D2D2B2;
     outline: none;
     margin: 10px;
+    background: linear-gradient(0deg, rgba(210, 210, 210, 0.7), rgba(210, 210, 210, 0.7)), linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    border-radius: 10px;
 }
 
 .prayer-request-form input:focus {
     padding: 15px;
     width: 280px;
     height: 50px;
-    border: 1.5px var(--blue) solid;
 }
 
 .prayer-request-form textarea {
     margin: 10px;
-    border: 1.5px solid grey;
+    border: 2px solid #D2D2D2B2;
+    border-radius: 10px;
     outline: none;
-    padding: 10px;
+    padding: 12px 20px 12px 20px;
+    background: linear-gradient(0deg, rgba(210, 210, 210, 0.7), rgba(210, 210, 210, 0.7)), linear-gradient(0deg, #FFFFFF, #FFFFFF);
 }
 
 .prayer-request-form textarea:focus {
     border: 1.5px solid var(--deep-orange);
     padding: 15px;
-}
-
-.submit {
-    background-color: var(--blue);
-    cursor: pointer;
-    font-weight: 900;
-    border: none;
-    outline: none;
-    color: #fff;
-}
-
-.submit:hover {
-    background-color: blue;
 }
 
 .main-footer {
@@ -487,6 +389,7 @@ footer * {
 
 .post-detail-card .image img {
     width: 100% !important;
+    max-height: 450px;
 }
 
 .post-detail-card .post-meta {
@@ -793,7 +696,7 @@ footer * {
 }
 
 .hamburger .ham {
-    border: 0.5px solid #fff;
+    border: 0.5px solid #000000;
     width: 20px;
     margin-bottom: 4px;
 }
@@ -973,11 +876,6 @@ footer * {
     min-width: none;
 }
 
-.post-comments input[type="submit"] {
-    width: fit-content;
-    padding: 5px 10px;
-}
-
 form {
     margin-bottom: 20px;
 }
@@ -996,11 +894,12 @@ form {
 }
 
 .post-detail-card .post-body p {
-    font-size: 16px;
+    font-size: 24px;
     line-height: 1.8 !important;
     text-overflow: ellipsis;
     color: #000;
     margin-bottom: 1.5em;
+    font-family: 'Times New Roman', Times, serif !important;
 }
 
 @media (max-width: 550px) {
@@ -1182,11 +1081,4 @@ form {
     align-items: center;
     justify-content: center;
     margin-right: 10px;
-}
-
-display: flex;
-align-items: center;
-justify-content: center;
-margin-right: 10px;
-
 }

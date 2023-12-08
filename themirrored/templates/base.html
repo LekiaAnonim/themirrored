@@ -16,16 +16,15 @@
         gtag('config', 'G-N5MLHF6FG6');
     </script>
     <meta charset="utf-8" />
-    <title>
-        {% block title %} {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %} {% endblock title %}
-    </title>
-    {% if page.search_description %}
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> {% block og_tag %} {% if page.search_description %}
     <meta name="description" content="{{ page.search_description }}" /> {% endif %}
-    <meta name="viewport" content="width=device-width, initial-scale=1" /> {% block og_tag %}
+    <title>
+        {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+    </title>
     <meta property="og:title" content="TheMirrored: Behold! Become! Live" />
     <meta property="og:description" content="Your destination for practical living, spiritual growth and faith." />
     <meta property="og:image" content="/static/images/banner.jpg" />
-    <link rel="shortcut icon" href="/static/images/logo mirrored" type="image/x-icon"> {% endblock og_tag %} {# Force all links in the live preview panel to be opened in a new tab #} {% if request.in_preview_panel %}
+    <link rel="shortcut icon" href="/static/images/mirrored_new.jpg" type="image/x-icon"> {% endblock og_tag %} {# Force all links in the live preview panel to be opened in a new tab #} {% if request.in_preview_panel %}
     <base target="_blank"> {% endif %} {# Global stylesheets #} {% block styles %}
     <link rel="stylesheet" href="/static/js/slick-1.8.1/slick/slick-theme.css">
     <link rel="stylesheet" href="/static/js/slick-1.8.1/slick/slick.css">
@@ -44,7 +43,7 @@
 
 <body class="{% block body_class %}{% endblock %}">
     <!-- {% wagtailuserbar %} -->
-    <div id="preloader"></div>
+    <!-- <div id="preloader"></div> -->
     {% block header %}
     <header>
         <nav class="navigation-bar">
@@ -140,20 +139,35 @@
     {% endblock header %}
 
 
-    <section class="first-section">
+    <main class="first-section">
         {% block coverimage %}
-        <div class="main-image" style="{% block landingbackground %}background: url('/static/images/blonde-woman-posing-outdoors-while-holding-book.a64923f1ba96.jpg'); background-size: cover; background-repeat: no-repeat; background-position: 0;{% endblock %}">
-            <div class="cover-background"></div>
-        </div> {% endblock %}
+        <div class="blog-carousel" dir="ltr">
+            {% for blog in blogs|slice:":5" %}{% with blog=blog.specific %}
+            <div class="main-image blog-section" style="{% block landingbackground %}{% if blog.post_image %} background: url('{{blog.post_image.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
+                <!-- <div class="bloglist-author-name">
+                    <p>{{blog.owner.first_name}} {{blog.owner.last_name}} | {{blog.date_created|date:"d M Y"}} </p>
+                </div> -->
+                <div class="bloglist-post-title">
+                    <h1>{{blog.post_title|title|truncatewords:6}}</h1>
+                </div>
+                <div class="bloglist-post-body">
+                    <p>{{blog.body|richtext|striptags|truncatewords:20}}</p>
+                </div>
+                <!-- <div class="cover-background"></div> -->
+            </div>
+            {% endwith %} {% endfor %}
+        </div>
+        {% endblock %}
         <div class="main-page-text-and-carousel">
-            {% block pagecaption %}
+            <!-- {% block pagecaption %}
             <div class="main-page-text">
                 <h1>Behold! <span>Live!</span> Become!</h1>
-                <!-- <div class="main-page-subtitle">
+                <div class="main-page-subtitle">
                     <p>{{page.caption_sub_text}}</p>
-                </div> -->
+                </div>
             </div>
-            {% endblock %} {% block searchcarousel %}
+            {% endblock %} -->
+            <!-- {% block searchcarousel %}
             <div class="post-carousel">{% for blog in blogs|slice:":10" %}
                 <a href="{% pageurl blog %}">
                     <div class="carousel top-conatainer-card" style="background-image: url('{{blog.post_image.url}}'); background-size: cover; background-repeat: no-repeat;">
@@ -165,11 +179,11 @@
                         </div>
                     </div>
                 </a>{% endfor %}
-            </div> {% endblock %}
+            </div> {% endblock %} -->
         </div>
         <br>
-        <hr>
-    </section>
+
+    </main>
 
     {% block content %}{% endblock %} {% block mission %}
     <section>
@@ -196,8 +210,11 @@
 
     {% endblock mission %} {% block request %}
     <section class="prayer-request-form">
-        <h2>Prayer Requests And Enquiries</h2>
-        {% include "blog/request_form.html" %}
+        <div class="request-form-container">
+            <h2>Prayer Requests And Enquiries</h2>
+            {% include "blog/request_form.html" %}
+        </div>
+
     </section>
     {% endblock request %} {% block footer %}
     <section class="section6" style="background: url(/static/images/background-885434_1280.png); background-size: cover; background-repeat: no-repeat; height: fit-content; ">
@@ -293,7 +310,32 @@
         </footer>
 
     </section>
-    {% endblock footer %} {% block scripts %}
+    {% endblock footer %}{% block backtotop %}
+    <div class="back-to-top" onclick="topFunction()" title="Go to top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: transform: ;msFilter:;"><path d="M5 15h4v6h6v-6h4l-7-8zM4 3h16v2H4z"></path></svg>
+    </div>
+    <script>
+        // Get the button:
+        let mybutton = document.getElementById("back-to-top");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>{% endblock %} {% block scripts %}
     <script src="/static/js/main/carousel.js"></script>
     <script type="text/javascript " src="{% static 'js/main/main.js' %} "></script>
 

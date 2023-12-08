@@ -22,113 +22,148 @@
                 <div class="bloglist-post-body">
                     <p>{{blog.body|richtext|striptags|truncatewords:20}}</p>
                 </div>
-                <div class="cover-background"></div>
+                <!-- <div class="cover-background"></div> -->
             </div>
             {% endwith %} {% endfor %}
         </div>
 
         {% endblock %} {% block pagecaption %}{% endblock %} {% block searchcarousel %}{% endblock %}
-        <br>
-        <br>
-        <hr>
     </section>
     {% block content %}
-
     <section class="more-post">
         <div class="section-title">
-            <div class="section-title-h">
-                <svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47" fill="none">
-                    <g clip-path="url(#clip0_60_1200)">
-                      <path d="M5.875 35.25H29.375V31.3333H5.875V35.25ZM5.875 11.75V15.6667H41.125V11.75H5.875ZM5.875 25.4583H41.125V21.5417H5.875V25.4583Z" fill="black"/>
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_60_1200">
-                        <rect width="47" height="47" fill="white"/>
-                      </clipPath>
-                    </defs>
-                  </svg>
-            </div>
-            <h2>All posts</h2>
-            <!-- <button class="visit-blog">Visit blog</button> -->
+            <h2>Recent posts</h2>
+            <!-- <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}">
+                <button class="visit-blog">Visit blog</button>
+            </a> -->
         </div>
-        <div class="more-post-container" style="flex-wrap: wrap;">
-            {% if page %} {% for blog in posts %}{% with blog=blog.specific %}
+
+        <div class="more-post-container">
+            {% if posts %} {% for blog in posts|slice:":10" %}
             <div class="more-post-card">
                 <div class="post-image" style="background-image: url('{{blog.post_image.url}}');"></div>
-                <div class="post-title">
-                    <a href="{% pageurl blog %}">
-                        <h3>{{blog.post_title|title|truncatewords:4}}</h3>
-                    </a>
-                </div>
-                <!-- {% with tags=blog.tags.all %} {% if tags %}
-                <div class="post-tag-container">
-                    {% for tag in tags|slice:":2" %}
-                    <a href="{% slugurl 'tags' %}?tag={{ tag }}">
-                        <div class="post-tag">
-                            <p>{{ tag }}</p>
-                        </div>
-                    </a>
-                    {% endfor %}
-                </div>
-                {% endif %} {% endwith %} -->
-                <div class="post-date">
-                    <p>{{blog.date_created|date:"d M Y"}}</p>
-                </div>
-                <div class="post-body">
-                    <p>{{blog.body|richtext|striptags|truncatewords:20}}</p>
-                </div>
                 <div class="author-readmore-container">
-                    <!-- <div class="author">
+                    <div class="author">
                         <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
                             <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
                         <div class="author-name">
-                            <a href="#">
+                            <a href="{% if blog.post_author %}{% pageurl blog.post_author %}{% else %}#{% endif %}">
                                 <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
                             </a>
                         </div>
-                    </div> -->
-                    <div>
-                        <a href="{% pageurl blog %}">
-                            <button class="read-more">Read more</button>
-                        </a>
                     </div>
+                    {% with tags=blog.tags.all %} {% if tags %}
+                    <div class="post-tag-container">
+                        {% for tag in tags|slice:":1" %}
+                        <a href="{% slugurl 'tags' %}?tag={{ tag }}">
+                            <div class="post-tag">
+                                <p>{{ tag }}</p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %} {% endwith %}
                 </div>
-            </div>{% endwith %} {% endfor %} {% else %}
+                <div class="post-title">
+                    <a href="{% pageurl blog %}">
+                        <h3>{{blog.post_title|title}}</h3>
+                    </a>
+                </div>
+
+                <div class="post-date">
+                    <p>{{blog.date_created|date:"d M Y"}}</p>
+                </div>
+
+
+            </div>
+            {% endfor %} {% else %}
             <p>No blog available</p>
             {% endif %}
         </div>
-        {# Only show pagination if there is more than one page to click through #} {% if posts.paginator.num_pages > 1 %}
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="pagination">
-                        {% if posts.has_previous %}
-                        <li class="page-item">
-                            <a href="?page={{ posts.previous_page_number }}" class="page-link">
-                                <span>&laquo;</span>
-                            </a>
-                        </li>
-                        {% endif %} {% for page_num in posts.paginator.page_range %}
-                        <li class="page-item {% if page_num == posts.number %} active{% endif %}">
-                            <a href="?page={{ page_num }}" class="page-link">
+    </section>
+
+    <section>
+        <div class="recent-post">
+            <div class="section-title">
+                <h2>More posts</h2>
+                <!-- <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}">
+                    <button class="visit-blog">Visit blog</button>
+                </a> -->
+            </div>
+            <div class="recent-post-container">
+                {% if posts %} {% for blog in posts %} {% if blog %}
+                <div class="recent-post-card-container">
+                    <div class="recent-post-card">
+                        <div class="post-image" style="background-image: url('{{blog.post_image.url}}'); background-size: cover; background-repeat: no-repeat;">
+                            <!-- <a href="{% if blog.post_category %} {% pageurl blog.post_category %} {% else %} # {% endif %}">
+                                <div class="category-date">
+                                    <p>
+                                        <span>{{blog.post_category.name}}</span> {{blog.date_created|date:"d M Y"}}
+                                    </p>
+                                </div>
+                            </a> -->
+                        </div>
+                        <div class="post-content">
+                            <div class="post-title">
+                                <a href="{% pageurl blog %}">
+                                    <h3>{{blog.post_title|title}}</h3>
+                                </a>
+                            </div>
+                            <div class="post-body">
+                                <p>{{blog.body|richtext|truncatewords:12}}</p>
+                            </div>
+                            <!-- <div class="author">
+                                <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
+                                    <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
+                                <div class="author-name">
+                                    <a href="{% if blog.post_author %}{% pageurl blog.post_author %}{% else %}#{% endif %}">
+                                        <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
+                                    </a>
+                                </div>
+                            </div> -->
+                            <!-- <div>
+                                <a href="{% pageurl blog %}">
+                                    <button class="read-more">Read more</button>
+                                </a>
+                            </div> -->
+                            <div class="post-date">
+                                <p>{{blog.date_created|date:"d M Y"}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %} {% endfor %}{% endif %}
+            </div>
+            {# Only show pagination if there is more than one page to click through #} {% if posts.paginator.num_pages > 1 %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="pagination">
+                            {% if posts.has_previous %}
+                            <li class="page-item">
+                                <a href="?page={{ posts.previous_page_number }}" class="page-link">
+                                    <span>&laquo;</span>
+                                </a>
+                            </li>
+                            {% endif %} {% for page_num in posts.paginator.page_range %}
+                            <li class="page-item {% if page_num == posts.number %} active{% endif %}">
+                                <a href="?page={{ page_num }}" class="page-link">
                         {{ page_num }}
                       </a>
-                        </li>
-                        {% endfor %} {% if posts.has_next %}
-                        <li class="page-item">
-                            <a href="?page={{ posts.next_page_number }}" class="page-link">
-                                <span>&raquo;</span>
-                            </a>
-                        </li>
-                        {% endif %}
+                            </li>
+                            {% endfor %} {% if posts.has_next %}
+                            <li class="page-item">
+                                <a href="?page={{ posts.next_page_number }}" class="page-link">
+                                    <span>&raquo;</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
+            {% endif %}
         </div>
-        {% endif %}
-    </section>
-
-
-    {% endblock content %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %} </body>
+    </section> {% endblock content %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %} </body>
 
 </html>
