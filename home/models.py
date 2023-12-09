@@ -66,3 +66,9 @@ class AboutPage(MetadataPageMixin, Page):
         FieldPanel('image'),
         FieldPanel('body'),
     ]
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(AboutPage, self).get_context(request, *args, **kwargs)
+        recent_blogs = BlogPage.objects.live().order_by('date_created')[:4]  
+        context["recent_blogs"] = recent_blogs
+        return context

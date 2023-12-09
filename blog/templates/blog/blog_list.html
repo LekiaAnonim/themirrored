@@ -16,12 +16,17 @@
                 <!-- <div class="bloglist-author-name">
                     <p>{{blog.owner.first_name}} {{blog.owner.last_name}} | {{blog.date_created|date:"d M Y"}} </p>
                 </div> -->
-                <div class="bloglist-post-title">
-                    <h1>{{blog.post_title|title|truncatewords:6}}</h1>
+
+                <div class="hero-section-text">
+                    <div class="bloglist-post-title">
+                        <h1>{{blog.post_title|title|truncatewords:6}}</h1>
+                    </div>
+                    <div class="bloglist-post-body">
+                        <p>{{blog.body|richtext|striptags|truncatewords:20}}</p>
+                    </div>
                 </div>
-                <div class="bloglist-post-body">
-                    <p>{{blog.body|richtext|striptags|truncatewords:20}}</p>
-                </div>
+
+
                 <!-- <div class="cover-background"></div> -->
             </div>
             {% endwith %} {% endfor %}

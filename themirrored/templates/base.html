@@ -147,12 +147,15 @@
                 <!-- <div class="bloglist-author-name">
                     <p>{{blog.owner.first_name}} {{blog.owner.last_name}} | {{blog.date_created|date:"d M Y"}} </p>
                 </div> -->
-                <div class="bloglist-post-title">
-                    <h1>{{blog.post_title|title|truncatewords:6}}</h1>
+                <div class="hero-section-text">
+                    <div class="bloglist-post-title">
+                        <h1>{{blog.post_title|title|truncatewords:6}}</h1>
+                    </div>
+                    <div class="bloglist-post-body">
+                        <p>{{blog.body|richtext|striptags|truncatewords:20}}</p>
+                    </div>
                 </div>
-                <div class="bloglist-post-body">
-                    <p>{{blog.body|richtext|striptags|truncatewords:20}}</p>
-                </div>
+
                 <!-- <div class="cover-background"></div> -->
             </div>
             {% endwith %} {% endfor %}
@@ -214,12 +217,10 @@
             <h2>Prayer Requests And Enquiries</h2>
             {% include "blog/request_form.html" %}
         </div>
-
     </section>
     {% endblock request %} {% block footer %}
     <section class="section6" style="background: url(/static/images/background-885434_1280.png); background-size: cover; background-repeat: no-repeat; height: fit-content; ">
         <footer>
-
             <div class="main-footer">
                 {% include "blog/subscribe_form.html" %}
                 <div class="footer-content">

@@ -975,6 +975,9 @@ form {
     .video-card {
         width: 100%;
     }
+    .video-card {
+        margin-right: 0;
+    }
     /* .video-card iframe{
         width: 100%;
         height: auto;

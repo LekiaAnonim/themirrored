@@ -15,11 +15,15 @@
                 <!-- <div class="bloglist-author-name">
                     <p>{{blog.owner.first_name}} {{blog.owner.last_name}} | {{blog.date_created|date:"d M Y"}} </p>
                 </div> -->
-                <div class="bloglist-post-title">
-                    <h1>{{page.title|title|truncatewords:6}}</h1>
-                </div>
-                <div class="bloglist-post-body">
-                    <p>{{page.intro|richtext|striptags|truncatewords:100}}</p>
+
+
+                <div class="hero-section-text">
+                    <div class="bloglist-post-title">
+                        <h1>{{page.title|title|truncatewords:6}}</h1>
+                    </div>
+                    <div class="bloglist-post-body">
+                        <p>{{page.intro|richtext|striptags|truncatewords:100}}</p>
+                    </div>
                 </div>
                 <!-- <div class="cover-background"></div> -->
             </div>

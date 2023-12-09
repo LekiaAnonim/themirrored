@@ -12,11 +12,14 @@
         {% block coverimage %}
         <div class="blog-carousel" dir="ltr">
             <div class="main-image blog-section" style="{% block landingbackground %}{% if page.banner %} background: url('{{page.banner.url}}') {% else %}background: url('/static/images/b70f705023881cc5826de0760d0a0ff5.jpeg'){% endif %}; background-size: cover; background-position: 0;{% endblock %}">
-                <div class="bloglist-post-title">
-                    <h1>{{page.title|title|truncatewords:4}}</h1>
-                </div>
-                <div class="bloglist-post-body">
-                    <p>{{page.intro|richtext|striptags|truncatewords:20}}</p>
+
+                <div class="hero-section-text">
+                    <div class="bloglist-post-title">
+                        <h1>{{page.title|title|truncatewords:4}}</h1>
+                    </div>
+                    <div class="bloglist-post-body">
+                        <p>{{page.intro|richtext|striptags|truncatewords:20}}</p>
+                    </div>
                 </div>
                 <!-- <div class="cover-background"></div> -->
             </div>
@@ -34,13 +37,13 @@
             {% if page %} {% for blog in posts %}{% with blog=blog.specific %}
             <a href="{% pageurl blog %}">
                 <div class="resource-card" style="background-image: url('{{blog.resource_cover_image.url}}'); background-size: cover; background-repeat: no-repeat;">
-                    <div class="post-title">
-                        <a href="{% pageurl blog %}">
-                            <h3>{{blog.resource_title|title|truncatewords:6}}</h3>
-                        </a>
-                    </div>
 
-                    <div class="cover-background"></div>
+                    <!-- <div class="cover-background"></div> -->
+                </div>
+                <div class="post-title">
+                    <a href="{% pageurl blog %}">
+                        <h3>{{blog.resource_title|title|truncatewords:6}}</h3>
+                    </a>
                 </div>
             </a>{% endwith %} {% endfor %} {% else %}
             <p>No resources available</p>
@@ -49,20 +52,22 @@
         <div class="section-title">
             <h2>Videos</h2>
         </div>
-        <div class="how-card-container">
+        <div class="video-resources-container">
 
-            {% if videos %} {% for video in videos %}
-            <div class="video-card">
-                <div class="video-embed">
-                    <iframe width="280" height="200" src="https://www.youtube.com/embed/{{video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div class="recent-post-container">
+                {% if videos %} {% for video in videos %}
+                <div class="video-card-container">
+                    <div class="video-card">
+                        <iframe class="youtube-video" src="https://www.youtube.com/embed/{{video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">
+                        <h3>{{video.video_title}}</h3>
+                    </div>
                 </div>
-                <div class="video-title">
-                    <h2>{{video.video_title}}</h2>
-                </div>
+                {% endfor %} {% else %}
+                <p>No video available</p>
+                {% endif %}
             </div>
-            {% endfor %} {% else %}
-            <p>No video available</p>
-            {% endif %}
         </div>
         {# Only show pagination if there is more than one page to click through #} {% if posts.paginator.num_pages > 1 %}
         <div class="container">

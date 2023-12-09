@@ -27,11 +27,11 @@
     {% block content %}
     <section class="how-section">
         <div class="how-container">
-            <div class="how-card-container">
+            <div class="recent-post-container">
                 {% if videos %} {% for video in videos %}
-                <div class="video-card">
-                    <div class="video-embed">
-                        <iframe width="280" height="200" src="https://www.youtube.com/embed/{{video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div class="video-card-container">
+                    <div class="video-card">
+                        <iframe class="youtube-video" src="https://www.youtube.com/embed/{{video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                     <div class="video-title">
                         <h2>{{video.video_title}}</h2>
