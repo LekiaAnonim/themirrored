@@ -140,11 +140,11 @@ class IpModel(models.Model):
 
 class PostInfo(models.Model):
     post_title = models.CharField(
-        max_length=500, null=True, help_text='Enter the title of your post')
+        max_length=500, null=True, blank=True, help_text='Enter the title of your post')
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    post_image = CloudinaryField("image", null=True)
-    body = RichTextField(null=True)
+    post_image = CloudinaryField("image", null=True, blank=True)
+    body = RichTextField(null=True, blank=True)
     allow_comments = models.BooleanField('allow comments', default=True)
     
 
@@ -486,33 +486,33 @@ class WeeklyWordIndexPage(MetadataPageMixin, Page):
         context["posts"] = posts
         return context
 class WeeklyWordPage(MetadataPageMixin, PostInfo, Page):
-    word_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='word_author')
-    word_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='word_category')
+    # word_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='word_author')
+    # word_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='word_category')
     word_of_the_week = models.BooleanField(default=False)
-    tags = ClusterTaggableManager(through=WordPageTag, blank=True)
+    # tags = ClusterTaggableManager(through=WordPageTag, blank=True)
     read_time = models.CharField(max_length=50, default=0)
     views = models.ManyToManyField(IpModel, related_name="word_views", blank=True)
     likes = models.ManyToManyField(IpModel, related_name="word_likes", blank=True)
 
     search_fields = Page.search_fields + [
         index.SearchField('post_title'),
-        index.SearchField('body'),
-        index.FilterField('word_category'),
+        # index.SearchField('body'),
+        # index.FilterField('word_category'),
         # index.FilterField('word_author'),
         index.FilterField('date_created'),
     ]
     content_panels = Page.content_panels + [
         MultiFieldPanel([
-            FieldPanel('post_title'),
-            FieldPanel('word_category'),
-            FieldPanel('word_author'),
-            FieldPanel('tags'),
+            # FieldPanel('post_title'),
+            # FieldPanel('word_category'),
+            # FieldPanel('word_author'),
+            # FieldPanel('tags'),
             FieldPanel('post_image'),
             FieldPanel('word_of_the_week'),
             FieldPanel('allow_comments'),
         ], heading="Post information"),
         
-        FieldPanel('body'),
+        # FieldPanel('body'),
         # InlinePanel('gallery_images', label="Gallery images"),
     ]
 
