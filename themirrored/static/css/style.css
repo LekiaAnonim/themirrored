@@ -258,6 +258,7 @@ footer * {
     margin-right: auto;
     background: #ffffff;
     opacity: 1;
+    width: 100%;
 }
 
 .prayer-request-form input {
@@ -719,7 +720,7 @@ footer * {
 }
 
 .ham-side-nav-bar * {
-    color: #fff;
+    color: #1C1C1C;
 }
 
 .ham-side-nav-bar p {
@@ -727,7 +728,7 @@ footer * {
 }
 
 .ham-side-nav-bar ul a {
-    color: #fff;
+    color: #1C1C1C;
     text-align: center;
 }
 
@@ -878,6 +879,7 @@ footer * {
 
 form {
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .post-card-vertical .post-image {

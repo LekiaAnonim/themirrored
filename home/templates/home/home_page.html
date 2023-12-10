@@ -29,7 +29,7 @@
                         </a>
                     </div>
                     <div class="post-body">
-                        {{how_of_the_week.body|richtext|striptags|truncatewords:25}}
+                        <p>{{how_of_the_week.body|richtext|striptags|truncatewords:25}}</p>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
     </section>
 
     <section class="flex-section">
-        <div class="how-of-the-week">
+        <div class="word-of-the-week">
             <div class="section-title-rounded">
                 <h2>Word of the week</h2>
             </div>
@@ -51,7 +51,7 @@
             </div>
             {% endif %}
         </div>
-        <div class="useful-videos">
+        <!-- <div class="useful-videos">
             <div class="section-title-rounded">
                 <h2>Useful videos</h2>
             </div>
@@ -68,7 +68,7 @@
                 {% endfor %} {% endif %}
 
             </div>
-        </div>
+        </div> -->
     </section>
 
     <section class="weekly-article-section">
@@ -89,7 +89,7 @@
                         </a>
                     </div>
                     <div class="post-body">
-                        {{article_of_the_week.body|richtext|striptags|truncatewords:25}}
+                        <p>{{article_of_the_week.body|richtext|striptags|truncatewords:25}}</p>
                     </div>
                 </div>
             </div>
