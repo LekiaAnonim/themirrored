@@ -258,6 +258,7 @@ footer * {
     margin-right: auto;
     background: #ffffff;
     opacity: 1;
+    width: 100%;
 }
 
 .prayer-request-form input {
@@ -303,7 +304,7 @@ footer * {
 
 .footer-content {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-around;
     flex-wrap: wrap;
 }
@@ -333,13 +334,8 @@ footer * {
     color: var(--light-orange);
 }
 
-.main-footer h3 {
-    margin-bottom: 10px;
-    color: #fff;
-}
-
 .main-footer ul {
-    margin-left: 10px;
+    margin-left: 0;
 }
 
 .copyright {
@@ -702,7 +698,7 @@ footer * {
 }
 
 .ham-side-nav-bar {
-    height: 100vh;
+    height: 50vh;
     width: fit-content;
     /* background: rgb(174,189,238);
     background: radial-gradient(circle, rgba(174,189,238,1) 0%, rgba(148,233,156,1) 100%); */
@@ -719,7 +715,7 @@ footer * {
 }
 
 .ham-side-nav-bar * {
-    color: #fff;
+    color: #1C1C1C;
 }
 
 .ham-side-nav-bar p {
@@ -727,7 +723,7 @@ footer * {
 }
 
 .ham-side-nav-bar ul a {
-    color: #fff;
+    color: #1C1C1C;
     text-align: center;
 }
 
@@ -878,6 +874,7 @@ footer * {
 
 form {
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .post-card-vertical .post-image {
@@ -894,11 +891,11 @@ form {
 }
 
 .post-detail-card .post-body p {
-    font-size: 24px;
-    line-height: 1.8 !important;
+    font-size: 20px;
+    line-height: 1.5 !important;
     text-overflow: ellipsis;
     color: #000;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.1em;
     font-family: 'Times New Roman', Times, serif !important;
 }
 
