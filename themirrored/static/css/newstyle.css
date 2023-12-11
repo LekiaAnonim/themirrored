@@ -937,7 +937,8 @@ margin-right: auto; */
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 10px;
+    padding: 0;
+    width: 100%;
 }
 
 
@@ -948,9 +949,9 @@ background-color: blue;
 .request-form-container h2 {
     text-align: center;
     color: var(--black);
-    font-size: 44px;
+    font-size: 30px;
     font-weight: 500;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 .form-container {
@@ -972,13 +973,13 @@ background-color: blue;
 .submit {
     background: var(--orange)!important;
     cursor: pointer !important;
-    font-weight: 900 !important;
+    font-weight: 600 !important;
     border: none !important;
     outline: none !important;
     color: var(--black) !important;
     width: fit-content !important;
-    padding: 5px 38px 5px 38px !important;
-    font-size: 24px !important;
+    padding: 5px 10px 5px 10px !important;
+    font-size: 14px !important;
     height: fit-content !important;
     border-radius: 10px !important;
 }
@@ -1146,8 +1147,16 @@ form {
     margin-top: 0;
 }
 
+.contact-footer h3 {
+    text-align: center;
+}
+
 .quicklinks {
     margin-left: 0;
+}
+
+.quicklinks h3 {
+    text-align: center;
 }
 
 @media (max-width: 1120px) {
@@ -1191,6 +1200,22 @@ flex-wrap: wrap;
     }
     .word-of-the-week {
         width: 100%;
+    }
+    .prayer-request-form input {
+        /* padding: 8px 15px 8px 15px; */
+        width: 280px;
+        /* height: 50px; */
+        margin-bottom: 5px;
+    }
+    .prayer-request-form input:focus {
+        /* padding: 8px 15px 8px 15px; */
+    }
+    .prayer-request-form textarea {
+        margin-top: 5;
+        padding: 8px 15px 8px 15px;
+    }
+    .prayer-request-form textarea:focus {
+        padding: 8px 15px 8px 15px;
     }
 }
 
@@ -1254,7 +1279,7 @@ flex-wrap: wrap;
         height: fit-content;
     }
     .request-form-container h2 {
-        font-size: 30px;
+        font-size: 20px;
     }
     .form-container .field-wrapper {
         margin-right: 0;

@@ -5,6 +5,10 @@
         margin-right: auto;
     }
     
+    .subscribe-card h3 {
+        text-align: center;
+    }
+    
     .subscribe-card input {
         border: none;
         padding: 10px 10px;
@@ -19,7 +23,7 @@
     }
 </style>
 <div class="subscribe-card">
-    <h2>Subscribe</h2>
+    <h3>Subscribe</h3>
     <form action="{% pageurl form.page %}" method="post">
         {% csrf_token %}
         <div class="field-wrapper">

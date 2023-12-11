@@ -252,19 +252,20 @@ footer * {
     margin-bottom: -20px;
 }
 
-.prayer-request-form {
+
+/* .prayer-request-form {
     padding: 30px 20px;
     margin-left: auto;
     margin-right: auto;
     background: #ffffff;
     opacity: 1;
     width: 100%;
-}
+} */
 
 .prayer-request-form input {
-    padding: 12px 20px 12px 20px;
+    padding: 8px 20px 8px 20px;
     width: 280px;
-    height: 50px;
+    height: 35px;
     border: 2px solid #D2D2D2B2;
     outline: none;
     margin: 10px;
@@ -873,7 +874,7 @@ footer * {
 }
 
 form {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     width: 100%;
 }
 
