@@ -30,6 +30,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+# from resources.models import ResourceIndexPage
 # Create your models here.
 AUTH_USER = settings.AUTH_USER_MODEL
 
@@ -668,7 +669,7 @@ class SiteLogo(BaseSiteSetting):
 @register_setting
 class ImportantPages(BaseSiteSetting):
     # Fetch these pages when looking up ImportantPages for or a site
-    select_related = ["blog_index_page", "about_page", "how_index_page", "word_index_page", "video_index_page"]
+    select_related = ["blog_index_page", "about_page", "how_index_page", "word_index_page", "resources_index_page"]
 
     blog_index_page = models.ForeignKey(
         'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
@@ -682,7 +683,7 @@ class ImportantPages(BaseSiteSetting):
     # contact_page = models.ForeignKey(
     #     'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
 
-    video_index_page = models.ForeignKey(
+    resources_index_page = models.ForeignKey(
         'wagtailcore.Page', null=True, on_delete=models.SET_NULL, related_name='+')
 
     panels = [
@@ -690,7 +691,7 @@ class ImportantPages(BaseSiteSetting):
         PageChooserPanel('about_page', ['home.AboutPage']),
         PageChooserPanel('how_index_page', ['blog.HowIndexPage']),
         PageChooserPanel('word_index_page', ['blog.WeeklyWordIndexPage']),
-        PageChooserPanel('video_index_page', ['blog.VideoIndexPage']),
+        PageChooserPanel('resources_index_page', ['resources.ResourceIndexPage']),
         # PageChooserPanel('contact_page', ['blog.ContactPage']),
     ]
 

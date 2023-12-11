@@ -8,7 +8,7 @@
     src: url('/static/fonts/Poppins-Light.ttf');
 }
 
-:root {
+ :root {
     --blue: #000083;
     --white: #FFFFFF;
     --orange: #FFC700;
@@ -932,7 +932,7 @@ button {
 
 .request-form-container {
     /* margin-left: auto;
-    margin-right: auto; */
+margin-right: auto; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -942,7 +942,7 @@ button {
 
 
 /* .submit:hover {
-    background-color: blue;
+background-color: blue;
 } */
 
 .request-form-container h2 {
@@ -985,6 +985,7 @@ button {
 
 .weekly-article-section {
     margin-top: 50px;
+    position: relative;
 }
 
 .weekly-article-section .post-image {
@@ -1126,10 +1127,33 @@ form {
     max-width: 450px;
 }
 
+.quick-link-container {
+    display: flex;
+    align-items: center;
+}
+
+.quick-link-container ul {
+    margin-right: 30px;
+}
+
+.main-footer h3 {
+    margin-bottom: 10px;
+    color: var(--orange);
+    font-weight: 700;
+}
+
+.contact-footer {
+    margin-top: 0;
+}
+
+.quicklinks {
+    margin-left: 0;
+}
+
 @media (max-width: 1120px) {
     /* .more-post-container {
-        flex-wrap: wrap;
-    } */
+flex-wrap: wrap;
+} */
 }
 
 @media (max-width: 850px) {
@@ -1172,8 +1196,8 @@ form {
 
 @media (max-width: 760px) {
     /* .more-post-container {
-        flex-wrap: wrap;
-    } */
+flex-wrap: wrap;
+} */
     .flex-section {
         flex-wrap: wrap;
     }
@@ -1306,6 +1330,18 @@ form {
     }
 }
 
+@media (max-width: 475px) {
+    .footer-content {
+        display: flex;
+        align-items: start;
+        /* justify-content: space-around; */
+        flex-wrap: wrap;
+    }
+    .contact-footer {
+        margin-top: 20px;
+    }
+}
+
 @media (max-width: 430px) {
     .main-page-text-and-carousel .main-page-text h1 {
         font-size: 50px;
@@ -1333,8 +1369,8 @@ form {
         font-size: 20px;
     }
     /* .large-post-card .post-image {
-        height: 300px;
-    } */
+height: 300px;
+} */
     .video-card {
         margin-right: 0;
     }
@@ -1361,5 +1397,32 @@ form {
     .recent-post-card .post-content .post-body p {
         font-size: 12px;
         line-height: 1.1;
+    }
+    .weekly-article-section {
+        margin-top: 10px;
+    }
+    .main-footer {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 381px) {
+    .weekly-article-section {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 378px) {
+    .weekly-article-section {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 369px) {
+    .weekly-article-section {
+        margin-top: 0;
+    }
+    .subscribe-card .subscribe-button {
+        margin-top: 10px;
     }
 }

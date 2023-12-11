@@ -232,24 +232,30 @@
                             </div>
                         </a>
                     </div> -->
-                    <div class="quicklinks ">
+                    <div class="quicklinks">
                         <h3>Quick Links</h3>
-                        <ul>
-                            <li>
-                                <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}">Blog</a>
-                            </li>
-                            <li>
-                                <a href="{{ settings.blog.ImportantPages.page_url.video_index_page }}">Videos</a>
-                            </li>
-                            <li>
-                                <a href="{{ settings.blog.ImportantPages.page_url.how_index_page }}">How</a>
-                            </li>
-                            <li>
-                                <a href="{{ settings.blog.ImportantPages.page_url.about_page }}">About</a>
-                            </li>
-                        </ul>
+                        <div class="quick-link-container">
+                            <ul>
+                                <li>
+                                    <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="{{ settings.blog.ImportantPages.page_url.resources_index_page }}">Resources</a>
+                                </li>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <a href="{{ settings.blog.ImportantPages.page_url.how_index_page }}">Help</a>
+                                </li>
+                                <li>
+                                    <a href="{{ settings.blog.ImportantPages.page_url.about_page }}">About</a>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
-                    <div class="contact-footer ">
+                    <div class="contact-footer">
                         <h3>Connect with us</h3>
                         <ul>
                             {% if settings.blog.SiteContact.email1 %}
