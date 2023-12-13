@@ -39,8 +39,9 @@ class HomePage(MetadataPageMixin, Page):
         blogs = BlogPage.objects.live()[:11]
         recent_blogs = BlogPage.objects.live().order_by('date_created')[:10]
         article_of_the_week = BlogPage.objects.live().filter(article_of_the_week=True).order_by('date_created').first()
-        videos = Video.objects.all().order_by('date_created')[:10]
+        videos = Video.objects.all().order_by('date_created')[:10   ]
         how_of_the_week = HowPage.objects.live().filter(how_of_the_week=True).order_by('date_created').first()
+        
         word_of_the_week = WeeklyWordPage.objects.live().filter(word_of_the_week=True).order_by('date_created').first()
         categories = Category.objects.live()
         context["blogs"] = blogs
@@ -69,6 +70,8 @@ class AboutPage(MetadataPageMixin, Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super(AboutPage, self).get_context(request, *args, **kwargs)
-        recent_blogs = BlogPage.objects.live().order_by('date_created')[:4]  
+        recent_blogs = BlogPage.objects.live().order_by('date_created')[:4]
+        about_us_article = BlogPage.objects.live().filter(about_us_article=True).order_by('date_created').first()
         context["recent_blogs"] = recent_blogs
+        context["about_us_article"] = about_us_article
         return context

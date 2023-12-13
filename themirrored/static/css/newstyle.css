@@ -991,8 +991,11 @@ background-color: blue;
 
 .weekly-article-section .post-image {
     width: 100%;
-    /* min-height: 486px; */
+    min-height: 300px;
+    max-height: 400px;
     margin-bottom: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .weekly-article-section .post-image img {
@@ -1363,6 +1366,9 @@ flex-wrap: wrap;
         flex-wrap: wrap;
     }
     .contact-footer {
+        margin-top: 20px;
+    }
+    .quicklinks {
         margin-top: 20px;
     }
 }

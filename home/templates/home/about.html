@@ -49,59 +49,25 @@
             </div>
         </div>
     </section>
-    <section>
-        <div class="recent-post">
-            <div class="section-title">
-                <h2>Some posts</h2>
-                <a href="{{ settings.blog.ImportantPages.page_url.blog_index_page }}">
-                    <button class="visit-blog">Visit blog</button>
-                </a>
-            </div>
-            <div class="recent-post-container">
-                {% if recent_blogs %} {% for blog in recent_blogs|slice:":4" %} {% if blog %}
-                <div class="recent-post-card-container">
-                    <div class="recent-post-card">
-                        <div class="post-image" style="background-image: url('{{blog.post_image.url}}'); background-size: cover; background-repeat: no-repeat;">
-                            <!-- <a href="{% if blog.post_category %} {% pageurl blog.post_category %} {% else %} # {% endif %}">
-                                <div class="category-date">
-                                    <p>
-                                        <span>{{blog.post_category.name}}</span> {{blog.date_created|date:"d M Y"}}
-                                    </p>
-                                </div>
-                            </a> -->
-                        </div>
-                        <div class="post-content">
-                            <div class="post-title">
-                                <a href="{% pageurl blog %}">
-                                    <h3>{{blog.post_title|title}}</h3>
-                                </a>
-                            </div>
-                            <div class="post-body">
-                                <p>{{blog.body|richtext|truncatewords:12}}</p>
-                            </div>
-                            <!-- <div class="author">
-                                <div class="author-image">{% if blog.owner.wagtail_userprofile.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
-                                    <p>{{blog.owner.first_name|make_list|first}}</p>{% endif %}</div>
-                                <div class="author-name">
-                                    <a href="{% if blog.post_author %}{% pageurl blog.post_author %}{% else %}#{% endif %}">
-                                        <p>{{blog.owner.first_name}} {{blog.owner.last_name}}</p>
-                                    </a>
-                                </div>
-                            </div> -->
-                            <!-- <div>
-                                <a href="{% pageurl blog %}">
-                                    <button class="read-more">Read more</button>
-                                </a>
-                            </div> -->
-                            <div class="post-date">
-                                <p>{{blog.date_created|date:"d M Y"}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %} {% endfor %}{% endif %}
-            </div>
+    <section class="weekly-article-section">
+
+        {% if about_us_article %}
+        <div class="post-image" style="background-image: url('{{about_us_article.post_image.url}}');"></div>
+        <div class="post-title">
+            <a href="{% pageurl about_us_article %}">
+                <h3>{{about_us_article.post_title|title}}</h3>
+            </a>
         </div>
+        <div class="post-date">
+            <p>{{about_us_article.date_created|date:"d M Y"}}</p>
+        </div>
+        <div class="post-body">
+            <p>
+                {{about_us_article.body|richtext|striptags|truncatewords:70}}
+            </p>
+        </div>
+
+        {% endif %}
     </section>
 
     {% endblock %} {% block request %} {% endblock request %}

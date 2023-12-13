@@ -213,6 +213,7 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
     post_author = models.ForeignKey(Author, null=True, blank=True, on_delete=models.SET_NULL, related_name='post_author')
     post_category = ParentalKey('Category', null=True, blank=True, on_delete=models.SET_NULL, related_name='post_category')
     article_of_the_week = models.BooleanField(default=False)
+    about_us_article = models.BooleanField(default=False)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     read_time = models.CharField(max_length=50, default=0)
     views = models.ManyToManyField(IpModel, related_name="blog_views", blank=True)
@@ -236,6 +237,7 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
             FieldPanel('tags'),
             FieldPanel('post_image'),
             FieldPanel('article_of_the_week'),
+            FieldPanel('about_us_article'),
             FieldPanel('allow_comments'),
         ], heading="Post information"),
         
@@ -260,6 +262,8 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
         self.post_author = self.owner.author
         if self.article_of_the_week:
             BlogPage.objects.all().update(**{'article_of_the_week': False})
+        if self.about_us_article:
+            BlogPage.objects.all().update(**{'about_us_article': False})
         super(BlogPage, self).save(*args, **kwargs)
     
     # write a get_context method

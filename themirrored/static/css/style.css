@@ -546,6 +546,7 @@ footer * {
     min-width: 300px;
     max-width: 473px;
     border-radius: 10px;
+    max-height: 500px;
 }
 
 .how-card-container .post-image {
