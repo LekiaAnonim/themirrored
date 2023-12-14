@@ -33,38 +33,32 @@
 
     </section>
     {% block content %}
-    <section class="weekly-article-section">
-        <div class="section-title">
-
-            <h2>Word of the Week</h2>
+    <section>
+        <div class="word-of-the-week">
+            <div class="section-title">
+                <h2>Word of the Week</h2>
+            </div>
+            {% if word_of_the_week %}
+            <div class="how-large-post-card">
+                <div class="post-image">
+                    <img src="{{word_of_the_week.post_image.url}}" alt="">
+                </div>
+            </div>
+            {% endif %}
         </div>
-        {% if word_of_the_week %}
-        <div class="post-image">
-            <img src="{{word_of_the_week.post_image.url}}" alt=""></div>
-        {% endif %}
     </section>
     <section class="how-section">
         <div class="section-title recent-section-title">
             <h2>More Word</h2>
         </div>
-        {% regroup posts by date_created.year as year_list %} {% for year in year_list %}
-        <div class="how-date">
-            <h2>{{ year.grouper|date:"Y" }} {# Display the year #}</h2>
-        </div>
-        {% regroup year.list by date_created.month as month_list %} {% for month in month_list %}
-        <div class="how-container">
-            <div class="how-month">
-                <h3>{{ month.grouper|date:"F" }} {# Display the month as full name #}</h3>
-            </div>
-            <div class="word-container">
-                {% for obj in month.list %} {% with obj=obj.specific %}
-                <a href="{% pageurl obj %}">
-                    <div class="word-card">
-                        <img src="{{obj.post_image.url}}" alt="">
-                    </div>
-                </a>
-                {% endwith %} {% endfor %}
-            </div>
+        <div class="word-container">
+            {% for obj in posts %} {% with obj=obj.specific %}
+            <a href="{% pageurl obj %}">
+                <div class="word-card">
+                    <img src="{{obj.post_image.url}}" alt="">
+                </div>
+            </a>
+            {% endwith %} {% endfor %}
         </div>
         {# Only show pagination if there is more than one page to click through #} {% if posts.paginator.num_pages > 1 %}
         <div class="container">
@@ -94,7 +88,7 @@
                 </div>
             </div>
         </div>
-        {% endif %} {% endfor %} {% endfor %}
+        {% endif %}
     </section>
     {% endblock content %} {% block mission %} {% endblock mission %} {% block request %} {% endblock request %}
 </body>
