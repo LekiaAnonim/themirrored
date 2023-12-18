@@ -150,7 +150,7 @@ WSGI_APPLICATION = "themirrored.wsgi.application"
 
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://themirrored-production.up.railway.app', 'https://themirrored.com', 'https:www.//themirrored.com']
+    'https://themirrored-production.up.railway.app', 'https://themirrored.com', 'https://www.themirrored.com']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_SECURE = True
