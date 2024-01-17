@@ -9,22 +9,21 @@
 </head>
 
 <body>
-    {% block content %}
-
+    {% block content %} {% if how_of_the_week %}
     <section id="how-of-the-week-recent-post">
         <div class="how-of-the-week">
             <div class="section-title">
                 <h2>Help of the Week</h2>
                 <a href="{% if how_of_the_week %}{% pageurl how_of_the_week %}{% else %}#{% endif %}"><button class="visit-blog">Read more</button></a>
             </div>
-            {% if how_of_the_week %}
+
             <div class="large-post-card">
                 <div class="post-image">
                     <img src="{{how_of_the_week.post_image.url}}" alt="">
                 </div>
                 <div class="card-post-content">
                     <div class="post-title">
-                        <a href="{% pageurl how_of_the_week %}">
+                        <a href="{% if how_of_the_week %}{% pageurl how_of_the_week %}{% else %}#{% endif %}">
                             <h3>{{how_of_the_week.post_title|title}}</h3>
                         </a>
                     </div>
@@ -33,23 +32,21 @@
                     </div>
                 </div>
             </div>
-            {% endif %}
         </div>
-
     </section>
-
+    {% endif %} {% if word_of_the_week %}
     <section class="flex-section">
         <div class="word-of-the-week">
             <div class="section-title-rounded">
                 <h2>Word of the week</h2>
             </div>
-            {% if word_of_the_week %}
+
             <div class="how-large-post-card">
                 <div class="post-image">
                     <img src="{{word_of_the_week.post_image.url}}" alt="">
                 </div>
             </div>
-            {% endif %}
+
         </div>
         <!-- <div class="useful-videos">
             <div class="section-title-rounded">
@@ -70,14 +67,14 @@
             </div>
         </div> -->
     </section>
-
+    {% endif %} {% if article_of_the_week %}
     <section class="weekly-article-section">
         <div class="how-of-the-week">
             <div class="section-title">
                 <h2>Article of the Week</h2>
                 <a href="{% if article_of_the_week %}{% pageurl article_of_the_week %}{% else %}#{% endif %}"><button class="visit-blog">Read more</button></a>
             </div>
-            {% if article_of_the_week %}
+
             <div class="large-post-card">
                 <div class="post-image">
                     <img src="{{article_of_the_week.post_image.url}}" alt="">
@@ -93,9 +90,10 @@
                     </div>
                 </div>
             </div>
-            {% endif %}
+
         </div>
     </section>
+    {% endif %}
 
     <section class="more-post">
         <div class="section-title">
