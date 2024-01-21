@@ -259,7 +259,7 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
 
     def save(self, *args, **kwargs):
         self.read_time = read_time(self.body)
-        self.post_author = self.owner.author
+        # self.post_author = self.owner.author
         if self.article_of_the_week:
             BlogPage.objects.all().update(**{'article_of_the_week': False})
         if self.about_us_article:
