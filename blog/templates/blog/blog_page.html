@@ -111,10 +111,10 @@
                 <div class="about-author">
                     <h3>Author</h3>
                     <div class="author-fullname">
-                        <a href="{% if page.post_author %}{% pageurl page.post_author %}{% else %}#{% endif %}">{{page.owner.first_name}} {{page.owner.last_name}}</a>
+                        <a href="{% if page.post_author %}{% pageurl page.post_author %}{% else %}#{% endif %}">{{page.post_author.user.first_name}} {{page.post_author.user.last_name}}</a>
                     </div>
                     <div class="author-large-image">
-                        <img src="{{page.owner.wagtail_userprofile.avatar.url}}" alt="">
+                        <img src="{{page.post_author.user.avatar.url}}" alt="">
                     </div>
                 </div>
 
