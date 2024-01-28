@@ -892,7 +892,15 @@ form {
     color: #000;
 }
 
-.post-detail-card .post-body p {
+.post-detail-card .post-body {
+    font-size: 20px;
+    line-height: 1.5 !important;
+    text-overflow: ellipsis;
+    color: #000;
+    margin-bottom: 1.1em;
+    font-family: 'Times New Roman', Times, serif !important;
+}
+.post-detail-card .post-body *{
     font-size: 20px;
     line-height: 1.5 !important;
     text-overflow: ellipsis;
