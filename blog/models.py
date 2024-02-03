@@ -42,6 +42,7 @@ class Author(Page):
         related_name="author",
     )
     bio = models.TextField(null=True, blank=True)
+    # avatar = CloudinaryField("image", null=True)
     facebook_url = models.URLField(max_length=500, null=True, blank=True)
     twitter_url = models.URLField(max_length=500, null=True, blank=True)
     instagram_url = models.URLField(max_length=500, null=True, blank=True)
@@ -53,6 +54,7 @@ class Author(Page):
 
         FieldPanel('user'),
         FieldPanel('bio'),
+        # FieldPanel('avatar'),
         FieldPanel('facebook_url'),
         FieldPanel('twitter_url'),
         FieldPanel('instagram_url'),
@@ -67,6 +69,7 @@ class Author(Page):
 
     def save(self, *args, **kwargs):
         self.user = self.specific.owner
+        # self.avatar = self.specific.owner
         super(Author, self).save(*args, **kwargs)
 
 

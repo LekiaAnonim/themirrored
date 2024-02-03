@@ -114,7 +114,7 @@
                         <a href="{% if page.post_author %}{% pageurl page.post_author %}{% else %}#{% endif %}">{{page.post_author.user.first_name}} {{page.post_author.user.last_name}}</a>
                     </div>
                     <div class="author-large-image">
-                        <img src="{{page.post_author.user.avatar.url}}" alt="">
+                        <img src="{{page.post_author.user.wagtail_userprofile.avatar.url}}" alt="{{page.post_author.user.first_name}}">
                     </div>
                 </div>
 

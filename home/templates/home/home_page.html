@@ -108,7 +108,7 @@
                 <div class="post-image" style="background-image: url('{{blog.post_image.url}}');"></div>
                 <div class="author-readmore-container">
                     <div class="author">
-                        <div class="author-image">{% if blog.page.post_author.user.avatar %}<img src="{{blog.owner.wagtail_userprofile.avatar.url}}" alt="">{% else %}
+                        <div class="author-image">{% if blog.post_author.user.wagtail_userprofile.avatar %}<img src="{{blog.post_author.user.wagtail_userprofile.avatar.url}}" alt="">{% else %}
                             <p>{{blog.post_author.user.first_name|make_list|first}}</p>{% endif %}</div>
                         <div class="author-name">
                             <a href="{% if blog.post_author %}{% pageurl blog.post_author %}{% else %}#{% endif %}">

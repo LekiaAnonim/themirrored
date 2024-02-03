@@ -36,7 +36,7 @@ cloudinary.config(
 # }
 
 DATABASES = {
-    "default": dj_database_url.config(default='postgresql://postgres:ASsEPX7RNV5JPN3RkOzu@containers-us-west-137.railway.app:6528/railway', conn_max_age=1800),
+    "default": dj_database_url.config(default='postgresql://postgres:3DDF4Cce6E556D4BBG22b6bD1dda3ECA@viaduct.proxy.rlwy.net:33148/railway', conn_max_age=1800),
 }
 
 
