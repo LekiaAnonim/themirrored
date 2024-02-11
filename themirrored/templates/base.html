@@ -16,16 +16,14 @@
     <meta property="og:image" content="/static/images/banner.jpg" />
     <link rel="shortcut icon" href="/static/images/mirrored_new.jpg" type="image/x-icon"> {% endblock og_tag %} {# Force all links in the live preview panel to be opened in a new tab #} {% if request.in_preview_panel %}
     <base target="_blank"> {% endif %} {# Global stylesheets #} {% block styles %}
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5MLHF6FG6"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TNLFL3DWHB"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'G-N5MLHF6FG6');
+    gtag('config', 'G-TNLFL3DWHB');
     </script>
     <link rel="stylesheet" href="/static/js/slick-1.8.1/slick/slick-theme.css">
     <link rel="stylesheet" href="/static/js/slick-1.8.1/slick/slick.css">
