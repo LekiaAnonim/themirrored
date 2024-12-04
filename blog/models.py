@@ -273,11 +273,12 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
     def get_context(self, request, *args, **kwargs):
         context = super(BlogPage, self).get_context(request, *args, **kwargs)
         related_content = []
-        if self.tags:
-            for tag in self.tags.all():
-                related_content += BlogPage.objects.live().filter(tags__name=tag)
-                related_content += HowPage.objects.live().filter(tags__name=tag)
-                related_content += WeeklyWordPage.objects.live().filter(tags__name=tag)
+
+        if request.GET.get('tag', None):
+            tags = request.GET.get('tag')
+            related_content += BlogPage.objects.live().filter(tags__slug__in=[tags])
+            related_content += HowPage.objects.live().filter(tags__slug__in=[tags])
+            related_content += WeeklyWordPage.objects.live().filter(tags__slug__in=[tags])
         else:
             return related_content
         
