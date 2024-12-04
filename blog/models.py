@@ -280,7 +280,7 @@ class BlogPage(MetadataPageMixin, PostInfo, Page):
             # related_content += HowPage.objects.live().filter(tags__slug__in=[tags])
             # related_content += WeeklyWordPage.objects.live().filter(tags__slug__in=[tags])
         else:
-            return related_content
+            related_content={}
         
         context["related_content"] = related_content
         return context
